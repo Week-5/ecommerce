@@ -40,6 +40,14 @@ app.get('/items', async (req, res) => {
   res.render('allItems', {data});
 });
 
+
+//homepage without user logged in
+app.get('/homepage', async (req, rest) => {
+
+  res.status(200).render('homepage')
+})
+
+//homepage with user loggined in
 app.get('/homepage/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({
@@ -53,8 +61,13 @@ app.get('/homepage/:username', async (req, res) => {
     userCart: cart,
   };
 
-  res.render('homepage', {data});
+  res.status(200).render('homepage', {data});
 });
+
+//create account path
+app.get('/create-account', async (req, res) => {
+  res.render('createUser')
+})
 
 // get single item
 app.get('/items/:id', async (req, res) => {
