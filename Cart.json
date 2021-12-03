@@ -1,8 +1,12 @@
 {
   "cartData" :[
       {
-        "account": "",
-        "totalPrice": 0.00
+        "totalPrice": 1269.00,
+        "UserUsername": "Big Danny"
+      },
+      {
+        "totalPrice": 0,
+        "UserUsername": "CJ Rocks"
       }
   ]
 }
