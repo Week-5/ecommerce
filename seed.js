@@ -25,9 +25,9 @@ const seed = async () => {
   const {cartData} = JSON.parse(String(cartBuffer));
 
   const userPromises = userData.map((user) => User.create(user));
-  const customerPromises = customerData.map((customer) => Customer.create(customer));
-  const itemPromises = itemData.map((item) => Item.create(item));
   const cartPromises = cartData.map((cart) => Cart.create(cart));
+  const itemPromises = itemData.map((item) => Item.create(item));
+
 
   await Promise.all(userPromises);
   console.log('admin data has been successfully populated into our table');
