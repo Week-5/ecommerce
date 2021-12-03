@@ -30,7 +30,7 @@ const seed = require('./seed');
 //seed database
 seed();
 
-//CRUD actions for 
+
 // get all items
 app.get('/items', async (req, res) => {
   const items = await Item.findAll();
