@@ -127,7 +127,7 @@ app.get('/users/:username/', async (req, res) => {
 //user can view account update form
 app.get('/users/:username/update-account', async (req, res) => {
   const user = await User.findByPk(req.params.username)
-  res.status(200).render('updateUser', {user})
+  res.status(200).render('userUpdate', {user})
 })
 
 //user sends udpate account request
