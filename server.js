@@ -7,11 +7,11 @@ const {engine} = require('express-handlebars');
 
 const app = express();
 
-//send data as json object
+// send data as json object
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-//enable handlebars frontend
+// enable handlebars frontend
 app.engine('handlebars', engine({
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
@@ -27,7 +27,7 @@ const seed = require('./seed');
 
 // app.use(express.json());
 
-//seed database
+// seed database
 seed();
 
 
@@ -41,20 +41,20 @@ app.get('/items', async (req, res) => {
 });
 
 app.get('/homepage/:username', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({
-    where: {Userusername: user.username}
-  })
-  const items = await user.getItems()
+    where: {Userusername: user.username},
+  });
+  const items = await user.getItems();
 
   const data = {
     user: user,
     userItems: items,
-    userCart: cart
-  }
+    userCart: cart,
+  };
 
-  res.render('homepage', {data})
-})
+  res.render('homepage', {data});
+});
 
 // get single item
 app.get('/items/:id', async (req, res) => {
