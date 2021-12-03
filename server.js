@@ -40,20 +40,17 @@ app.get('/items', async (req, res) => {
   res.render('allItems', {data});
 });
 
-app.get('/', async (req, res) => {
-  const isLoggedIn = true
-  const user = undefined
-
-  if (req.params.username === undefined) {
-    isLoggedIn = false
-  } else {
-    user = await User.findByPk(req.params.username)
-  }
-
+app.get('/homepage/:username', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const cart = await Cart.findOne({
+    where: {Userusername: user.username}
+  })
+  const items = await user.getItems()
 
   const data = {
-    isLoggedIn: isLoggedIn,
-
+    user: user,
+    userItems: items,
+    userCart: cart
   }
 
   res.render('homepage', {data})
