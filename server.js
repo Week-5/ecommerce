@@ -66,7 +66,31 @@ app.get('/homepage/:username', async (req, res) => {
 
 //create account path
 app.get('/create-account', async (req, res) => {
-  res.render('createUser')
+  res.status(200).render('createUser')
+})
+
+//post account path
+app.post('/create-account', async (req, res) => {
+  const newUsername = req.body.username
+  const newFullName = req.body.newFullName
+  const newEmail = req.body.newEmail
+  const newPassword = req.body.password
+
+  //create new user
+  const newUser = User.create({
+    username: newUsername,
+    fullName: newFullName,
+    email: newEmail,
+    password: newPassword
+  })
+
+  //create new cart and assign it to new user
+  const newUserCart = Cart.create({
+    totalPrice:  0,
+    UserUsername: newUser.username
+  })
+
+  res.status(200).redirect(`/homepage/${newUser.username}`)
 })
 
 // get single item
