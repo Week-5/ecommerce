@@ -6,4 +6,12 @@
   <div>
     {{data.item.description}}
   </div>
+  <a href="/items">
+    <input type="button" value="Return To All Items"/>
+  </a>
+  {{#if data.admin}}
+    <a href="/item/{{data.item.id}}/edit">
+      <input type="button" value="Edit Item"/>
+    </a>
+  {{/if}}
 </div>
