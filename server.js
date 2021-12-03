@@ -1,15 +1,17 @@
 const express = require('express');
 const port = 3000;
-const {Admin, Customer, Item, Cart} = require('./index');
+const {User, Item, Cart} = require('./index');
 const {db} = require('./db');
 const Handlebars = require('handlebars');
 const {engine} = require('express-handlebars');
 
 const app = express();
 
+//send data as json object
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+//enable handlebars frontend
 app.engine('handlebars', engine({
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
@@ -23,9 +25,11 @@ app.use(express.static('public'));
 
 const seed = require('./seed');
 
-app.use(express.json());
+// app.use(express.json());
 
+//seed database
 seed();
+
 
 // get all items
 app.get('/items', async (req, res) => {
@@ -35,6 +39,25 @@ app.get('/items', async (req, res) => {
   };
   res.render('allItems', {data});
 });
+
+app.get('/', async (req, res) => {
+  const isLoggedIn = true
+  const user = undefined
+
+  if (req.params.username === undefined) {
+    isLoggedIn = false
+  } else {
+    user = await User.findByPk(req.params.username)
+  }
+
+
+  const data = {
+    isLoggedIn: isLoggedIn,
+
+  }
+
+  res.render('homepage', {data})
+})
 
 // get single item
 app.get('/items/:id', async (req, res) => {

@@ -6,8 +6,6 @@ class Cart extends Model {}
 
 Cart.init(
     {
-      account: DataTypes.STRING,
-      // items: DataTypes.ARRAY,
       totalPrice: DataTypes.FLOAT,
     },
     {
