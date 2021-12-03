@@ -1,10 +1,10 @@
 const {db, DataTypes, Model} = require('../db');
 /**
- * Admin class extends Model
+ * User class extends Model
  */
-class Admin extends Model {}
+class User extends Model {}
 
-Admin.init(
+User.init(
     {
       username: {
         type: DataTypes.STRING,
@@ -22,5 +22,5 @@ Admin.init(
 );
 
 module.exports = {
-  Admin,
+  User,
 };
