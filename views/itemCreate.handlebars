@@ -1,0 +1,32 @@
+<form method="POST" action="/users/{{data.user.username}}/create-item">
+  <p>
+    <label class="labelText">Name </label>
+    <input class="inputField" type="text" name="title" placeholder="enter item name" required/>
+  </p>
+  <p>
+    <label class="labelText">Stock </label>
+    <input class="inputField" type="number" name="stock" placeholder="enter how many" required/>
+  </p>
+  <p>
+    <label class="labelText">Price </label>
+    <input class="inputField" type="number" name="price" placeholder="enter price" required/>
+  </p>
+  <p>
+    <label class="labelText">Description </label>
+    <input class="inputField" type="text" name="description" placeholder="enter item description" required/>
+  </p>
+  <p>
+    <label class="labelText">category </label>
+    <select name="category">
+      <option value="electronics">Electionics</option>
+      <option value="clothing-male">Men's Clothing</option>
+      <option value="clothing-femail">Women's Clothing</option>
+      <option value="jewlery">Jewlery</option>
+    </select>
+  </p>
+  <p>
+    <input class="inputField" type="text" name="image" placeholder="enter image URL" required/>
+  </p>
+    <input class="submitButton" type="submit" name="createUser" value="Create Account" required/>
+  </p>
+</form>
