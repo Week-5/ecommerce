@@ -106,11 +106,11 @@ app.get('/users/:username/', async (req, res) => {
       user: user,
       userItems: items
     }
-  }  
-
-  data = {
-    user: user
-  }
+  } else {
+    data = {
+      user: user
+    }
+  } 
 
   res.status(200).render('user', {data})
 })
