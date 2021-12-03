@@ -69,6 +69,14 @@ app.get('/create-account', async (req, res) => {
   res.status(200).render('createUser')
 })
 
+app.get('/users/:username', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const data = {
+    user: user,
+  } 
+  res.render('user', {data})
+})
+
 //post account path
 app.post('/create-account', async (req, res) => {
   const newUsername = req.body.username

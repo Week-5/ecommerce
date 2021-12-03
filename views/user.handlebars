@@ -22,7 +22,16 @@
       {{/each}}
     </div>
   {{/if}}
-  <a href="/homepage/{{data.user.username}}">
-    <input type="button" value="Return To Homepage"/>
-  </a>
+</section>
+
+<section>
+    <form action="/users/{{data.user.username}}/update-account" method="GET">
+        <input type="submit" value="Update Profile"/>
+    </form>
+    <form method="POST" action="/users/{{data.user.username}}/?method=DELETE">
+        <input type="submit" value="Delete Profile"/>
+    </form>
+    <a href="/homepage/{{data.user.username}}">
+      <input type="button" value="Return To Homepage">
+    </a>
 </section>
