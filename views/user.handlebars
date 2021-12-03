@@ -28,6 +28,11 @@
     <form action="/users/{{data.user.username}}/update-account" method="GET">
         <input type="submit" value="Update Profile"/>
     </form>
+    {{#if data.user.isAdmin}}
+      <form method="GET" action="/users/{{data.user.username}}/create-item">
+          <input type="submit" value="Create New Item"/>
+      </form>
+    {{/if}}
     <form method="POST" action="/users/{{data.user.username}}/?method=DELETE">
         <input type="submit" value="Delete Profile"/>
     </form>

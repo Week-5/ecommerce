@@ -9,8 +9,8 @@
   <a href="/items">
     <input type="button" value="Return To All Items"/>
   </a>
-  {{#if data.admin}}
-    <a href="/item/{{data.item.id}}/edit">
+  {{#if data.user.isAdmin}}
+    <a href="/users/{{data.user.username}}/items/{{data.item.id}}/update-item">
       <input type="button" value="Edit Item"/>
     </a>
   {{/if}}
