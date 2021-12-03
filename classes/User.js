@@ -13,7 +13,7 @@ User.init(
       fullName: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
-      isUser: DataTypes.BOOLEAN,
+      isAdmin: DataTypes.BOOLEAN,
     },
     {
       sequelize: db,
