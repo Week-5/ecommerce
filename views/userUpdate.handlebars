@@ -1,7 +1,7 @@
- <form action="/users/{{data.user.username}}/update-account" method="POST">
+ <form action="/users/{{user.username}}/update-account" method="POST">
   <p>
     <label class="labelText">Username:</label>
-    <input class="inputField" name="username" type="text" placeholder="{{data.user.username}} (unable to change)" disabled/>
+    <input class="inputField" name="username" type="text" placeholder="{{user.username}} (unable to change)" disabled/>
   </p>
   <p>
     <label class="labelText">Full Name:</label>
@@ -15,7 +15,7 @@
     <label class="labelText">Password:</label>
     <input class="inputField" name="password" type="password" placeholder="Enter New Password"/>
   </p>
-  {{#if data.user.isAdmin}}
+  {{#if user.isAdmin}}
     <p>
       <label class="labelText">🎉 Congrats, you're an admin!</label>
     </p>

@@ -1,4 +1,4 @@
-<form method="POST" action="/users/{{data.user.username}}/create-item">
+<form method="POST" action="/users/{{user.username}}/create-item">
   <p>
     <label class="labelText">Name </label>
     <input class="inputField" type="text" name="title" placeholder="enter item name" required/>
@@ -17,11 +17,11 @@
   </p>
   <p>
     <label class="labelText">Category </label>
-    <select name="category">
+    <select name="category"/ required>
       <option value="default">Select One</option>
       <option value="electronics">Electionics</option>
       <option value="clothing-male">Men's Clothing</option>
-      <option value="clothing-femail">Women's Clothing</option>
+      <option value="clothing-female">Women's Clothing</option>
       <option value="jewlery">Jewlery</option>
     </select>
   </p>
