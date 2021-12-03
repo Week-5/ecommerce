@@ -1,0 +1,37 @@
+<section>
+  <div>
+    {{data.user.fullName}}
+  </div>
+  <div>
+    {{data.user.username}}
+  </div>
+  <div>
+    {{data.user.email}}
+  </div>
+  {{#if data.items}}
+    <div class="grid-container">
+      {{#each data.items}}
+        <div class="grid-item">
+          <a href="/items/{{this.id}}/">
+            <img class="allItemsImage" src="{{this.image}}" title="Click Here To View Options"/>
+          </a>
+          <div class="allItemsText">
+            {{this.title}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</section>
+
+<section>
+    <form action="/users/{{data.user.username}}/update-account" method="GET">
+        <input type="submit" value="Update Profile"/>
+    </form>
+    <form method="POST" action="/users/{{data.user.username}}/?method=DELETE">
+        <input type="submit" value="Delete Profile"/>
+    </form>
+    <a href="/homepage/{{data.user.username}}">
+      <input type="button" value="Return To Homepage">
+    </a>
+</section>
