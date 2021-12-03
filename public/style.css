@@ -6,13 +6,45 @@
   /* transition: width 0.5s, height 0.5s; */
 }
 
+.allItemsText{
+  color: #757575;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: large;
+  margin: auto;
+  padding: 0;
+}
+
 .singleItemImage{
   width: 500px;
   height: 400px;
   object-fit: cover;
   border-radius: 5%;
 }
-.grid-container{
+
+.grid-container {
   display: grid;
-  grid-gap: 50px 100px;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.labelText{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
+.inputField{
+  width: 200px;
+  font-size: large;
+  border: none;
+  background-color: #E7E5E6;
 }
