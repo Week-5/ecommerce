@@ -51,7 +51,7 @@ app.get('/homepage', async (req, rest) => {
 app.get('/homepage/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({
-    where: {Userusername: user.username},
+    where: {UserUsername: user.username},
   });
   const items = await user.getItems();
 
@@ -77,7 +77,7 @@ app.post('/create-account', async (req, res) => {
   const newPassword = req.body.password
 
   //create new user
-  const newUser = User.create({
+  const newUser = await User.create({
     username: newUsername,
     fullName: newFullName,
     email: newEmail,
@@ -92,6 +92,59 @@ app.post('/create-account', async (req, res) => {
 
   res.status(200).redirect(`/homepage/${newUser.username}`)
 })
+
+
+//user can view their account page
+//if admin send admin items to frontend
+app.get('/users/:username/', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const data = {}
+
+  if (user.isAdmin === true) {
+    const items = await user.getItems()
+    data = {
+      user: user,
+      userItems: items
+    }
+  }  
+
+  data = {
+    user: user
+  }
+
+  res.status(200).render('user', {data})
+})
+
+
+//user can view account update form
+app.get('/users/:username/update-account', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  res.status(200).render('updateUser', {user})
+})
+
+//user sends udpate account request
+app.post('/users/:username/update-account', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const udpatedUsername = req.body.username
+  const updatedFullName = req.body.fullName
+  const updatedEmail = req.body.email
+  const updatedPassword = req.body.password
+  const updatedIsAdmin = req.body.isAdmin
+
+  user.set({
+    username: udpatedUsername === '' ? user.username : udpatedUsername,
+    fullName: updatedFullName === "" ? user.fullName : updatedFullName,
+    email: updatedEmail === "" ? user.email : updatedEmail,
+    password: updatedPassword === "" ? user.password : updatedPassword,
+    isAdmin: updatedIsAdmin === "" ? user.isAdmin : updatedIsAdmin,
+  })
+
+  user.save()
+
+  res.status(200).redirect(`/users/${user.username}`)
+})
+
+
 
 // get single item
 app.get('/items/:id', async (req, res) => {
