@@ -152,16 +152,63 @@ app.post('/users/:username/update-account', async (req, res) => {
   res.status(200).redirect(`/users/${user.username}`)
 })
 
+//user deletes account
+app.post('users/:username/delete-profile', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
 
+  await user.destroy()
 
-// get single item
-app.get('/items/:id', async (req, res) => {
+  res.redirect(301, 'homepage')
+})
+
+//user can view create item form
+app.get('users/:username/create-item', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  res.status(200).render('itemCreate', {user})
+})
+
+//user submits create item payload
+app.post('users/:username/create-item', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const newTitle = req.body.title
+  const newStock = req.body.stock
+  const newPrice = req.body.price
+  const newDescription = req.body.description
+  const newCategory = req.body.category
+  const newImage = req.body.image
+
+  const newItem = await Item.create({
+    title: newTitle,
+    stock: newStock,
+    price: newPrice,
+    description: newDescription,
+    category: newCategory,
+    image: newImage,
+    clickCount: 0,
+    UserUsername: user.username
+  })
+
+  res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`)
+})
+
+// item homepage
+app.get('/users/:username/items/:id', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
   const item = await Item.findByPk(req.params.id);
   const data = {
     item: item,
+    user: user
   };
   res.render('item', {data});
 });
+
+/* 
+TODO:
+
+Build update item route
+BUild delete item route
+
+*/
 
 app.listen(port, () => {
   console.log('Server is running!');
