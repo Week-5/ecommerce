@@ -23,7 +23,7 @@
 		<div>YOU ARE A USER</div>
 	{{/if}}
 </section>
-<section>
+{{!-- <section>
 	<div class="w3-content w3-display-container" style="max-width:800px">
 		<img class="mySlides" src="img_nature_wide.jpg" style="width:100%">
 		<img class="mySlides" src="img_snow_wide.jpg" style="width:100%">
@@ -36,34 +36,32 @@
 			<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
 		</div>
 	</div>
-</section>
+</section> --}}
+{{!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-content w3-section" style="max-width:500px">
+  <p>The w3-animate-fading class animates an element in and out (takes about 10 seconds).</p>
+
+  <img class="mySlides w3-animate-fading" src="img_rr_01.jpg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="img_rr_02.jpg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="img_rr_03.jpg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="img_rr_04.jpg" style="width:100%">
+</div>
+
 <script>
-	var slideIndex = 1;
-	showDivs(slideIndex);
+var myIndex = 0;
+carousel();
 
-	function plusDivs(n) {
-		showDivs(slideIndex += n);
-	}
-
-	function currentDiv(n) {
-		showDivs(slideIndex = n);
-	}
-
-	function showDivs(n) {
-		var i;
-		var x = document.getElementsByClassName("mySlides");
-		var dots = document.getElementsByClassName("demo");
-		if (n > x.length) {slideIndex = 1}
-		if (n < 1) {slideIndex = x.length}
-		for (i = 0; i < x.length; i++) {
-			x[i].style.display = "none";  
-		}
-		for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(" w3-white", "");
-		}
-		x[slideIndex-1].style.display = "block";  
-		dots[slideIndex-1].className += " w3-white";
-	}
-</script>
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 9000);    
+}
+</script> --}}
 {{!-- 3d slideshow... --}}
 {{!-- https://www.foolishdeveloper.com/2021/08/automatic-image-slider.html --}}
