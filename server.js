@@ -4,6 +4,9 @@ const port = 3000;
 const {User, Item, Cart} = require('./index');
 const {db} = require('./db');
 const Handlebars = require('handlebars');
+
+// custom handlebar operator helpers
+// pulled from: https://stackoverflow.com/questions/33316562/how-to-compare-a-value-in-handlebars
 Handlebars.registerHelper( 'when', function(operand_1, operator, operand_2, options) {
   const operators = {
     'eq': function(l, r) {
@@ -29,6 +32,14 @@ Handlebars.registerHelper( 'when', function(operand_1, operator, operand_2, opti
 
   if (result) return options.fn(this);
   else return options.inverse(this);
+});
+
+Handlebars.registerHelper('for', function(from, to, incr, block) {
+  let accum = '';
+  for (let i = from; i < to; i += incr) {
+    accum += block.fn(i);
+  }
+  return accum;
 });
 
 const {engine} = require('express-handlebars');
@@ -81,11 +92,15 @@ app.get('/homepage/:username', async (req, res) => {
     where: {UserUsername: user.username},
   });
   const items = await user.getItems();
-
+  const allItems = await Item.findAll();
+  // allItems.sort(function(a, b) {
+  //   return a-b;
+  // });
   const data = {
     user: user,
     userItems: items,
     userCart: cart,
+    allItems: allItems,
   };
 
   res.status(200).render('homepage', {data});
