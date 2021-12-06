@@ -245,7 +245,10 @@ app.post('/users/:username/delete-profile', async (req, res) => {
 // user can view create item form
 app.get('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('itemCreate', {user});
+  const data = {
+    user: user,
+  };
+  res.status(200).render('itemCreate', {data});
 });
 
 // user submits create item payload

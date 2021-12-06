@@ -42,13 +42,13 @@
       </li>
       <li class="userButtons">
         <form action="/homepage/{{data.user.username}}" method="GET">
-          <input class="userButtons" type="submit" value="Return To Homepage">
-        </a>
+          <input class="userButtons" type="submit" value="Return To Homepage"/>
+          </form>
       </li>
       {{#if data.user.isAdmin}}
         <li class="userButtons">
           <form action="/users/{{data.user.username}}/create-item" method="GET">
-            <input class="userButtonText" type="submit" value="!!!!!!"/>
+            <input class="userButtonText" type="submit" value="Create New Item"/>
           </form>
         </li>
       {{/if}}

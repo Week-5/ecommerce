@@ -22,25 +22,33 @@
 			<div class="bannerGridItem">
                 <span>
                     <form action="/items" method="GET">
-                        <input name={{data.user.username}} hidden/>
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
                         <input type="submit" class="mainCategoryButton" value="All"/>
                     </form> 
                 </span>
                 <span>
                     <form action="/category/jewelry" method="GET">
-                        <input name={{data.user.username}} hidden/>
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
                         <input type="submit" class="mainCategoryButton" value="Jewelry"/>
                     </form> 
                 </span>
                 <span>
                     <form action="/category/clothing" method="GET">
-                        <input name={{data.user.username}} hidden/>
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
                         <input type="submit" class="mainCategoryButton" value="Clothing"/>
                     </form>
                 </span>
                 <span>
                     <form action="/category/electionics" method="GET">
-                        <input name={{data.user.username}} hidden/>
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
                         <input type="submit" class="mainCategoryButton" value="Electionics"/>
                     </form>
                 </span>
