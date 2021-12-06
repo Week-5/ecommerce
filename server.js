@@ -135,10 +135,10 @@ app.post('/create-account', async (req, res) => {
   });
 
   // create new cart and assign it to new user
-  const newUserCart = Cart.create({
-    totalPrice: 0,
-    UserUsername: newUser.username,
-  });
+  const newUserCart = await Cart.create({
+    totalPrice:  0,
+    UserUsername: newUser.username
+  })
 
   res.status(200).redirect(`/homepage/${newUser.username}`);
 });
@@ -181,7 +181,7 @@ app.post('/users/:username/update-account', async (req, res) => {
   const updatedPassword = req.body.password;
   const updatedIsAdmin = req.body.isAdmin;
 
-  user.set({
+  await user.set({
     username: udpatedUsername === '' ? user.username : udpatedUsername,
     fullName: updatedFullName === '' ? user.fullName : updatedFullName,
     email: updatedEmail === '' ? user.email : updatedEmail,
@@ -189,14 +189,14 @@ app.post('/users/:username/update-account', async (req, res) => {
     isAdmin: updatedIsAdmin === '' ? user.isAdmin : updatedIsAdmin,
   });
 
-  user.save();
+  await user.save()
 
   res.status(200).redirect(`/users/${user.username}`);
 });
 
 // user deletes account
-app.post('users/:username/delete-profile', async (req, res) => {
-  const user = await User.findByPk(req.params.username);
+app.post('/users/:username/delete-profile', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
 
   await user.destroy();
 
@@ -204,13 +204,13 @@ app.post('users/:username/delete-profile', async (req, res) => {
 });
 
 // user can view create item form
-app.get('users/:username/create-item', async (req, res) => {
+app.get('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   res.status(200).render('itemCreate', {user});
 });
 
 // user submits create item payload
-app.post('users/:username/create-item', async (req, res) => {
+app.post('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const newTitle = req.body.title;
   const newStock = req.body.stock;
@@ -218,6 +218,7 @@ app.post('users/:username/create-item', async (req, res) => {
   const newDescription = req.body.description;
   const newCategory = req.body.category;
   const newImage = req.body.image;
+
 
   const newItem = await Item.create({
     title: newTitle,
@@ -233,6 +234,9 @@ app.post('users/:username/create-item', async (req, res) => {
   res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
 });
 
+  res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`)
+})
+
 // item homepage
 app.get('/users/:username/items/:id', async (req, res) => {
   const user = await User.findByPk(req.params.username);
@@ -244,13 +248,56 @@ app.get('/users/:username/items/:id', async (req, res) => {
   res.render('item', {data});
 });
 
-/*
-TODO:
+// TODO:
+//user can view update item form
+app.get('/users/:username/items/:id/update-item', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const item = await Item.findByPk(req.params.id);
 
-Build update item route
-BUild delete item route
+  const data = {
+    user: user,
+    item: item
+  }
 
-*/
+  res.status(200).render('itemUpdate', {data})
+})
+
+//user can submit item update
+app.post('/users/:username/items/:id/update-item', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const item = await Item.findByPk(req.params.id);
+
+  const updatedTitle = req.body.title
+  const updatedStock = req.body.stock
+  const updatedPrice = req.body.price
+  const updatedDescription = req.body.description
+  const updatedCategory = req.body.category
+  const updatedImage = req.body.image
+
+  await item.set({
+    title: updatedTitle === '' ? item.title : updatedTitle,
+    stock: updatedStock === '' ? item.stock : updatedStock,
+    price: updatedPrice === '' ? item.price : updatedPrice,
+    description: updatedDescription === '' ? item.description : updatedDescription,
+    category: updatedCategory === 'default' ? item.category : updatedCategory,
+    image: updatedImage === '' ? item.image : updatedImage,
+    clickCount: item.clickCount
+  })
+ 
+  await item.save()
+
+  res.status(200).redirect(301, `/users/${user.username}/items/${item.id}/`)
+})
+
+//user can delete item
+app.post('/users/:username/items/:id/delete-item', async (req, res) => {
+  const user = await User.findByPk(req.params.username)
+  const item = await Item.findByPk(req.params.id);
+
+  await item.destroy()
+  
+  res.status(200).redirect(`/users/${user.username}`)
+})
 
 app.listen(port, () => {
   console.log('Server is running!');
