@@ -76,6 +76,8 @@ app.use(userRoutes);
 app.use(itemRoutes);
 // app.use(cartRoutes)
 
+// TODO: remove after cart is separated into its own route and controller
+const { User, Item, Cart } = require('../index');
 // get cart page
 app.get('/users/:username/cart', async (req, res) => {
   const user = await User.findByPk(req.params.username);
