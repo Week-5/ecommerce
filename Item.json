@@ -1,48 +1,48 @@
 {
-	"itemData": [
-		{
-			"title": "Macbook Pro 2021",
-			"stock": 10,
-			"price": 1200.0,
-			"description": "This years most sought after tech item in all of Google.",
-			"category": "Electronics",
-			"image": "https://www.apple.com/v/macbook-pro-14-and-16/b/images/overview/hero/hero_intro_endframe__e6khcva4hkeq_large.jpg",
-			"clickCount": 0,
-			"UserUsername": "Big Danny",
-			"CartId": 1
-		},
-		{
-			"title": "Striped Sweater - Tutrle Neck",
-			"stock": 10,
-			"price": 12.0,
-			"description": "The best time to wear a striped sweater is all the time. One with a collered turtle neck, that's the kind!",
-			"category": "Men's Clothing",
-			"image": "https://www.pngkit.com/png/detail/337-3371629_stripes-clipart-tumblr-transparent-spongebob-striped-sweater.png",
-			"clickCount": 0,
-			"UserUsername": "Big Danny",
-			"CartId": 1
-		},
-		{
-			"title": "Cardigan",
-			"stock": 10,
-			"price": 12.0,
-			"description": "This was an old cardigan found under someones bed. However, if you put it on, I guarantee you'll call it your favorite.",
-			"category": "Women's Clothing",
-			"image": "https://i.pinimg.com/originals/5c/d6/61/5cd66127a40764bc2f6f655888165559.jpg",
-			"clickCount": 0,
-			"UserUsername": "Big Danny",
-			"CartId": 1
-		},
-		{
-			"title": "Thin Gold Chain",
-			"stock": 10,
-			"price": 45.0,
-			"description": "This thin chain pairs nicely with a puffy turtle neck and dark shades. Might wear it to a party where lite beer is being served.",
-			"category": "Jewlery",
-			"image": "https://cdn.shopify.com/s/files/1/2235/5113/products/Anchorthingoldchain_1_1024x1024@2x.jpg?v=1601206493",
-			"clickCount": 0,
-			"UserUsername": "Big Danny",
-			"CartId": 1
-		}
-	]
+  "itemData": [
+    {
+      "title": "Macbook Pro 2021",
+      "stock": 10,
+      "price": 1200.0,
+      "description": "This years most sought after tech item in all of Google.",
+      "category": "Electronics",
+      "image": "https://www.apple.com/v/macbook-pro-14-and-16/b/images/overview/hero/hero_intro_endframe__e6khcva4hkeq_large.jpg",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 1
+    },
+    {
+      "title": "Striped Sweater - Tutrle Neck",
+      "stock": 10,
+      "price": 12.0,
+      "description": "The best time to wear a striped sweater is all the time. One with a collered turtle neck, that's the kind!",
+      "category": "Men's Clothing",
+      "image": "https://www.pngkit.com/png/detail/337-3371629_stripes-clipart-tumblr-transparent-spongebob-striped-sweater.png",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 1
+    },
+    {
+      "title": "Cardigan",
+      "stock": 10,
+      "price": 12.0,
+      "description": "This was an old cardigan found under someones bed. However, if you put it on, I guarantee you'll call it your favorite.",
+      "category": "Women's Clothing",
+      "image": "https://i.pinimg.com/originals/5c/d6/61/5cd66127a40764bc2f6f655888165559.jpg",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 1
+    },
+    {
+      "title": "Thin Gold Chain",
+      "stock": 10,
+      "price": 45.0,
+      "description": "This thin chain pairs nicely with a puffy turtle neck and dark shades. Might wear it to a party where lite beer is being served.",
+      "category": "Jewelry",
+      "image": "https://cdn.shopify.com/s/files/1/2235/5113/products/Anchorthingoldchain_1_1024x1024@2x.jpg?v=1601206493",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 1
+    }
+  ]
 }
