@@ -13,5 +13,8 @@
     <a href="/users/{{data.user.username}}/items/{{data.item.id}}/update-item">
       <input type="button" value="Update Item"/>
     </a>
+    <form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/?method=DELETE">
+        <input type="submit" value="Delete Item"/>
+    </form>
   {{/if}}
 </div>

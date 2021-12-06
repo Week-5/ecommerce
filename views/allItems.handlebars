@@ -1,14 +1,16 @@
 <section>
-    <div class="grid-container">
-      {{#each data.items}}
-        <div class="grid-item">
+  <ul class="listing">
+    {{#each data.items}}
+      <li>
+        <div class="cta">
           <a href="/items/{{this.id}}/">
             <img class="allItemsImage" src="{{this.image}}" title="Click Here To View Options"/>
           </a>
           <div class="allItemsText">
-            {{this.title}}
+            <p>{{this.title}}<br>${{this.price}}</p>
           </div>
         </div>
       {{/each}}
-    </div>
+    </li>
+  </ul>
 </section>

@@ -1,8 +1,47 @@
+/* eslint-disable max-len */
 const express = require('express');
 const port = 3000;
 const {User, Item, Cart} = require('./index');
 const {db} = require('./db');
 const Handlebars = require('handlebars');
+
+// custom handlebar operator helpers
+// pulled from: https://stackoverflow.com/questions/33316562/how-to-compare-a-value-in-handlebars
+Handlebars.registerHelper( 'when', function(operand_1, operator, operand_2, options) {
+  const operators = {
+    'eq': function(l, r) {
+      return l == r;
+    },
+    'noteq': function(l, r) {
+      return l != r;
+    },
+    'gt': function(l, r) {
+      return Number(l) > Number(r);
+    },
+    'or': function(l, r) {
+      return l || r;
+    },
+    'and': function(l, r) {
+      return l && r;
+    },
+    '%': function(l, r) {
+      return (l % r) === 0;
+    },
+  };
+  const result = operators[operator](operand_1, operand_2);
+
+  if (result) return options.fn(this);
+  else return options.inverse(this);
+});
+
+Handlebars.registerHelper('for', function(from, to, incr, block) {
+  let accum = '';
+  for (let i = from; i < to; i += incr) {
+    accum += block.fn(i);
+  }
+  return accum;
+});
+
 const {engine} = require('express-handlebars');
 
 const app = express();
@@ -41,141 +80,145 @@ app.get('/items', async (req, res) => {
 });
 
 
-//homepage without user logged in
-app.get('/homepage', async (req, rest) => {
+// homepage without user logged in
+app.get('/homepage', async (req, res) => {
+  res.status(200).render('homepage');
+});
 
-  res.status(200).render('homepage')
-})
-
-//homepage with user loggined in
+// homepage with user loggined in
 app.get('/homepage/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({
     where: {UserUsername: user.username},
   });
   const items = await user.getItems();
-
+  const allItems = await Item.findAll();
+  // allItems.sort(function(a, b) {
+  //   return a-b;
+  // });
   const data = {
     user: user,
     userItems: items,
     userCart: cart,
+    allItems: allItems,
   };
 
   res.status(200).render('homepage', {data});
 });
 
-//create account path
+// create account path
 app.get('/create-account', async (req, res) => {
-  res.status(200).render('createUser')
-})
+  res.status(200).render('createUser');
+});
 
 app.get('/users/:username', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
   const data = {
     user: user,
-  } 
-  res.render('user', {data})
-})
+  };
+  res.render('user', {data});
+});
 
-//post account path
+// post account path
 app.post('/create-account', async (req, res) => {
-  const newUsername = req.body.username
-  const newFullName = req.body.newFullName
-  const newEmail = req.body.newEmail
-  const newPassword = req.body.password
+  const newUsername = req.body.username;
+  const newFullName = req.body.newFullName;
+  const newEmail = req.body.newEmail;
+  const newPassword = req.body.password;
 
-  //create new user
+  // create new user
   const newUser = await User.create({
     username: newUsername,
     fullName: newFullName,
     email: newEmail,
-    password: newPassword
-  })
+    password: newPassword,
+  });
 
-  //create new cart and assign it to new user
+  // create new cart and assign it to new user
   const newUserCart = await Cart.create({
     totalPrice:  0,
     UserUsername: newUser.username
   })
 
-  res.status(200).redirect(`/homepage/${newUser.username}`)
-})
+  res.status(200).redirect(`/homepage/${newUser.username}`);
+});
 
 
-//user can view their account page
-//if admin send admin items to frontend
+// user can view their account page
+// if admin send admin items to frontend
 app.get('/users/:username/', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
-  const data = {}
+  const user = await User.findByPk(req.params.username);
+  const data = {};
 
   if (user.isAdmin === true) {
-    const items = await user.getItems()
+    const items = await user.getItems();
     data = {
       user: user,
-      userItems: items
-    }
+      userItems: items,
+    };
   } else {
     data = {
-      user: user
-    }
-  } 
+      user: user,
+    };
+  }
 
-  res.status(200).render('user', {data})
-})
+  res.status(200).render('user', {data});
+});
 
 
-//user can view account update form
+// user can view account update form
 app.get('/users/:username/update-account', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
-  res.status(200).render('userUpdate', {user})
-})
+  const user = await User.findByPk(req.params.username);
+  res.status(200).render('userUpdate', {user});
+});
 
-//user sends udpate account request
+// user sends udpate account request
 app.post('/users/:username/update-account', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
-  const udpatedUsername = req.body.username
-  const updatedFullName = req.body.fullName
-  const updatedEmail = req.body.email
-  const updatedPassword = req.body.password
-  const updatedIsAdmin = req.body.isAdmin
+  const user = await User.findByPk(req.params.username);
+  const udpatedUsername = req.body.username;
+  const updatedFullName = req.body.fullName;
+  const updatedEmail = req.body.email;
+  const updatedPassword = req.body.password;
+  const updatedIsAdmin = req.body.isAdmin;
 
   await user.set({
     username: udpatedUsername === '' ? user.username : udpatedUsername,
-    fullName: updatedFullName === "" ? user.fullName : updatedFullName,
-    email: updatedEmail === "" ? user.email : updatedEmail,
-    password: updatedPassword === "" ? user.password : updatedPassword,
-    isAdmin: updatedIsAdmin === "" ? user.isAdmin : updatedIsAdmin,
-  })
+    fullName: updatedFullName === '' ? user.fullName : updatedFullName,
+    email: updatedEmail === '' ? user.email : updatedEmail,
+    password: updatedPassword === '' ? user.password : updatedPassword,
+    isAdmin: updatedIsAdmin === '' ? user.isAdmin : updatedIsAdmin,
+  });
 
   await user.save()
 
-  res.status(200).redirect(`/users/${user.username}`)
-})
+  res.status(200).redirect(`/users/${user.username}`);
+});
 
-//user deletes account
+// user deletes account
 app.post('/users/:username/delete-profile', async (req, res) => {
   const user = await User.findByPk(req.params.username)
 
-  await user.destroy()
+  await user.destroy();
 
-  res.redirect(301, 'homepage')
-})
+  res.redirect(301, 'homepage');
+});
 
-//user can view create item form
+// user can view create item form
 app.get('/users/:username/create-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
-  res.status(200).render('itemCreate', {user})
-})
+  const user = await User.findByPk(req.params.username);
+  res.status(200).render('itemCreate', {user});
+});
 
-//user submits create item payload
+// user submits create item payload
 app.post('/users/:username/create-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
-  const newTitle = req.body.title
-  const newStock = req.body.stock
-  const newPrice = req.body.price
-  const newDescription = req.body.description
-  const newCategory = req.body.category
-  const newImage = req.body.image
+  const user = await User.findByPk(req.params.username);
+  const newTitle = req.body.title;
+  const newStock = req.body.stock;
+  const newPrice = req.body.price;
+  const newDescription = req.body.description;
+  const newCategory = req.body.category;
+  const newImage = req.body.image;
+
 
   const newItem = await Item.create({
     title: newTitle,
@@ -185,23 +228,27 @@ app.post('/users/:username/create-item', async (req, res) => {
     category: newCategory,
     image: newImage,
     clickCount: 0,
-    UserUsername: user.username
-  })
+    UserUsername: user.username,
+  });
+
+  res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
+});
 
   res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`)
 })
 
 // item homepage
 app.get('/users/:username/items/:id', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
   const data = {
     item: item,
-    user: user
+    user: user,
   };
   res.render('item', {data});
 });
 
+// TODO:
 //user can view update item form
 app.get('/users/:username/items/:id/update-item', async (req, res) => {
   const user = await User.findByPk(req.params.username)
