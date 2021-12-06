@@ -139,7 +139,17 @@ span {
 	bottom: 0px;
 	border-style: dashed;
 	border-color: lightblue;
+  display: grid;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: auto auto auto auto;
+  background-color: transparent;
+  padding: 50px;
+  /* top: 100px; */
+  /* border-style: dashed;
+  border-color: darkblue; */
 }
+
 .slideshowPlaceholder {
 	grid-column-start: 1;
 	/* why 5 when only 4 columns...? */
@@ -175,6 +185,65 @@ span {
 .backgroundHomepage {
 	position: relative;
 	z-index: -1;
+}
+
+.userDiv{
+  border-radius: 10px;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 1px;
+}
+
+.userList{
+  text-align: center;
+  list-style: none;
+  line-height: 40px;
+}
+
+.userFullName{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-large;
+}
+
+.userInfo{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+.userButtonText{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  border: none;
+  background-color: transparent;
+  /* border-color: white; */
+  border-style: none;
+}
+
+
+.userButtons {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  border: none;
+  background-color: transparent;
+  border-style: none;
+  margin: 0; 
+}
+
+.userButtons:after {
+  display:block;
+  content: '';
+  border-bottom: solid 1px black;
+  transform: scaleX(0);  
+  transition: transform 200ms ease-in-out;
+}
+
+.userButtons:hover:after {
+  transform: scaleX(0.15);
+}
+
+.userButtons.fromLeft:after{
+  transform-origin:  0% 50%;
 }
 
 /* shopping cart from Adobe XD */

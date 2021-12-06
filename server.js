@@ -5,6 +5,10 @@ const Handlebars = require('handlebars');
 const express = require('express');
 const app = express();
 
+// seed database
+const seed = require('./seed');
+seed();
+
 // send data as json object
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,10 +26,6 @@ app.engine(
 
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
-
-// seed database
-const seed = require('./seed');
-seed();
 
 // custom handlebar operator helpers
 // pulled from: https://stackoverflow.com/questions/33316562/how-to-compare-a-value-in-handlebars
@@ -75,6 +75,35 @@ app.use(homepageRoutes);
 app.use(userRoutes);
 app.use(itemRoutes);
 // app.use(cartRoutes)
+
+// get cart page
+app.get('/users/:username/cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const items = await cart.getItems();
+
+  cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a + b);
+
+  const data = {
+    user: user,
+    cart: cart,
+    items: items,
+  };
+
+  res.status(200).render('cart', { data });
+});
+
+//add item to cart
+app.post('/users/:username/cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const item = await Item.findOne({ where: { id: req.body.name } });
+
+  cart.items = [];
+  cart.items.push(item);
+
+  res.render(301, `/users/${user.username}/cart`);
+});
 
 app.listen(port, () => {
   console.log('Server is running!');
