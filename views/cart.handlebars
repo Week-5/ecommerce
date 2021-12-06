@@ -1,11 +1,12 @@
 <div class="cartScroll">
   ${{data.cart.totalPrice}}
+  Your cart has {{data.items.length}} items in it. Review them here
   <ul>
     {{#each data.items}}
     <li>
       {{this.title}}
-      <div class="allItemsImage">
-        <img src={{this.image}}/>
+      <div >
+        <img class="allItemsImage" src="{{this.image}}"/>
       </div>
     </li>
     {{/each}}
