@@ -35,7 +35,8 @@
         </form>
       </li>
       <li class="userButtons">
-        <form action="/users/{{data.user.username}}/?method=DELETE" method="POST">
+        {{!-- alert banner with account deletion on homepage --}}
+        <form action="/users/{{data.user.username}}/delete-profile" method="POST">
             <input class="userButtonText" type="submit" value="Delete Profile"/>
         </form>
       </li>
@@ -46,8 +47,8 @@
       </li>
       {{#if data.user.isAdmin}}
         <li class="userButtons">
-          <form method="GET" action="/users/{{data.user.username}}/create-item">
-            <input class="userButtonText" type="submit" value="Create New Item"/>
+          <form action="/users/{{data.user.username}}/create-item" method="GET">
+            <input class="userButtonText" type="submit" value="!!!!!!"/>
           </form>
         </li>
       {{/if}}

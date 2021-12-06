@@ -177,9 +177,9 @@ app.post('/create-account', async (req, res) => {
 
   // create new cart and assign it to new user
   const newUserCart = await Cart.create({
-    totalPrice:  0,
-    UserUsername: newUser.username
-  })
+    totalPrice: 0,
+    UserUsername: newUser.username,
+  });
 
   res.status(200).redirect(`/homepage/${newUser.username}`);
 });
@@ -216,32 +216,30 @@ app.get('/users/:username/update-account', async (req, res) => {
 // user sends udpate account request
 app.post('/users/:username/update-account', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const udpatedUsername = req.body.username;
   const updatedFullName = req.body.fullName;
   const updatedEmail = req.body.email;
   const updatedPassword = req.body.password;
   const updatedIsAdmin = req.body.isAdmin;
 
-  await user.set({
-    username: udpatedUsername === '' ? user.username : udpatedUsername,
+  user.set({
     fullName: updatedFullName === '' ? user.fullName : updatedFullName,
     email: updatedEmail === '' ? user.email : updatedEmail,
     password: updatedPassword === '' ? user.password : updatedPassword,
-    isAdmin: updatedIsAdmin === '' ? user.isAdmin : updatedIsAdmin,
+    isAdmin: updatedIsAdmin === undefined ? user.isAdmin : updatedIsAdmin,
   });
 
-  await user.save()
+  await user.save();
 
   res.status(200).redirect(`/users/${user.username}`);
 });
 
 // user deletes account
 app.post('/users/:username/delete-profile', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
 
   await user.destroy();
 
-  res.redirect(301, 'homepage');
+  res.redirect(301, '/homepage');
 });
 
 // user can view create item form
@@ -272,11 +270,11 @@ app.post('/users/:username/create-item', async (req, res) => {
     UserUsername: user.username,
   });
 
-  res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
-});
+  //   res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
+  // });
 
-  res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`)
-})
+  res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`);
+});
 
 // item homepage
 app.get('/users/:username/items/:id', async (req, res) => {
@@ -290,30 +288,30 @@ app.get('/users/:username/items/:id', async (req, res) => {
 });
 
 // TODO:
-//user can view update item form
+// user can view update item form
 app.get('/users/:username/items/:id/update-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
   const data = {
     user: user,
-    item: item
-  }
+    item: item,
+  };
 
-  res.status(200).render('itemUpdate', {data})
-})
+  res.status(200).render('itemUpdate', {data});
+});
 
-//user can submit item update
+// user can submit item update
 app.post('/users/:username/items/:id/update-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
-  const updatedTitle = req.body.title
-  const updatedStock = req.body.stock
-  const updatedPrice = req.body.price
-  const updatedDescription = req.body.description
-  const updatedCategory = req.body.category
-  const updatedImage = req.body.image
+  const updatedTitle = req.body.title;
+  const updatedStock = req.body.stock;
+  const updatedPrice = req.body.price;
+  const updatedDescription = req.body.description;
+  const updatedCategory = req.body.category;
+  const updatedImage = req.body.image;
 
   await item.set({
     title: updatedTitle === '' ? item.title : updatedTitle,
@@ -322,23 +320,23 @@ app.post('/users/:username/items/:id/update-item', async (req, res) => {
     description: updatedDescription === '' ? item.description : updatedDescription,
     category: updatedCategory === 'default' ? item.category : updatedCategory,
     image: updatedImage === '' ? item.image : updatedImage,
-    clickCount: item.clickCount
-  })
- 
-  await item.save()
+    clickCount: item.clickCount,
+  });
 
-  res.status(200).redirect(301, `/users/${user.username}/items/${item.id}/`)
-})
+  await item.save();
 
-//user can delete item
+  res.status(200).redirect(301, `/users/${user.username}/items/${item.id}/`);
+});
+
+// user can delete item
 app.post('/users/:username/items/:id/delete-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
-  await item.destroy()
-  
-  res.status(200).redirect(`/users/${user.username}`)
-})
+  await item.destroy();
+
+  res.status(200).redirect(`/users/${user.username}`);
+});
 
 app.listen(port, () => {
   console.log('Server is running!');
