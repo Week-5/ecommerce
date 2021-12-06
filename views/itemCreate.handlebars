@@ -1,4 +1,4 @@
-<form method="POST" action="/users/{{user.username}}/create-item">
+<form method="POST" action="/users/{{data.user.username}}/create-item">
   <p>
     <label class="labelText">Name </label>
     <input class="inputField" type="text" name="title" placeholder="enter item name" required/>
@@ -29,6 +29,6 @@
     <label class="labelText">Image Link </label>
     <input class="inputField" type="text" name="image" placeholder="enter image URL" required/>
   </p>
-    <input class="submitButton" type="submit" name="createUser" value="Create Account" required/>
+    <input class="submitButton" type="submit" name="createUser" value="Create Item" required/>
   </p>
 </form>

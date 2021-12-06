@@ -1,13 +1,60 @@
 <section>
-  <div>
-    {{data.user.fullName}}
+  <div class="userDiv">
+    <ul class="userList">
+      <li>
+        <svg height="100" width="100">
+          <defs>
+              <clipPath id="cut-off-bottom">
+                  <circle cx="50" cy="50" r="50" 
+                  style="stroke=black; stroke-width=3; fill=#4545a9"/>
+              </clipPath>
+          </defs>
+          <rect width="300" height="100" 
+              style="fill:#4545a9" 
+              clip-path="url(#cut-off-bottom)"/>
+          <ellipse cx="50" cy="100" rx="45" ry="45"
+              style="fill:#a9a9a9;" 
+              clip-path="url(#cut-off-bottom)"/>
+          <ellipse cx="50" cy="32" rx="25" ry="30"
+              style="fill:#a9a9a9; stroke:#4545a9; stroke-width:5" 
+              clip-path="url(#cut-off-bottom)"/>
+        </svg>
+      </li>
+      <li class="userFullName">
+        {{data.user.fullName}}
+      </li>
+      <li class="userInfo">
+        {{data.user.username}}
+      </li>
+      <li class="userInfo">
+        {{data.user.email}}
+      </li>
+      <li class="userButtons">
+        <form action="/users/{{data.user.username}}/update-account" method="GET">
+            <input class="userButtonText" type="submit" value="Update Profile"/>
+        </form>
+      </li>
+      <li class="userButtons">
+        {{!-- alert banner with account deletion on homepage --}}
+        <form action="/users/{{data.user.username}}/delete-profile" method="POST">
+            <input class="userButtonText" type="submit" value="Delete Profile"/>
+        </form>
+      </li>
+      <li class="userButtons">
+        <form action="/homepage/{{data.user.username}}" method="GET">
+          <input class="userButtons" type="submit" value="Return To Homepage"/>
+          </form>
+      </li>
+      {{#if data.user.isAdmin}}
+        <li class="userButtons">
+          <form action="/users/{{data.user.username}}/create-item" method="GET">
+            <input class="userButtonText" type="submit" value="Create New Item"/>
+          </form>
+        </li>
+      {{/if}}
+    </ul>
   </div>
-  <div>
-    {{data.user.username}}
-  </div>
-  <div>
-    {{data.user.email}}
-  </div>
+  
   {{#if data.items}}
     <div class="grid-container">
       {{#each data.items}}
@@ -22,21 +69,4 @@
       {{/each}}
     </div>
   {{/if}}
-</section>
-
-<section>
-    <form action="/users/{{data.user.username}}/update-account" method="GET">
-        <input type="submit" value="Update Profile"/>
-    </form>
-    {{#if data.user.isAdmin}}
-      <form method="GET" action="/users/{{data.user.username}}/create-item">
-          <input type="submit" value="Create New Item"/>
-      </form>
-    {{/if}}
-    <form method="POST" action="/users/{{data.user.username}}/?method=DELETE">
-        <input type="submit" value="Delete Profile"/>
-    </form>
-    <a href="/homepage/{{data.user.username}}">
-      <input type="button" value="Return To Homepage">
-    </a>
 </section>

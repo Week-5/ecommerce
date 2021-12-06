@@ -20,10 +20,38 @@
 				</svg>
 		</div>
 			<div class="bannerGridItem">
-					<a href="/items" class="mainCategoryButton">All</a>
-					<a href="/items/jewlery" class="mainCategoryButton">Jewlery</a>
-					<a href="/items/clothing" class="mainCategoryButton">Clothing</a>
-					<a href="/items/electronics" class="mainCategoryButton">Electronics</a>
+                <span>
+                    <form action="/items" method="GET">
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
+                        <input type="submit" class="mainCategoryButton" value="All"/>
+                    </form> 
+                </span>
+                <span>
+                    <form action="/category/jewelry" method="GET">
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
+                        <input type="submit" class="mainCategoryButton" value="Jewelry"/>
+                    </form> 
+                </span>
+                <span>
+                    <form action="/category/clothing" method="GET">
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
+                        <input type="submit" class="mainCategoryButton" value="Clothing"/>
+                    </form>
+                </span>
+                <span>
+                    <form action="/category/electionics" method="GET">
+                        {{#if data.user.username}}
+                            <input name={{data.user.username}} hidden/>
+                        {{/if}}
+                        <input type="submit" class="mainCategoryButton" value="Electionics"/>
+                    </form>
+                </span>
 			</div>
             <div class="bannerGridItem">
                 <span>
@@ -86,11 +114,18 @@
                                     clip-path="url(#cut-off-bottom)"/>
                             </svg>
                         </a>
+                    {{else}}
+                    <form style="background-color: transparent;" action="/login" method="GET">
+                        <input class="allItemsText" type="submit" style="margin-top: 40px;" value="Log In | Sign Up"/>
+                    </form>
                     {{/if}}
                 </span>
             </div>
 		</div>
 	</div>
+    <div style="padding-bottom: 100px;">
+
+    </div>
         <div>
             {{{body}}}
         </div>
