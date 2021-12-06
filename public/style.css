@@ -1,261 +1,257 @@
 .absolute {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
 }
 
 .relative {
-  position: relative;
-  height: 80px;
-  top: 0px;
+	position: relative;
+	height: 80px;
+	top: 0px;
 }
 
 .bannerGrid {
-  display: grid;
-  position: relative;
-  z-index: 1;
-  grid-template-columns: auto auto auto auto;
-  background-color: transparent;
-  padding: 10px;
-  border-style: dashed;
-  border-color: darkblue;
-
+	display: grid;
+	position: relative;
+	z-index: 1;
+	grid-template-columns: auto auto auto auto;
+	background-color: transparent;
+	padding: 10px;
+	border-style: dashed;
+	border-color: darkblue;
 }
 
 .bannerGridItem {
-  background-color: transparent;
-  padding: 20px;
-  text-align: center;
-  bottom: 0px;
-  border-style: dashed;
-  border-color: lightblue;
-
+	background-color: transparent;
+	padding: 20px;
+	text-align: center;
+	bottom: 0px;
+	border-style: dashed;
+	border-color: lightblue;
 }
 
-.mainCategoryButton{
-  background-color:white;
-  border-style: solid;
-  font-size: large;
-  font-family: Arial, Helvetica, sans-serif;
-  border-width: 1px;
-  border-color: lightgray;
-  color: black;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: all 0.2s ease-in-out;
+.mainCategoryButton {
+	background-color: white;
+	border-style: solid;
+	font-size: large;
+	font-family: Arial, Helvetica, sans-serif;
+	border-width: 1px;
+	border-color: lightgray;
+	color: black;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 999px;
+	transition: all 0.2s ease-in-out;
 }
-
 
 .mainCategoryButton:hover {
-  color: lightgray;
-  transform: scale(1.1);
+	color: lightgray;
+	transform: scale(1.1);
 }
 
 span {
-  display: inline-block;
-  vertical-align: middle;
+	display: inline-block;
+	vertical-align: middle;
 }
 
-.allItemsImage{
-  width: 150px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10%;
-  border: 1px solid lightgray;
-  text-align: center;
+.allItemsImage {
+	width: 150px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 10%;
+	border: 1px solid lightgray;
+	text-align: center;
 }
 
-.allItemsText{
-  color: #757575;
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: italic;
-  font-size: large;
-  text-align: center;
-  margin: auto;
-  margin-top: auto;
+.allItemsText {
+	color: #757575;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	font-size: large;
+	text-align: center;
+	margin: auto;
+	margin-top: auto;
 }
 
 .listing {
-  list-style: none;
-  margin: 2em;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
+	list-style: none;
+	margin: 2em;
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .listing li {
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
 }
 .listing .cta {
-  padding: 10px;
-  text-align: center;
+	padding: 10px;
+	text-align: center;
 }
 
 .listing .body {
-  padding: 10px;
+	padding: 10px;
 }
 
-.singleItemImage{
-  width: 500px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 5%;
+.singleItemImage {
+	width: 500px;
+	height: 400px;
+	object-fit: cover;
+	border-radius: 5%;
 }
 
-.labelText{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+.labelText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
 }
 
-.inputField{
-  width: 200px;
-  font-size: large;
-  border: none;
-  background-color: #E7E5E6;
+.inputField {
+	width: 200px;
+	font-size: large;
+	border: none;
+	background-color: #e7e5e6;
 }
 
 .homepageGrid {
-  display: grid;
-  position: relative;
-  z-index: 1;
-  grid-template-columns: auto auto auto auto;
-  background-color: transparent;
-  padding: 10px;
-  top: 200px;
-  border-style: dashed;
-  border-color: darkblue;
+	display: grid;
+	position: relative;
+	z-index: 1;
+	grid-template-columns: auto auto auto auto;
+	background-color: transparent;
+	padding: 10px;
+	top: 200px;
+	border-style: dashed;
+	border-color: darkblue;
 }
 
 .homepageGridItem {
-  background-color: transparent;
-  padding: 20px;
-  text-align: center;
-  bottom: 0px;
-  border-style: dashed;
-  border-color: lightblue;
-
+	background-color: transparent;
+	padding: 20px;
+	text-align: center;
+	bottom: 0px;
+	border-style: dashed;
+	border-color: lightblue;
 }
 .slideshowPlaceholder {
-  grid-column-start: 1;
-  /* why 5 when only 4 columns...? */
-  grid-column-end: 5;
-  height: 300px;
-  margin-bottom: 40px;
-  border-style: dashed;
-  border-color: lightgray;
+	grid-column-start: 1;
+	/* why 5 when only 4 columns...? */
+	grid-column-end: 5;
+	height: 300px;
+	margin-bottom: 40px;
+	border-style: dashed;
+	border-color: lightgray;
 }
 
-.popularItemsText{
-  grid-column-start: 1;
-  grid-column-end: 5;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: xxx-large;
-  text-align: left;
-  color: black;
+.popularItemsText {
+	grid-column-start: 1;
+	grid-column-end: 5;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xxx-large;
+	text-align: left;
+	color: black;
 }
 
-.popularItemsImage{
-  /* width: 150px; */
-  /* height: 200px;  */
-  /* object-fit: cover; */
-  clip-path: url(#svgPath2);
-  -webkit-clip-path: url(#svgPath2);
-  position: relative;
-  top: -20px;
-  /* border: 1px solid lightgray; */
-  /* clip-path: path('M 139.0749053955078 115.0007095336914 L 139.0751953125 115.0002212524414 L 10.92506885528564 115.0002212524414 C 7.416469097137451 109.1973495483398 4.704414844512939 102.9508895874023 2.863414764404297 96.433837890625 C 0.9633966088294983 89.70790863037109 1.476273973821662e-05 82.71776580810547 1.476273973821662e-05 75.65760040283203 C 1.476273973821662e-05 65.44398498535156 1.983014822006226 55.53583908081055 5.893923759460449 46.20836639404297 C 7.773651123046875 41.72529220581055 10.10017871856689 37.40142059326172 12.80890560150146 33.35681915283203 C 15.4919605255127 29.35058403015137 18.57321548461914 25.58332824707031 21.96710586547852 22.15969276428223 C 25.36099624633789 18.73601913452148 29.09550476074219 15.62774753570557 33.06688690185547 12.92120170593262 C 37.0763053894043 10.18871116638184 41.36257934570312 7.84178352355957 45.8066520690918 5.945583343505859 C 55.052978515625 2.000383615493774 64.87492370605469 1.682905690358893e-06 74.99968719482422 1.682905690358893e-06 C 85.12467193603516 1.682905690358893e-06 94.94681549072266 2.000383615493774 104.1933059692383 5.945583343505859 C 108.6374130249023 7.84178352355957 112.9237442016602 10.18871116638184 116.9332122802734 12.92120170593262 C 120.9046325683594 15.62774753570557 124.6391754150391 18.73601913452148 128.0331115722656 22.15969276428223 C 131.4270477294922 25.58336448669434 134.5083465576172 29.35063743591309 137.1913757324219 33.35681915283203 C 139.9001312255859 37.40143966674805 142.2266693115234 41.72531127929688 144.1063995361328 46.20836639404297 C 148.0173187255859 55.53583908081055 150.0003204345703 65.44400024414062 150.0003204345703 75.65760040283203 C 150.0003204345703 82.71775054931641 149.0369262695312 89.70789337158203 147.1369018554688 96.433837890625 C 145.2957000732422 102.9514770507812 142.5833587646484 109.198112487793 139.0751953125 115.0002212524414 L 139.0749053955078 115.0007095336914 Z'); */
+.popularItemsImage {
+	/* width: 150px; */
+	/* height: 200px;  */
+	/* object-fit: cover; */
+	clip-path: url(#svgPath2);
+	-webkit-clip-path: url(#svgPath2);
+	position: relative;
+	top: -20px;
+	/* border: 1px solid lightgray; */
+	/* clip-path: path('M 139.0749053955078 115.0007095336914 L 139.0751953125 115.0002212524414 L 10.92506885528564 115.0002212524414 C 7.416469097137451 109.1973495483398 4.704414844512939 102.9508895874023 2.863414764404297 96.433837890625 C 0.9633966088294983 89.70790863037109 1.476273973821662e-05 82.71776580810547 1.476273973821662e-05 75.65760040283203 C 1.476273973821662e-05 65.44398498535156 1.983014822006226 55.53583908081055 5.893923759460449 46.20836639404297 C 7.773651123046875 41.72529220581055 10.10017871856689 37.40142059326172 12.80890560150146 33.35681915283203 C 15.4919605255127 29.35058403015137 18.57321548461914 25.58332824707031 21.96710586547852 22.15969276428223 C 25.36099624633789 18.73601913452148 29.09550476074219 15.62774753570557 33.06688690185547 12.92120170593262 C 37.0763053894043 10.18871116638184 41.36257934570312 7.84178352355957 45.8066520690918 5.945583343505859 C 55.052978515625 2.000383615493774 64.87492370605469 1.682905690358893e-06 74.99968719482422 1.682905690358893e-06 C 85.12467193603516 1.682905690358893e-06 94.94681549072266 2.000383615493774 104.1933059692383 5.945583343505859 C 108.6374130249023 7.84178352355957 112.9237442016602 10.18871116638184 116.9332122802734 12.92120170593262 C 120.9046325683594 15.62774753570557 124.6391754150391 18.73601913452148 128.0331115722656 22.15969276428223 C 131.4270477294922 25.58336448669434 134.5083465576172 29.35063743591309 137.1913757324219 33.35681915283203 C 139.9001312255859 37.40143966674805 142.2266693115234 41.72531127929688 144.1063995361328 46.20836639404297 C 148.0173187255859 55.53583908081055 150.0003204345703 65.44400024414062 150.0003204345703 75.65760040283203 C 150.0003204345703 82.71775054931641 149.0369262695312 89.70789337158203 147.1369018554688 96.433837890625 C 145.2957000732422 102.9514770507812 142.5833587646484 109.198112487793 139.0751953125 115.0002212524414 L 139.0749053955078 115.0007095336914 Z'); */
 }
 
 /* Background svg from Adobe XD */
 .backgroundHomepage {
-  position: relative;
-  z-index: -1;
+	position: relative;
+	z-index: -1;
 }
 
 /* shopping cart from Adobe XD */
 #Icon_feather-shopping-cart_zo {
-  position: relative;
-  width: 50px;
-  overflow: visible;
+	position: relative;
+	width: 50px;
+	overflow: visible;
 }
 
 #Path_1_zp {
-  fill: transparent;
-  stroke: rgba(0,0,0,1);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-miterlimit: 4;
-  shape-rendering: auto;
+	fill: transparent;
+	stroke: rgba(0, 0, 0, 1);
+	stroke-width: 3px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
 }
 .Path_1_zp {
-  overflow: visible;
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  left: 16px;
-  top: 35px;
-  transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	left: 16px;
+	top: 35px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
 }
 #Path_2_zq {
-  fill: transparent;
-  stroke: rgba(0,0,0,1);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-miterlimit: 4;
-  shape-rendering: auto;
+	fill: transparent;
+	stroke: rgba(0, 0, 0, 1);
+	stroke-width: 3px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
 }
 .Path_2_zq {
-  overflow: visible;
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  left: 42px;
-  top: 35px;
-  transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	left: 42px;
+	top: 35px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
 }
 #Path_3_zr {
-  fill: transparent;
-  stroke: rgba(0,0,0,1);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-miterlimit: 4;
-  shape-rendering: auto;
+	fill: transparent;
+	stroke: rgba(0, 0, 0, 1);
+	stroke-width: 3px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
 }
 .Path_3_zr {
-  overflow: visible;
-  position: absolute;
-  width: 50px;
-  height: 40px;
-  left: 0px;
-  top: 0px;
-  transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	width: 50px;
+	height: 40px;
+	left: 0px;
+	top: 0px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 /* popular item from Adobe XD */
 
 #Subtraction_2_v {
-  fill: rgba(255,255,255,1);
+	fill: rgba(255, 255, 255, 1);
 }
 .Subtraction_2_v {
-  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-  overflow: visible;
-  position: relative;
-  z-index: -1;
-  width: 168px;
-  height: 133.001px;
-  left: 0px;
-  top: 0px;
-  transform: matrix(1,0,0,1,0,0);
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	overflow: visible;
+	position: relative;
+	z-index: -1;
+	width: 168px;
+	height: 133.001px;
+	left: 0px;
+	top: 0px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
 }
