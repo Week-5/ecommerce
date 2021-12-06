@@ -247,7 +247,7 @@ app.get("/users/:username/items/:id", async (req, res) => {
 });
 
 // TODO:
-//user can view update item form
+// user can view update item form
 app.get("/users/:username/items/:id/update-item", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
@@ -260,7 +260,7 @@ app.get("/users/:username/items/:id/update-item", async (req, res) => {
   res.status(200).render("itemUpdate", { data });
 });
 
-//user can submit item update
+// user can submit item update
 app.post("/users/:username/items/:id/update-item", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
@@ -288,7 +288,7 @@ app.post("/users/:username/items/:id/update-item", async (req, res) => {
   res.status(200).redirect(301, `/users/${user.username}/items/${item.id}/`);
 });
 
-//user can delete item
+// user can delete item
 app.post("/users/:username/items/:id/delete-item", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
