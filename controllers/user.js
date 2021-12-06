@@ -37,7 +37,7 @@ exports.postCreateUser = async (req, res) => {
 // if admin, show items owned by said admin
 exports.getUser = async (req, res) => {
 	const user = await User.findByPk(req.params.username);
-	const data = {};
+	let data = {};
 
 	if (user.isAdmin === true) {
 		const items = await user.getItems();
