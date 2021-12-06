@@ -79,10 +79,51 @@ app.get('/items', async (req, res) => {
   res.render('allItems', {data});
 });
 
+// get jewelry category
+app.get('/category/jewelry', async (req, res) => {
+  console.log(req.body);
+  const jewelry = await Item.findAll({where: {category: 'jewelry'}});
+  res.render('category', {jewelry});
+});
+
+// get Men's Clothing category
+app.get('/category/clothing/man-clothing', async (req, res) => {
+  console.log(req.body);
+  const maleClothing = await Item.findAll({where: {category: 'Men\'s Clothing'}});
+  res.render('category', {maleClothing});
+});
+
+// get Women's Clothing category
+app.get('/category/clothing/woman-clothing', async (req, res) => {
+  console.log(req.body);
+  const femaleClothing = await Item.findAll({where: {category: 'Women\'s Clothing'}});
+  res.render('category', {femaleClothing});
+});
+
+// get electronic category
+app.get('/category/electronics', async (req, res) => {
+  console.log(req.body);
+  const electronics = await Item.findAll({where: {category: 'Electronics'}});
+  res.render('category', {electronics});
+});
+
+// get single item
+app.get('/items/:id', async (req, res) => {
+  const item = await Item.findByPk(req.params.id);
+  const data = {
+    item: item,
+  };
+  res.render('item', {data});
+});
+
 
 // homepage without user logged in
 app.get('/homepage', async (req, res) => {
-  res.status(200).render('homepage');
+  const allItems = await Item.findAll();
+  const data = {
+    allItems: allItems,
+  };
+  res.status(200).render('homepage', {data});
 });
 
 // homepage with user loggined in
