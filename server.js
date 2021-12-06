@@ -81,14 +81,12 @@ app.get('/items', async (req, res) => {
 
 // get jewelry category
 app.get('/category/jewelry', async (req, res) => {
-  console.log(req.body);
   const jewelry = await Item.findAll({where: {category: 'jewelry'}});
   res.render('category', {jewelry});
 });
 
 // get Men's Clothing category
 app.get('/category/clothing/man-clothing', async (req, res) => {
-  console.log(req.body);
   const maleClothing = await Item.findAll({where: {category: 'Men\'s Clothing'}});
   res.render('category', {maleClothing});
 });
@@ -149,7 +147,7 @@ app.get('/homepage/:username', async (req, res) => {
 
 // create account path
 app.get('/create-account', async (req, res) => {
-  res.status(200).render('createUser');
+  res.status(200).render('userCreate');
 });
 
 app.get('/users/:username', async (req, res) => {
@@ -272,10 +270,6 @@ app.post('/users/:username/create-item', async (req, res) => {
     clickCount: 0,
     UserUsername: user.username,
   });
-
-  //   res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
-  // });
-
   res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`);
 });
 
@@ -316,7 +310,7 @@ app.post('/users/:username/items/:id/update-item', async (req, res) => {
   const updatedCategory = req.body.category;
   const updatedImage = req.body.image;
 
-  await item.set({
+  item.set({
     title: updatedTitle === '' ? item.title : updatedTitle,
     stock: updatedStock === '' ? item.stock : updatedStock,
     price: updatedPrice === '' ? item.price : updatedPrice,

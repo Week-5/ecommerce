@@ -239,6 +239,39 @@ span {
   transform-origin:  0% 50%;
 }
 
+.submitButton{
+  background-color:white;
+  border-style: solid;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  border-width: 1px;
+  border-color: lightgray;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.submitButton:hover {
+  color: lightgray;
+}
+
+.generalText{
+  color: #757575;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: large;
+  text-align: left;
+  margin: auto;
+  margin-top: auto;
+}
+
 /* shopping cart from Adobe XD */
 #Icon_feather-shopping-cart_zo {
   position: relative;
