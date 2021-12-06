@@ -239,6 +239,15 @@ span {
   transform-origin:  0% 50%;
 }
 
+.cartScroll {
+  width: 50%;
+  height: 400px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: lightgray;
+  overflow-y: scroll;
+}
+
 .submitButton{
   background-color:white;
   border-style: solid;

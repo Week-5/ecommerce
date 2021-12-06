@@ -1,0 +1,12 @@
+<div class="cartScroll">
+  <ul>
+    {{#each data.userItems}}
+    <li>
+      {{this.title}}
+      <div class="allItemsImage">
+        <img src={{this.image}}/>
+      </div>
+    </li>
+    {{/each}}
+  <ul>
+</div>
