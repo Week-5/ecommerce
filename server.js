@@ -343,6 +343,39 @@ app.post('/users/:username/items/:id/delete-item', async (req, res) => {
   res.status(200).redirect(`/users/${user.username}`);
 });
 
+// get cart page
+app.get('/users/:username/cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: { UserUsername: user.username }})
+  const items = await cart.getItems()
+
+  //myArray.map(i=>i.myProperty).reduce((a,b)=>a+b)
+  cart.totalPrice = items.map(item => item.totalPrice).reduce((a,b) => a+b)
+
+  items
+
+  const data = {
+    user: user,
+    cart: cart,
+    items: items
+  }
+
+  res.status(200).render('cart', {data})
+})
+
+//add item to cart
+app.post('/users/:username/cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: { UserUsername: user.username }})
+  const item = await Item.findOne({where: { id: req.body.name }})
+
+
+  cart.items = []
+  cart.items.push(items)
+
+  res.render(301, `/users/${user.username}/cart`)
+})
+
 app.listen(port, () => {
   console.log("Server is running!");
 });
