@@ -1,95 +1,99 @@
 /* eslint-disable max-len */
-const express = require('express');
+const express = require("express");
 const port = 3000;
-const {User, Item, Cart} = require('./index');
-const {db} = require('./db');
-const Handlebars = require('handlebars');
+const { User, Item, Cart } = require("./index");
+const { db } = require("./db");
+const Handlebars = require("handlebars");
 
 // custom handlebar operator helpers
 // pulled from: https://stackoverflow.com/questions/33316562/how-to-compare-a-value-in-handlebars
-Handlebars.registerHelper( 'when', function(operand_1, operator, operand_2, options) {
-  const operators = {
-    'eq': function(l, r) {
-      return l == r;
-    },
-    'noteq': function(l, r) {
-      return l != r;
-    },
-    'gt': function(l, r) {
-      return Number(l) > Number(r);
-    },
-    'or': function(l, r) {
-      return l || r;
-    },
-    'and': function(l, r) {
-      return l && r;
-    },
-    '%': function(l, r) {
-      return (l % r) === 0;
-    },
-  };
-  const result = operators[operator](operand_1, operand_2);
+Handlebars.registerHelper(
+  "when",
+  function (operand_1, operator, operand_2, options) {
+    const operators = {
+      eq: function (l, r) {
+        return l == r;
+      },
+      noteq: function (l, r) {
+        return l != r;
+      },
+      gt: function (l, r) {
+        return Number(l) > Number(r);
+      },
+      or: function (l, r) {
+        return l || r;
+      },
+      and: function (l, r) {
+        return l && r;
+      },
+      "%": function (l, r) {
+        return l % r === 0;
+      },
+    };
+    const result = operators[operator](operand_1, operand_2);
 
-  if (result) return options.fn(this);
-  else return options.inverse(this);
-});
+    if (result) return options.fn(this);
+    else return options.inverse(this);
+  }
+);
 
-Handlebars.registerHelper('for', function(from, to, incr, block) {
-  let accum = '';
+Handlebars.registerHelper("for", function (from, to, incr, block) {
+  let accum = "";
   for (let i = from; i < to; i += incr) {
     accum += block.fn(i);
   }
   return accum;
 });
 
-const {engine} = require('express-handlebars');
+const { engine } = require("express-handlebars");
 
 const app = express();
 
 // send data as json object
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // enable handlebars frontend
-app.engine('handlebars', engine({
-  runtimeOptions: {
-    allowProtoPropertiesByDefault: true,
-    allowProtoMethodsByDefault: true,
-  },
-}));
+app.engine(
+  "handlebars",
+  engine({
+    runtimeOptions: {
+      allowProtoPropertiesByDefault: true,
+      allowProtoMethodsByDefault: true,
+    },
+  })
+);
 
-app.set('view engine', 'handlebars');
+app.set("view engine", "handlebars");
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-const seed = require('./seed');
+const seed = require("./seed");
 
 // app.use(express.json());
 
 // seed database
 seed();
 
-
 // get all items
-app.get('/items', async (req, res) => {
+app.get("/items", async (req, res) => {
   const items = await Item.findAll();
   const data = {
     items: items,
   };
-  res.render('allItems', {data});
+  res.render("allItems", { data });
 });
 
-
 // homepage without user logged in
-app.get('/homepage', async (req, res) => {
-  res.status(200).render('homepage');
+app.get("/homepage", async (req, res) => {
+  res.status(200).render("homepage");
 });
 
 // homepage with user loggined in
-app.get('/homepage/:username', async (req, res) => {
+app.get("/homepage/:username", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({
-    where: {UserUsername: user.username},
+    where: { UserUsername: user.username },
   });
   const items = await user.getItems();
   const allItems = await Item.findAll();
@@ -103,24 +107,24 @@ app.get('/homepage/:username', async (req, res) => {
     allItems: allItems,
   };
 
-  res.status(200).render('homepage', {data});
+  res.status(200).render("homepage", { data });
 });
 
 // create account path
-app.get('/create-account', async (req, res) => {
-  res.status(200).render('createUser');
+app.get("/create-account", async (req, res) => {
+  res.status(200).render("createUser");
 });
 
-app.get('/users/:username', async (req, res) => {
+app.get("/users/:username", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const data = {
     user: user,
   };
-  res.render('user', {data});
+  res.render("user", { data });
 });
 
 // post account path
-app.post('/create-account', async (req, res) => {
+app.post("/create-account", async (req, res) => {
   const newUsername = req.body.username;
   const newFullName = req.body.newFullName;
   const newEmail = req.body.newEmail;
@@ -136,17 +140,16 @@ app.post('/create-account', async (req, res) => {
 
   // create new cart and assign it to new user
   const newUserCart = await Cart.create({
-    totalPrice:  0,
-    UserUsername: newUser.username
-  })
+    totalPrice: 0,
+    UserUsername: newUser.username,
+  });
 
   res.status(200).redirect(`/homepage/${newUser.username}`);
 });
 
-
 // user can view their account page
 // if admin send admin items to frontend
-app.get('/users/:username/', async (req, res) => {
+app.get("/users/:username/", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const data = {};
 
@@ -162,18 +165,17 @@ app.get('/users/:username/', async (req, res) => {
     };
   }
 
-  res.status(200).render('user', {data});
+  res.status(200).render("user", { data });
 });
 
-
 // user can view account update form
-app.get('/users/:username/update-account', async (req, res) => {
+app.get("/users/:username/update-account", async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('userUpdate', {user});
+  res.status(200).render("userUpdate", { user });
 });
 
 // user sends udpate account request
-app.post('/users/:username/update-account', async (req, res) => {
+app.post("/users/:username/update-account", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const udpatedUsername = req.body.username;
   const updatedFullName = req.body.fullName;
@@ -182,35 +184,35 @@ app.post('/users/:username/update-account', async (req, res) => {
   const updatedIsAdmin = req.body.isAdmin;
 
   await user.set({
-    username: udpatedUsername === '' ? user.username : udpatedUsername,
-    fullName: updatedFullName === '' ? user.fullName : updatedFullName,
-    email: updatedEmail === '' ? user.email : updatedEmail,
-    password: updatedPassword === '' ? user.password : updatedPassword,
-    isAdmin: updatedIsAdmin === '' ? user.isAdmin : updatedIsAdmin,
+    username: udpatedUsername === "" ? user.username : udpatedUsername,
+    fullName: updatedFullName === "" ? user.fullName : updatedFullName,
+    email: updatedEmail === "" ? user.email : updatedEmail,
+    password: updatedPassword === "" ? user.password : updatedPassword,
+    isAdmin: updatedIsAdmin === "" ? user.isAdmin : updatedIsAdmin,
   });
 
-  await user.save()
+  await user.save();
 
   res.status(200).redirect(`/users/${user.username}`);
 });
 
 // user deletes account
-app.post('/users/:username/delete-profile', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+app.post("/users/:username/delete-profile", async (req, res) => {
+  const user = await User.findByPk(req.params.username);
 
   await user.destroy();
 
-  res.redirect(301, 'homepage');
+  res.redirect(301, "homepage");
 });
 
 // user can view create item form
-app.get('/users/:username/create-item', async (req, res) => {
+app.get("/users/:username/create-item", async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('itemCreate', {user});
+  res.status(200).render("itemCreate", { user });
 });
 
 // user submits create item payload
-app.post('/users/:username/create-item', async (req, res) => {
+app.post("/users/:username/create-item", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const newTitle = req.body.title;
   const newStock = req.body.stock;
@@ -218,7 +220,6 @@ app.post('/users/:username/create-item', async (req, res) => {
   const newDescription = req.body.description;
   const newCategory = req.body.category;
   const newImage = req.body.image;
-
 
   const newItem = await Item.create({
     title: newTitle,
@@ -234,71 +235,69 @@ app.post('/users/:username/create-item', async (req, res) => {
   res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
 });
 
-  res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`)
-})
-
 // item homepage
-app.get('/users/:username/items/:id', async (req, res) => {
+app.get("/users/:username/items/:id", async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
   const data = {
     item: item,
     user: user,
   };
-  res.render('item', {data});
+  res.render("item", { data });
 });
 
 // TODO:
 //user can view update item form
-app.get('/users/:username/items/:id/update-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+app.get("/users/:username/items/:id/update-item", async (req, res) => {
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
   const data = {
     user: user,
-    item: item
-  }
+    item: item,
+  };
 
-  res.status(200).render('itemUpdate', {data})
-})
+  res.status(200).render("itemUpdate", { data });
+});
 
 //user can submit item update
-app.post('/users/:username/items/:id/update-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+app.post("/users/:username/items/:id/update-item", async (req, res) => {
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
-  const updatedTitle = req.body.title
-  const updatedStock = req.body.stock
-  const updatedPrice = req.body.price
-  const updatedDescription = req.body.description
-  const updatedCategory = req.body.category
-  const updatedImage = req.body.image
+  const updatedTitle = req.body.title;
+  const updatedStock = req.body.stock;
+  const updatedPrice = req.body.price;
+  const updatedDescription = req.body.description;
+  const updatedCategory = req.body.category;
+  const updatedImage = req.body.image;
 
   await item.set({
-    title: updatedTitle === '' ? item.title : updatedTitle,
-    stock: updatedStock === '' ? item.stock : updatedStock,
-    price: updatedPrice === '' ? item.price : updatedPrice,
-    description: updatedDescription === '' ? item.description : updatedDescription,
-    category: updatedCategory === 'default' ? item.category : updatedCategory,
-    image: updatedImage === '' ? item.image : updatedImage,
-    clickCount: item.clickCount
-  })
- 
-  await item.save()
+    title: updatedTitle === "" ? item.title : updatedTitle,
+    stock: updatedStock === "" ? item.stock : updatedStock,
+    price: updatedPrice === "" ? item.price : updatedPrice,
+    description:
+      updatedDescription === "" ? item.description : updatedDescription,
+    category: updatedCategory === "default" ? item.category : updatedCategory,
+    image: updatedImage === "" ? item.image : updatedImage,
+    clickCount: item.clickCount,
+  });
 
-  res.status(200).redirect(301, `/users/${user.username}/items/${item.id}/`)
-})
+  await item.save();
+
+  res.status(200).redirect(301, `/users/${user.username}/items/${item.id}/`);
+});
 
 //user can delete item
-app.post('/users/:username/items/:id/delete-item', async (req, res) => {
-  const user = await User.findByPk(req.params.username)
+app.post("/users/:username/items/:id/delete-item", async (req, res) => {
+  const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
-  await item.destroy()
-  
-  res.status(200).redirect(`/users/${user.username}`)
-})
+  await item.destroy();
+
+  res.status(200).redirect(`/users/${user.username}`);
+});
 
 app.listen(port, () => {
-  console.log('Server is running!');
+  console.log("Server is running!");
 });
