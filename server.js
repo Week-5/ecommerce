@@ -7,32 +7,35 @@ const Handlebars = require('handlebars');
 
 // custom handlebar operator helpers
 // pulled from: https://stackoverflow.com/questions/33316562/how-to-compare-a-value-in-handlebars
-Handlebars.registerHelper( 'when', function(operand_1, operator, operand_2, options) {
-  const operators = {
-    'eq': function(l, r) {
-      return l == r;
-    },
-    'noteq': function(l, r) {
-      return l != r;
-    },
-    'gt': function(l, r) {
-      return Number(l) > Number(r);
-    },
-    'or': function(l, r) {
-      return l || r;
-    },
-    'and': function(l, r) {
-      return l && r;
-    },
-    '%': function(l, r) {
-      return (l % r) === 0;
-    },
-  };
-  const result = operators[operator](operand_1, operand_2);
+Handlebars.registerHelper(
+    'when',
+    function(operand_1, operator, operand_2, options) {
+      const operators = {
+        'eq': function(l, r) {
+          return l == r;
+        },
+        'noteq': function(l, r) {
+          return l != r;
+        },
+        'gt': function(l, r) {
+          return Number(l) > Number(r);
+        },
+        'or': function(l, r) {
+          return l || r;
+        },
+        'and': function(l, r) {
+          return l && r;
+        },
+        '%': function(l, r) {
+          return l % r === 0;
+        },
+      };
+      const result = operators[operator](operand_1, operand_2);
 
-  if (result) return options.fn(this);
-  else return options.inverse(this);
-});
+      if (result) return options.fn(this);
+      else return options.inverse(this);
+    },
+);
 
 Handlebars.registerHelper('for', function(from, to, incr, block) {
   let accum = '';
@@ -51,12 +54,15 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // enable handlebars frontend
-app.engine('handlebars', engine({
-  runtimeOptions: {
-    allowProtoPropertiesByDefault: true,
-    allowProtoMethodsByDefault: true,
-  },
-}));
+app.engine(
+    'handlebars',
+    engine({
+      runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+      },
+    }),
+);
 
 app.set('view engine', 'handlebars');
 
@@ -68,7 +74,6 @@ const seed = require('./seed');
 
 // seed database
 seed();
-
 
 // get all items
 app.get('/items', async (req, res) => {
@@ -182,7 +187,6 @@ app.post('/create-account', async (req, res) => {
   res.status(200).redirect(`/homepage/${newUser.username}`);
 });
 
-
 // user can view their account page
 // if admin send admin items to frontend
 app.get('/users/:username/', async (req, res) => {
@@ -203,7 +207,6 @@ app.get('/users/:username/', async (req, res) => {
 
   res.status(200).render('user', {data});
 });
-
 
 // user can view account update form
 app.get('/users/:username/update-account', async (req, res) => {
@@ -259,7 +262,6 @@ app.post('/users/:username/create-item', async (req, res) => {
   const newCategory = req.body.category;
   const newImage = req.body.image;
 
-
   const newItem = await Item.create({
     title: newTitle,
     stock: newStock,
@@ -272,6 +274,7 @@ app.post('/users/:username/create-item', async (req, res) => {
   });
   res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`);
 });
+
 
 // item homepage
 app.get('/users/:username/items/:id', async (req, res) => {
