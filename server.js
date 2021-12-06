@@ -349,10 +349,7 @@ app.get('/users/:username/cart', async (req, res) => {
   const cart = await Cart.findOne({where: { UserUsername: user.username }})
   const items = await cart.getItems()
 
-  //myArray.map(i=>i.myProperty).reduce((a,b)=>a+b)
   cart.totalPrice = items.map(item => item.totalPrice).reduce((a,b) => a+b)
-
-  items
 
   const data = {
     user: user,
@@ -371,7 +368,7 @@ app.post('/users/:username/cart', async (req, res) => {
 
 
   cart.items = []
-  cart.items.push(items)
+  cart.items.push(item)
 
   res.render(301, `/users/${user.username}/cart`)
 })
