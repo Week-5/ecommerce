@@ -132,18 +132,15 @@ app.get('/homepage', async (req, res) => {
 // homepage with user loggined in
 app.get('/homepage/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({
-    where: {UserUsername: user.username},
-  });
-  const items = await user.getItems();
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
   const allItems = await Item.findAll();
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
   const data = {
     user: user,
-    userItems: items,
-    userCart: cart,
+    items: items,
     allItems: allItems,
   };
 
