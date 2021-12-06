@@ -3,6 +3,12 @@
     {{#each data.items}}
       <li>
         <div class="cta">
+          {{#if data.user}}
+            <form action="/users/{{data.user.username}}/cart" method="POST">
+                <input name={{data.item.id}} hidden/>
+                <input type="submit" class="submitButton" value="Add to Cart"/>
+            </form>
+          {{/if}}
           <a href="/items/{{this.id}}/">
             <img class="allItemsImage" src="{{this.image}}" title="Click Here To View Options"/>
           </a>

@@ -6,15 +6,23 @@
   <div>
     {{data.item.description}}
   </div>
-  <a href="/items">
-    <input type="button" value="Return To All Items"/>
-  </a>
-  {{#if data.user.isAdmin}}
-    <a href="/users/{{data.user.username}}/items/{{data.item.id}}/update-item">
-      <input type="button" value="Update Item"/>
-    </a>
-    <form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/?method=DELETE">
-        <input type="submit" value="Delete Item"/>
+  {{#if data.user}}
+    <form action="/users/{{data.user.username}}/cart" method="POST">
+        <input name={{data.item.id}} hidden/>
+        <input type="submit" class="submitButton" value="Add to Cart"/>
     </form>
   {{/if}}
+  {{#if data.user.isAdmin}}
+    {{#when data.item.UserUsername 'eq' data.user.username}}
+        <form action="/users/{{data.user.username}}/items/{{data.item.id}}/update-item" method="GET">
+          <input type="submit" class="submitButton" value="Update Item"/>
+        </form>
+        <form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/delete-item">
+          <input type="submit" class="submitButton" value="Delete Item"/>
+        </form>
+    {{/when}}
+  {{/if}}
+  <form method="GET" action="/items">
+    <input type="submit" class="submitButton" value="Return To All Items"/>
+  </form>
 </div>
