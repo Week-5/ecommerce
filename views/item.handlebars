@@ -8,7 +8,7 @@
   </div>
   {{#if data.user}}
     <form action="/users/{{data.user.username}}/cart" method="POST">
-        <input name={{data.item.id}} hidden/>
+        <input name="itemID" value="{{data.item.id}}" hidden/>
         <input type="submit" class="submitButton" value="Add to Cart"/>
     </form>
   {{/if}}

@@ -356,13 +356,10 @@ app.get('/users/:username/cart', async (req, res) => {
 app.post('/users/:username/cart', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
-  const item = await Item.findOne({where: {id: req.body.name}});
+  const item = await Item.findOne({where: {id: req.body.itemID}});
 
-
-  cart.items = [];
-  cart.items.push(item);
-
-  res.render(301, `/users/${user.username}/cart`);
+  await cart.addItem(item);
+  res.status(200).redirect(301, `/users/${user.username}/cart`);
 });
 
 app.listen(port, () => {
