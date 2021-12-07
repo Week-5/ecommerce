@@ -10,7 +10,7 @@ exports.getHomepageGuest = async (req, res) => {
     allItems: allItems,
     popularItems: popularItems,
   };
-  res.status(200).render('homepage', { data });
+  res.status(200).render('./homepage/homepage', { data });
 };
 
 ////////////////////////////////
@@ -35,5 +35,5 @@ exports.getHomepageUser = async (req, res) => {
     popularItems: popularItems,
   };
 
-  res.status(200).render('homepage', { data });
+  res.status(200).render('./homepage/homepage', { data });
 };
