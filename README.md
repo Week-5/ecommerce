@@ -19,7 +19,7 @@
 | [x]  | F3   | MUST     | The application must allow for items to be added to a shopping cart |
 |      | F4   | MUST     | The application must allow for items to be deleted from a shopping cart |
 | [x]  | F5   | MUST     | The shopping cart must persist its state when the browser is closed |
-|      | F6   | MUST     | The application must work well on a mobile as well as a desktop device |
+| [x]  | F6   | MUST     | The application must work well on a mobile as well as a desktop device |
 | [x]  | F6   | SHOULD   | (optional) The application should support an admin interface to allow for new items to be uploaded for sale |
 | [x]  | F7   | SHOULD   | (optional) The application should support an admin interface to allow for item descriptions to be updated |
 | [x]  | F8   | SHOULD   | (optional) The application should support an admin interface to allow for items to be removed from sale |
