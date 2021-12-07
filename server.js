@@ -71,41 +71,13 @@ Handlebars.registerHelper('for', function (from, to, incr, block) {
 const homepageRoutes = require('./routes/Homepage');
 const userRoutes = require('./routes/User');
 const itemRoutes = require('./routes/Item');
+const cartRoutes = require('./routes/Cart');
+const categoryRoutes = require('./routes/Category');
 app.use(homepageRoutes);
 app.use(userRoutes);
 app.use(itemRoutes);
-// app.use(cartRoutes)
-
-// TODO: remove after cart is separated into its own route and controller
-const { User, Item, Cart } = require('./index');
-// get cart page
-app.get('/users/:username/cart', async (req, res) => {
-  const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
-  const items = await cart.getItems();
-
-  cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a + b);
-
-  const data = {
-    user: user,
-    cart: cart,
-    items: items,
-  };
-
-  res.status(200).render('cart', { data });
-});
-
-//add item to cart
-app.post('/users/:username/cart', async (req, res) => {
-  const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
-  const item = await Item.findOne({ where: { id: req.body.name } });
-
-  cart.items = [];
-  cart.items.push(item);
-
-  res.render(301, `/users/${user.username}/cart`);
-});
+app.use(cartRoutes);
+app.use(categoryRoutes);
 
 app.listen(port, () => {
   console.log('Server is running!');
