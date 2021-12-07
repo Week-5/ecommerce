@@ -232,6 +232,18 @@ span {
   height: 400px;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8490b3;
+}
+
 .adminItemImage{
   width: 150px;
   height: 200px;
