@@ -1,82 +1,84 @@
 .absolute {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
 }
 
 .relative {
-	position: relative;
-	height: 80px;
-	top: 0px;
+  position: relative;
+  height: 80px;
+  top: 0px;
 }
 
 .bannerGrid {
-	display: grid;
-	position: relative;
-	z-index: 1;
-	grid-template-columns: auto auto auto auto;
-	background-color: transparent;
-	padding: 10px;
-	border-style: dashed;
-	border-color: darkblue;
+  display: grid;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: auto auto auto;
+  background-color: transparent;
+  padding: 10px;
+  /* border-style: dashed;
+  border-color: darkblue; */
+
 }
 
 .bannerGridItem {
-	background-color: transparent;
-	padding: 20px;
-	text-align: center;
-	bottom: 0px;
-	border-style: dashed;
-	border-color: lightblue;
+  background-color: transparent;
+  padding: 20px;
+  text-align: center;
+  /* border-style: dashed;
+  border-color: lightblue; */
+
 }
 
-.mainCategoryButton {
-	background-color: white;
-	border-style: solid;
-	font-size: large;
-	font-family: Arial, Helvetica, sans-serif;
-	border-width: 1px;
-	border-color: lightgray;
-	color: black;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	margin: 4px 2px;
-	cursor: pointer;
-	border-radius: 999px;
-	transition: all 0.2s ease-in-out;
+.mainCategoryButton{
+  background-color:white;
+  border-style: solid;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  border-width: 1px;
+  border-color: lightgray;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.2s ease-in-out;
 }
+
 
 .mainCategoryButton:hover {
-	color: lightgray;
-	transform: scale(1.1);
+  color: lightgray;
+  transform: scale(1.1);
 }
 
 span {
-	display: inline-block;
-	vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.allItemsImage {
-	width: 150px;
-	height: 200px;
-	object-fit: cover;
-	border-radius: 10%;
-	border: 1px solid lightgray;
-	text-align: center;
+.allItemsImage{
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10%;
+  border: 1px solid lightgray;
+  text-align: center;
 }
 
-.allItemsText {
-	color: #757575;
-	font-family: Arial, Helvetica, sans-serif;
-	font-style: italic;
-	font-size: large;
-	text-align: center;
-	margin: auto;
-	margin-top: auto;
+.allItemsText{
+  color: #757575;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: large;
+  text-align: center;
+  margin: auto;
+  margin-top: auto;
 }
 
 .allItemsText:link {
@@ -103,65 +105,47 @@ span {
 }
 
 .listing {
-	list-style: none;
-	margin: 2em;
-	display: grid;
-	gap: 20px;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  list-style: none;
+  margin: 2em;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
 }
 
 .listing li {
-	border-radius: 5px;
-	display: flex;
-	flex-direction: column;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 .listing .cta {
-	padding: 10px;
-	text-align: center;
+  padding: 10px;
+  text-align: center;
 }
 
 .listing .body {
-	padding: 10px;
+  padding: 10px;
 }
 
-.singleItemImage {
-	width: 500px;
-	height: 400px;
-	object-fit: cover;
-	border-radius: 5%;
+.singleItemImage{
+  width: 500px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 5%;
 }
 
-.labelText {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: large;
+.labelText{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
 }
 
-.inputField {
-	width: 200px;
-	font-size: large;
-	border: none;
-	background-color: #e7e5e6;
+.inputField{
+  width: 200px;
+  font-size: large;
+  border: none;
+  background-color: #E7E5E6;
 }
 
 .homepageGrid {
-	display: grid;
-	position: relative;
-	z-index: 1;
-	grid-template-columns: auto auto auto auto;
-	background-color: transparent;
-	padding: 10px;
-	top: 200px;
-	border-style: dashed;
-	border-color: darkblue;
-}
-
-.homepageGridItem {
-	background-color: transparent;
-	padding: 20px;
-	text-align: center;
-	bottom: 0px;
-	border-style: dashed;
-	border-color: lightblue;
   display: grid;
   position: relative;
   z-index: 1;
@@ -173,6 +157,16 @@ span {
   border-color: darkblue; */
 }
 
+.homepageGridItem {
+  background-color: transparent;
+  padding: 20px;
+  text-align: center;
+  bottom: 0px;
+  /* border-style: dashed;
+  border-color: lightblue; */
+
+}
+.slideshowPlaceholder {
   grid-column-start: 1;
   /* why 5 when only 4 columns...? */
   grid-column-end: 5;
@@ -205,8 +199,8 @@ span {
 
 /* Background svg from Adobe XD */
 .backgroundHomepage {
-	position: relative;
-	z-index: -1;
+  position: relative;
+  z-index: -1;
 }
 
 .userDiv{
@@ -410,79 +404,79 @@ span {
 
 /* shopping cart from Adobe XD */
 #Icon_feather-shopping-cart_zo {
-	position: relative;
-	width: 50px;
-	overflow: visible;
+  position: relative;
+  width: 50px;
+  overflow: visible;
 }
 
 #Path_1_zp {
-	fill: transparent;
-	stroke: rgba(0, 0, 0, 1);
-	stroke-width: 3px;
-	stroke-linejoin: round;
-	stroke-linecap: round;
-	stroke-miterlimit: 4;
-	shape-rendering: auto;
+  fill: transparent;
+  stroke: rgba(0,0,0,1);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-miterlimit: 4;
+  shape-rendering: auto;
 }
 .Path_1_zp {
-	overflow: visible;
-	position: absolute;
-	width: 3px;
-	height: 3px;
-	left: 16px;
-	top: 35px;
-	transform: matrix(1, 0, 0, 1, 0, 0);
+  overflow: visible;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  left: 16px;
+  top: 35px;
+  transform: matrix(1,0,0,1,0,0);
 }
 #Path_2_zq {
-	fill: transparent;
-	stroke: rgba(0, 0, 0, 1);
-	stroke-width: 3px;
-	stroke-linejoin: round;
-	stroke-linecap: round;
-	stroke-miterlimit: 4;
-	shape-rendering: auto;
+  fill: transparent;
+  stroke: rgba(0,0,0,1);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-miterlimit: 4;
+  shape-rendering: auto;
 }
 .Path_2_zq {
-	overflow: visible;
-	position: absolute;
-	width: 3px;
-	height: 3px;
-	left: 42px;
-	top: 35px;
-	transform: matrix(1, 0, 0, 1, 0, 0);
+  overflow: visible;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  left: 42px;
+  top: 35px;
+  transform: matrix(1,0,0,1,0,0);
 }
 #Path_3_zr {
-	fill: transparent;
-	stroke: rgba(0, 0, 0, 1);
-	stroke-width: 3px;
-	stroke-linejoin: round;
-	stroke-linecap: round;
-	stroke-miterlimit: 4;
-	shape-rendering: auto;
+  fill: transparent;
+  stroke: rgba(0,0,0,1);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-miterlimit: 4;
+  shape-rendering: auto;
 }
 .Path_3_zr {
-	overflow: visible;
-	position: absolute;
-	width: 50px;
-	height: 40px;
-	left: 0px;
-	top: 0px;
-	transform: matrix(1, 0, 0, 1, 0, 0);
+  overflow: visible;
+  position: absolute;
+  width: 50px;
+  height: 40px;
+  left: 0px;
+  top: 0px;
+  transform: matrix(1,0,0,1,0,0);
 }
 
 /* popular item from Adobe XD */
 
 #Subtraction_2_v {
-	fill: rgba(255, 255, 255, 1);
+  fill: rgba(255,255,255,1);
 }
 .Subtraction_2_v {
-	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-	overflow: visible;
-	position: relative;
-	z-index: -1;
-	width: 168px;
-	height: 133.001px;
-	left: 0px;
-	top: 0px;
-	transform: matrix(1, 0, 0, 1, 0, 0);
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  overflow: visible;
+  position: relative;
+  z-index: -1;
+  width: 168px;
+  height: 133.001px;
+  left: 0px;
+  top: 0px;
+  transform: matrix(1,0,0,1,0,0);
 }
