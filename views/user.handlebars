@@ -68,17 +68,20 @@
   </div>
   {{#if data.adminItems}}
     <div class="userDivItem">
+      <p class="adminScrollTitleText">
+        Items You Own
+      </p>
       <div class="adminItemScroll">
         <div class="adminScrollGrid">
           {{#each data.adminItems}}
-          <div class="adminScrollGridItem">
-            <a href="/users/{{../data.user.username}}/items/{{this.id}}/">
-              <img class="adminItemImage" src="{{this.image}}" title="Click Here To View Options"/>
-            </a>
-            <div class="adminItemText">
-              {{this.title}}
+            <div class="adminScrollGridItem">
+              <a href="/users/{{../data.user.username}}/items/{{this.id}}/">
+                <img class="adminItemImage" src="{{this.image}}" title="Click Here To View Options"/>
+              </a>
+              <div class="adminItemText">
+                {{this.title}}
+              </div>
             </div>
-          </span>
           {{/each}}
         </div>
       </div>

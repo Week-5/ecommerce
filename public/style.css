@@ -248,19 +248,27 @@ span {
   font-size: large;
   text-align: center;
 }
+.adminScrollTitleText{
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-large;
+  color: black;
+  text-align: left;
+}
 
 .adminScrollGrid{
   display: grid;
   position: relative;
   height: 400px;
   z-index: 1;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 33% 33% 33%;
   background-color: transparent;
   padding: 10px;
 }
 
 .adminScrollGridItem {
   background-color: transparent;
+  text-align: center;
   /* padding: 20px; */
   /* border-style: solid;
   border-color: lightgray;
