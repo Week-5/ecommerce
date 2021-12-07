@@ -20,7 +20,7 @@
 						{{#each data.allItems}}
 							{{!-- {{#if ../data.user}} --}}
 								{{!-- <a href="/users/{{../data.user.username}}/items/{{this.id}}"> --}}
-															<img src="{{this.image}}">
+															<img style="width: 100%; height=" src="{{this.image}}">
 							{{!-- </a> --}}
 
 							{{!-- {{else}} --}}
@@ -118,10 +118,7 @@
         transform: translateX(-300%);
     }
 }
-img{
-    width: 100%;
-}
-    </style>
+</style>
 
 {{!-- 3d slideshow... --}}
 {{!-- https://www.foolishdeveloper.com/2021/08/automatic-image-slider.html --}}

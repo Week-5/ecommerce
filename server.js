@@ -86,28 +86,27 @@ app.get('/items', async (req, res) => {
 
 // get jewelry category
 app.get('/category/jewelry', async (req, res) => {
-  const jewelry = await Item.findAll({where: {category: 'jewelry'}});
-  res.render('category', {jewelry});
+  const category = await Item.findAll({where: {category: 'Jewelry'}});
+  res.render('category', {category});
 });
 
 // get Men's Clothing category
 app.get('/category/clothing/man-clothing', async (req, res) => {
-  const maleClothing = await Item.findAll({where: {category: 'Men\'s Clothing'}});
-  res.render('category', {maleClothing});
+  const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
+  res.render('category', {category});
 });
 
 // get Women's Clothing category
 app.get('/category/clothing/woman-clothing', async (req, res) => {
   console.log(req.body);
-  const femaleClothing = await Item.findAll({where: {category: 'Women\'s Clothing'}});
-  res.render('category', {femaleClothing});
+  const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
+  res.render('category', {category});
 });
 
 // get electronic category
 app.get('/category/electronics', async (req, res) => {
-  console.log(req.body);
-  const electronics = await Item.findAll({where: {category: 'Electronics'}});
-  res.render('category', {electronics});
+  const category = await Item.findAll({where: {category: 'Electronics'}});
+  res.render('category', {category});
 });
 
 // get single item
