@@ -1,18 +1,16 @@
 {
-	"userData": [
-		{
-			"username": "Big Danny",
-			"fullName": "Danny Reina",
-			"email": "bigdanny@gmail.com",
-			"password": "1234",
-			"isAdmin": true
-		},
-		{
-			"username": "CJ Rocks",
-			"fullName": "CJ Garcia",
-			"email": "guitarsarebetterthandrums@gmail.com",
-			"password": "09876",
-			"isAdmin": false
-		}
-	]
+  "userData": [
+    {"username": "Big Danny",
+      "fullName": "Danny Reina",
+      "email": "bigdanny@gmail.com",
+      "password": "1234",
+      "isAdmin": true
+    },
+    {"username": "CJ Rocks",
+      "fullName": "CJ Garcia",
+      "email": "guitarsarebetterthandrums@gmail.com",
+      "password": "09876",
+      "isAdmin": false
+    } 
+  ]
 }
