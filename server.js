@@ -377,12 +377,6 @@ app.get('/users/:username/cart', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
 
-  if (items.length < 1) {
-    cart.totalPrice = 0;
-  } else {
-    cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a+b);
-  }
-
   const data = {
     user: user,
     cart: cart,
@@ -399,6 +393,14 @@ app.post('/users/:username/cart', async (req, res) => {
   const item = await Item.findOne({where: {id: req.body.itemID}});
 
   await cart.addItem(item);
+
+  const items = await cart.getItems();
+
+  cart.set({
+    totalPrice: items.length === 0 ? 0 : items.map((item) => item.price).reduce((a, b) => a+b),
+  });
+  await cart.save();
+
   res.status(200).redirect(301, `/users/${user.username}/cart`);
 });
 
@@ -408,6 +410,13 @@ app.post('/users/:username/delete-item-cart', async (req, res) => {
   const item = await Item.findOne({where: {id: req.body.itemID}});
 
   await cart.removeItem(item);
+
+  const items = await cart.getItems();
+
+  cart.set({
+    totalPrice: items.length === 0 ? 0 : items.map((item) => item.price).reduce((a, b) => a+b),
+  });
+  await cart.save();
 
   res.status(200).redirect(`/users/${user.username}/cart`);
 });
