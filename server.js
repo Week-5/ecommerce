@@ -367,8 +367,18 @@ app.post('/users/:username/cart', async (req, res) => {
   const item = await Item.findOne({where: { id: req.body.name }})
 
 
-  cart.items = []
-  cart.items.push(item)
+  cart.addItem(item)
+  // cart.items.push(item)
+
+  res.render(301, `/users/${user.username}/cart`)
+})
+
+//update cart item
+app.post('/users/:username/cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: { UserUsername: user.username }})
+  const item = await Item.findOne({where: { id: req.body.name }})
+
 
   res.render(301, `/users/${user.username}/cart`)
 })
