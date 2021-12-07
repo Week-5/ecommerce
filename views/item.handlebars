@@ -1,20 +1,32 @@
 <div>
   <img class="singleItemImage" src="{{data.item.image}}"/>
   <div>
-    {{data.item.title}}
+    {{data.item.title}} ${{data.item.price}}
   </div>
   <div>
     {{data.item.description}}
   </div>
-  <a href="/items">
-    <input type="button" value="Return To All Items"/>
-  </a>
-  {{#if data.user.isAdmin}}
-    <a href="/users/{{data.user.username}}/items/{{data.item.id}}/update-item">
-      <input type="button" value="Update Item"/>
-    </a>
-    <form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/?method=DELETE">
-        <input type="submit" value="Delete Item"/>
+  {{#if data.user}}
+    <form action="/users/{{data.user.username}}/cart" method="POST">
+        <input name="itemID" value="{{data.item.id}}" hidden/>
+        <input type="submit" class="submitButton" value="Add to Cart"/>
     </form>
   {{/if}}
+  {{#if data.user.isAdmin}}
+    {{#when data.item.UserUsername 'eq' data.user.username}}
+        <form action="/users/{{data.user.username}}/items/{{data.item.id}}/update-item" method="GET">
+          <input type="submit" class="submitButton" value="Update Item"/>
+        </form>
+        <form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/delete-item">
+          <input type="submit" class="submitButton" value="Delete Item"/>
+        </form>
+    {{/when}}
+  {{/if}}
+    {{#if data.user}}
+      <form method="GET" action="/homepage/{{data.user.username}}">
+    {{else}}
+      <form method="GET" action="/homepage">
+    {{/if}}
+    <input type="submit" class="submitButton" value="Return To Homepage"/>
+  </form>
 </div>
