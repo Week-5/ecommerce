@@ -12,7 +12,8 @@ router.post('/users/:username/create-item', itemController.postCreateItem);
 //  READ ITEM FUNCTIONALITY  //
 ///////////////////////////////
 router.get('/items', itemController.getAllItems);
-router.get('/users/:username/items/:id', itemController.getItem);
+router.get('/items/:id', itemController.getItem); // item page for guest
+router.get('/users/:username/items/:id', itemController.getItem); // item page for users
 
 ////////////////////////////////
 // UPDATE ITEM FUNCTIONALITY //
