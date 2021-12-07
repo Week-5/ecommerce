@@ -22,7 +22,11 @@
         </form>
     {{/when}}
   {{/if}}
-  <form method="GET" action="/items">
-    <input type="submit" class="submitButton" value="Return To All Items"/>
+    {{#if data.user}}
+      <form method="GET" action="/homepage/{{data.user.username}}">
+    {{else}}
+      <form method="GET" action="/homepage">
+    {{/if}}
+    <input type="submit" class="submitButton" value="Return To Homepage"/>
   </form>
 </div>

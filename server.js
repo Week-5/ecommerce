@@ -154,8 +154,11 @@ app.get('/create-account', async (req, res) => {
 
 app.get('/users/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
   const data = {
     user: user,
+    items: items,
   };
   res.render('user', {data});
 });
@@ -182,6 +185,31 @@ app.post('/create-account', async (req, res) => {
   });
 
   res.status(200).redirect(`/homepage/${newUser.username}`);
+});
+
+// get log-in
+app.get('/log-in', async (req, res) => {
+  res.render('userLogin');
+});
+
+app.post('/log-in', async (req, res) => {
+  const inputName = req.body.username;
+  const inputPassword = req.body.password;
+  const checkUser = await User.findByPk(inputName);
+  let loggedUsername = false;
+  let loggedPassword = false;
+  if (checkUser) {
+    loggedUsername = true;
+  }
+  if (inputPassword === checkUser.password) {
+    loggedPassword = true;
+  }
+
+  if (loggedUsername && loggedPassword) {
+    res.status(200).redirect(`/homepage/${inputName}`);
+  } else {
+    res.status(200).redirect('/create-account');
+  }
 });
 
 // user can view their account page
