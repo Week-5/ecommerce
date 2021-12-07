@@ -5,8 +5,10 @@ const { User, Item, Cart } = require('../index');
 ///////////////////////////////
 exports.getHomepageGuest = async (req, res) => {
   const allItems = await Item.findAll();
+  const popularItems = allItems.slice(0, 4);
   const data = {
     allItems: allItems,
+    popularItems: popularItems,
   };
   res.status(200).render('homepage', { data });
 };
@@ -21,6 +23,7 @@ exports.getHomepageUser = async (req, res) => {
   });
   const items = await user.getItems();
   const allItems = await Item.findAll();
+  const popularItems = allItems.slice(0, 4);
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
@@ -29,6 +32,7 @@ exports.getHomepageUser = async (req, res) => {
     userItems: items,
     userCart: cart,
     allItems: allItems,
+    popularItems: popularItems,
   };
 
   res.status(200).render('homepage', { data });
