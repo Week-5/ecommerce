@@ -91,13 +91,13 @@ app.get('/category/jewelry', async (req, res) => {
 });
 
 // get Men's Clothing category
-app.get('/category/clothing/man-clothing', async (req, res) => {
+app.get('/category/man-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
   res.render('category', {category});
 });
 
 // get Women's Clothing category
-app.get('/category/clothing/woman-clothing', async (req, res) => {
+app.get('/category/woman-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
   res.render('category', {category});
 });
@@ -121,8 +121,10 @@ app.get('/items/:id', async (req, res) => {
 // homepage without user logged in
 app.get('/homepage', async (req, res) => {
   const allItems = await Item.findAll();
+  const popularItems = allItems.slice(0, 4);
   const data = {
     allItems: allItems,
+    popularItems: popularItems,
   };
   res.status(200).render('homepage', {data});
 });
@@ -133,6 +135,7 @@ app.get('/homepage/:username', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
   const allItems = await Item.findAll();
+  const popularItems = allItems.slice(0, 4);
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
@@ -140,6 +143,7 @@ app.get('/homepage/:username', async (req, res) => {
     user: user,
     items: items,
     allItems: allItems,
+    popularItems: popularItems,
   };
 
   res.status(200).render('homepage', {data});

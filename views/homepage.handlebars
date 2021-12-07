@@ -31,7 +31,7 @@
 			<div class="popularItemsText">
 				Popular Items
 			</div>
-			{{#each data.allItems}}
+			{{#each data.popularItems}}
     		<div class="homepageGridItem">
 					{{#if ../data.user}}
 						<a href="/users/{{../data.user.username}}/items/{{this.id}}">
