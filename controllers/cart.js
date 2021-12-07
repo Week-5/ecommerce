@@ -14,7 +14,7 @@ exports.getCartPage = async (req, res) => {
     items:items,
   };
 
-  res.status(200).render('homepage', { data });
+  res.status(200).render('cart', { data });
 };
 
 ////////////////////////////////
