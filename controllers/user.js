@@ -27,7 +27,7 @@ exports.postCreateUser = async (req, res) => {
 		UserUsername: newUser.username,
 	});
 
-	res.status(200).redirect(`/homepage/${newUser.username}`);
+	res.status(200).redirect(301, `/homepage/${newUser.username}`);
 };
 
 ////////////////////////////////
@@ -80,7 +80,7 @@ exports.postUpdateUser = async (req, res) => {
 	});
 
 	await user.save();
-	res.status(200).redirect(`/users/${user.username}`);
+	res.status(200).redirect(301, `/users/${user.username}`);
 };
 
 ////////////////////////////////
