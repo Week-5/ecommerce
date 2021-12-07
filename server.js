@@ -121,8 +121,10 @@ app.get('/items/:id', async (req, res) => {
 // homepage without user logged in
 app.get('/homepage', async (req, res) => {
   const allItems = await Item.findAll();
+  const popularItems = allItems.slice(0, 4);
   const data = {
     allItems: allItems,
+    popularItems: popularItems,
   };
   res.status(200).render('homepage', {data});
 });
