@@ -67,25 +67,21 @@ npm install
 ```
 
 ## Available Scripts
-
 In the project directory, you can run:
 
 ```bash
 npm start
 ```
-
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
+Open [http://localhost:3000/homepage](http://localhost:3000/homepage) to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
 ```bash
 npm test
 ```
-
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+See the section about [running tests](https://www.npmjs.com/package/jest) for more information.
 
 ## Future Features
 
