@@ -6,7 +6,7 @@ const { User, Item, Cart } = require('../index');
 exports.getCartPage = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({ where: { UserUsername: user.username } });
-  const items = await Cart.getItems();
+  const items = await cart.getItems();
 
   const data = {
     user: user,
@@ -22,8 +22,8 @@ exports.getCartPage = async (req, res) => {
 ///////////////////////////////
 exports.postItemToCart = async (req, res) => {
   const user = await User.findByPk(req.params.username)
-  const cart = await Cart.findOne({where: {UserUsername:user.username}})
-  const item = await Cart.findOne({ where: { id: req.body.itemID } })
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } })
+  const item = await Item.findOne({ where: { id: req.body.itemID } })
   
   await cart.addItem(item)
 
