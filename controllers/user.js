@@ -5,7 +5,7 @@ const { User, Item, Cart } = require('../index');
 ///////////////////////////////
 // render create user form
 exports.getCreateUser = async (req, res) => {
-  res.status(200).render('userCreate');
+  res.status(200).render('./user/userCreate');
 };
 // create a new user
 exports.postCreateUser = async (req, res) => {
@@ -36,7 +36,7 @@ exports.postCreateUser = async (req, res) => {
 // get a specific user
 // render log in page
 exports.getLogIn = async (req, res) => {
-  res.render('userLogin');
+  res.render('./user/userLogin');
 };
 // log in user
 exports.postLogIn = async (req, res) => {
@@ -55,7 +55,7 @@ exports.postLogIn = async (req, res) => {
   if (loggedUsername && loggedPassword) {
     res.status(200).redirect(301, `/homepage/${inputName}`);
   } else {
-    res.status(200).redirect(301, '/create-account');
+    res.status(200).redirect(301, '/user/create-account');
   }
 };
 
@@ -77,7 +77,7 @@ exports.getUser = async (req, res) => {
     };
   }
 
-  res.status(200).render('user', { data });
+  res.status(200).render('./user/user', { data });
 };
 
 ////////////////////////////////
@@ -86,7 +86,7 @@ exports.getUser = async (req, res) => {
 // render user update form
 exports.getUpdateUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('userUpdate', { user });
+  res.status(200).render('./user/userUpdate', { user });
 };
 // user update
 exports.postUpdateUser = async (req, res) => {
@@ -116,5 +116,5 @@ exports.postUpdateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   await user.destroy();
-  res.redirect(301, '/homepage');
+  res.redirect(301, '/homepage/homepage');
 };
