@@ -4,6 +4,7 @@
 
 - [Requirements](#Requirements)
 - [Diagrams](#Diagrams)
+- [Mock Ups](./public/assets/mockup)
 - [Built With](#Built-With)
 - [Installation](#Installation)
 - [Future Features](#Future-Features)
