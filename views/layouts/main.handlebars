@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="/style.css"/>
-        <link rel="icon" type="image/svg+xml" href="/logo.svg">
+        <link rel="icon" type="image/svg+xml" href="/public/logo.svg">
     </head>
     <body>
         <div class="relative">
@@ -44,7 +44,7 @@
                         </form> 
                     </span>
                     <span>
-                        <form action="/category/clothing/man-clothing" method="GET">
+                        <form action="/category/man-clothing" method="GET">
                             {{#if data.user.username}}
                                 <input name={{data.user.username}} hidden/>
                             {{/if}}
@@ -52,7 +52,7 @@
                         </form>
                     </span>
                     <span>
-                        <form action="/category/clothing/woman-clothing" method="GET">
+                        <form action="/category/woman-clothing" method="GET">
                             {{#if data.user.username}}
                                 <input name={{data.user.username}} hidden/>
                             {{/if}}

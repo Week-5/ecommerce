@@ -347,6 +347,28 @@ span {
   color: #757575;
 }
 
+.cartGrid {
+  display: grid;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: 50% auto;
+  background-color: transparent;
+  padding: 10px;
+  /* border-style: dashed;
+  border-color: darkblue; */
+
+}
+
+.cartGridItem {
+  background-color: transparent;
+  padding: 20px;
+  height: 400px;
+  /* text-align: center; */
+  /* border-style: dashed;
+  border-color: lightblue;
+  border-width: 1px; */
+}
+
 .submitButton{
   background-color:white;
   border-style: solid;

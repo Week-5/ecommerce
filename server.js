@@ -91,13 +91,13 @@ app.get('/category/jewelry', async (req, res) => {
 });
 
 // get Men's Clothing category
-app.get('/category/clothing/man-clothing', async (req, res) => {
+app.get('/category/man-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
   res.render('category', {category});
 });
 
 // get Women's Clothing category
-app.get('/category/clothing/woman-clothing', async (req, res) => {
+app.get('/category/woman-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
   res.render('category', {category});
 });
