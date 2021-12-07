@@ -43,6 +43,79 @@
       "clickCount": 0,
       "UserUsername": "Big Danny",
       "CartId": 1
+    },
+    {
+      "title": "Men's Scotch Plaid Flannel Pajamas",
+      "stock": 10,
+      "price": 79.0,
+      "description": "Our premium ultrasoft cotton flannel pajamas, in just the right weight to stay warm and cozy without overheating.",
+      "category": "Men's Clothing",
+      "image": "https://cdni.llbean.net/is/image/wim/500244_51163_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2",
+      "clickCount": 0,
+      "UserUsername": "Big Danny"
+    },
+    {
+      "title": "Stylish Slim Fit Coat",
+      "stock": 10,
+      "price": 94.0,
+      "description": "Ribbed standing collar, Zipper fly and button closure. Two hand pockets and zip chest pocket",
+      "category": "Men's Clothing",
+      "image": "https://cdn.shopify.com/s/files/1/2798/3854/products/142395_900x.jpg?v=1574691954",
+      "clickCount": 0
+    },
+    {
+      "title": "Plush Cashmere Rib-Knit Cardigan",
+      "stock": 102,
+      "price": 158.0,
+      "description": "Turn your outerwear into shouterwear with a boohooMAN coat or jacket",
+      "category": "Women's Clothing",
+      "image": "https://pyxis.nymag.com/v1/imgs/fb4/9da/b12d5bc27e5710d7657e86ce01291e234a-5----.rsquare.w600.jpg",
+      "clickCount": 0
+    },
+    {
+      "title": "Shaker Stitch Sweater V-Neck",
+      "stock": 102,
+      "price": 158.0,
+      "description": "Turn your outerwear into shouterwear with a boohooMAN coat or jacket",
+      "category": "Women's Clothing",
+      "image": "https://cdni.llbean.net/is/image/wim/502426_42786_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2",
+      "clickCount": 0
+    },
+    {
+      "title": "4-Piece Bridal Set",
+      "stock": 12,
+      "price": 1580.0,
+      "description": "3 Piece BriLove Wedding Bridal Jewelery for women Austrian Crystal Teardrop Cluster statement necklace dangle earrings link bracelt set",
+      "category": "Jewelery",
+      "image": "https://m.media-amazon.com/images/I/81dYe68eYeL._AC_UL1500_.jpg",
+      "clickCount": 0
+    },
+    {
+      "title": "Diamon Heart Necklace",
+      "stock": 7,
+      "price": 1325.0,
+      "description": "Pretty and Personal, 14k Diamond Heart necklace for your loved omne on an 16 or 18 in necklace.",
+      "category": "Jewelery",
+      "image": "https://bnsec.bluenile.com/bluenile/is/image/bluenile/-diamond-heart-pendant-14k-white-gold-1-carat-total-weight-/60242_main?$phab_detailmain$",
+      "clickCount": 0
+    },
+    {
+      "title": "Apple Airpod Pros",
+      "stock": 7,
+      "price": 199.50,
+      "description": "Apple AirPods Pro",
+      "category": "Electronics",
+      "image": "https://m.media-amazon.com/images/I/71zny7BTRlL._AC_SL1500_.jpg",
+      "clickCount": 0
+    },
+    {
+      "title": "Google Pixel 6 Pro - 5G - Stormy Black",
+      "stock": 7,
+      "price": 897.50,
+      "description": "Google's Android smart phone. Advanced Pixel camera and Telephoto lense - see yourelf in photos clearer than ever!! 128 GB ",
+      "category": "Electronics",
+      "image": "https://m.media-amazon.com/images/I/716n8eAia+L._AC_SX522_.jpg",
+      "clickCount": 0
     }
   ]
 }
