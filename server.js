@@ -304,9 +304,13 @@ app.post('/users/:username/create-item', async (req, res) => {
 app.get('/users/:username/items/:id', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
   const data = {
     item: item,
     user: user,
+    items: items,
   };
   res.render('item', {data});
 });

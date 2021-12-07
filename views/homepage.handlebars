@@ -13,35 +13,25 @@
 	</div>
 <section>
 	<div class="relative">
+		<div class="popularItemsText" style="text-align: center; margin-bottom: -40px;">
+				On Sale Now
+			</div>
 		<div class="homepageGrid">
 			<div class="slideshowPlaceholder">
 				<div class="container">
-					<div class="wrapper">
-						{{#each data.allItems}}
-							{{!-- {{#if ../data.user}} --}}
-								{{!-- <a href="/users/{{../data.user.username}}/items/{{this.id}}"> --}}
-															<img style="width: 100%; height=" src="{{this.image}}">
-							{{!-- </a> --}}
-
-							{{!-- {{else}} --}}
-								{{!-- <a href="/items/{{this.id}}"> --}}
-															{{!-- <img src="{{this.image}}"> --}}
-							{{!-- </a> --}}
-
-							{{!-- {{/if}} --}}
-						{{/each}}
-							{{!-- <img src="https://i.pinimg.com/originals/2b/de/de/2bdede0647e3cdf75b44ea33723201d9.jpg">
-							<img src="https://images6.alphacoders.com/462/thumb-1920-462371.jpg">
-							<img src="https://images5.alphacoders.com/343/thumb-1920-343645.jpg">
-							<img src="https://cdn.wallpapersafari.com/24/98/dwMtqD.jpg"> --}}
-					</div>
+					<a href="/items">
+						<div class="wrapper">
+								{{#each data.allItems}}
+									<img src="{{this.image}}">
+								{{/each}}
+						</div>
+					</a>
 				</div>
 			</div>
 			<div class="popularItemsText">
 				Popular Items
 			</div>
 			{{#each data.allItems}}
-			
     		<div class="homepageGridItem">
 					{{#if ../data.user}}
 						<a href="/users/{{../data.user.username}}/items/{{this.id}}">
@@ -75,20 +65,18 @@
 
 <style media="screen">
 .container{
+    width: 800px;
 		height: 100%;
-    width: 100%;
     position: relative;
     transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
     overflow: hidden;
-    border-radius: 8px;
+		border-radius: 8px;
     box-shadow: 10px 25px 30px rgba(0,0,0,0.3);
 }
 .wrapper{
     width: 100%;
-		position: absolute;
-		bottom: -200%;
     display: flex;
     animation: slide 16s infinite;
 }
@@ -118,7 +106,14 @@
         transform: translateX(-300%);
     }
 }
+img{
+	position: relative;
+  bottom: 500px;
+	width: 100%;
+}
+
 </style>
+
 
 {{!-- 3d slideshow... --}}
 {{!-- https://www.foolishdeveloper.com/2021/08/automatic-image-slider.html --}}

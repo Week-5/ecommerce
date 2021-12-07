@@ -8,17 +8,23 @@
         <div class="relative">
 	        <div class="bannerGrid">
                 <div class="bannerGridItem">
-                    <svg  width="100" height="100">
-                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
-                        <line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
-                        <line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
-                        <line x1="10" y1="50" x2="90" y2="50" stroke="black" stroke-width="1"/>
-                        <text x="28" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">D</text>
-                        <text x="60" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">Q</text>
-                        <text x="28" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">E</text>
-                        <text x="60" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">C</text>
-                        Sorry, your browser does not support inline SVG.
-                    </svg>
+                    {{#if data.user}}
+                        <a href="/homepage/{{data.user.username}}">
+                    {{else}}
+                        <a href="/homepage">
+                    {{/if}}
+                        <svg  width="100" height="100">
+                            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
+                            <line x1="10" y1="50" x2="90" y2="50" stroke="black" stroke-width="1"/>
+                            <text x="28" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">D</text>
+                            <text x="60" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">Q</text>
+                            <text x="28" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">E</text>
+                            <text x="60" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">C</text>
+                            Sorry, your browser does not support inline SVG.
+                        </svg>
+                    </a>
                 </div>
                 <div class="bannerGridItem">
                     <span>
@@ -88,7 +94,7 @@
                                     </svg>
                                     <svg class="Path_3_zr" viewBox="1.5 1.5 68.352 36.001">
                                         {{#when data.items.length 'gt' 0}}
-                                            <circle cx="45" cy="-5" r="15" fill="green"/>
+                                            <circle cx="45" cy="-5" r="15" fill="#62DB69" stroke="black" stroke-width="1"/>
                                             <text x="40" y="0" fill="black" font-size="20px" font-family="Arial, Helvetica, sans-serif">{{data.items.length}}</text>
                                         {{/when}}
                                         <path id="Path_3_zr" d="
