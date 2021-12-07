@@ -377,7 +377,11 @@ app.get('/users/:username/cart', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
 
-  cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a+b);
+  // if (cart.getItems() > 0) {
+    cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a+b);
+  // } else {
+  //   cart.totalPrice = 0;
+  // }
 
   const data = {
     user: user,
@@ -396,6 +400,16 @@ app.post('/users/:username/cart', async (req, res) => {
 
   await cart.addItem(item);
   res.status(200).redirect(301, `/users/${user.username}/cart`);
+});
+
+app.post('/users/:username/delete-item-cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const item = await Item.findOne({where: {id: req.body.itemID}});
+
+  await cart.removeItem(item);
+
+  res.status(200).redirect(`/users/${user.username}/cart`);
 });
 
 app.listen(port, () => {
