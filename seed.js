@@ -6,14 +6,18 @@ const fs = require('fs').promises;
 const {db} = require('./db');
 const {User} = require('./classes/User');
 const {Item} = require('./classes/Item');
-const {Cart} = require('./classes/Cart');
+const { Cart } = require('./classes/Cart');
+
+const userJson = './json/User.json'
+const itemJson = './json/Item.json';
+const cartJson = './json/Cart.json';
 
 const seed = async () => {
   await db.sync({force: true});
 
-  const userSeedPath = path.join(__dirname, 'User.json');
-  const itemSeedPath = path.join(__dirname, 'Item.json');
-  const cartSeedPath = path.join(__dirname, 'Cart.json');
+  const userSeedPath = path.join(__dirname, userJson);
+  const itemSeedPath = path.join(__dirname, itemJson);
+  const cartSeedPath = path.join(__dirname, cartJson);
 
   const userBuffer = await fs.readFile(userSeedPath);
   const {userData} = JSON.parse(String(userBuffer));
