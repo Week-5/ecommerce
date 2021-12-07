@@ -377,11 +377,11 @@ app.get('/users/:username/cart', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
 
-  // if (cart.getItems() > 0) {
+  if (items.length < 1) {
+    cart.totalPrice = 0;
+  } else {
     cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a+b);
-  // } else {
-  //   cart.totalPrice = 0;
-  // }
+  }
 
   const data = {
     user: user,
