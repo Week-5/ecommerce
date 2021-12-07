@@ -277,6 +277,104 @@ span {
   overflow-y: scroll;
 }
 
+.itemGrid {
+  display: grid;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: 50% auto;
+  background-color: transparent;
+  padding: 10px;
+  /* border-style: dashed;
+  border-color: darkblue; */
+
+}
+
+.itemGridItem {
+  background-color: transparent;
+  padding: 20px;
+  height: 400px;
+  /* text-align: center; */
+  /* border-style: dashed;
+  border-color: lightblue;
+  border-width: 1px; */
+}
+
+.itemImageView{
+  height: 100%;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 1px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.itemTextView {
+  height: 100%;
+}
+
+.itemImageStyle {
+  /* width: 100%; */
+  height: 100%;
+  border-radius: 10px;
+
+}
+
+.itemTitleStyle{
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-large;
+  color: black;
+  left: 0;
+  text-align: left;
+}
+
+.itemPriceStyle{
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-large;
+  color: black;
+  bottom: 0;
+  float: inline-end;
+  text-align: right;
+}
+
+.itemCategoryStyle{
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  color: black;
+  left: 0;
+  text-align: left;
+}
+
+.itemDescriptionStyle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  color: #757575;
+}
+
+.cartGrid {
+  display: grid;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: 50% auto;
+  background-color: transparent;
+  padding: 10px;
+  /* border-style: dashed;
+  border-color: darkblue; */
+
+}
+
+.cartGridItem {
+  background-color: transparent;
+  padding: 20px;
+  height: 400px;
+  /* text-align: center; */
+  /* border-style: dashed;
+  border-color: lightblue;
+  border-width: 1px; */
+}
+
 .submitButton{
   background-color:white;
   border-style: solid;
