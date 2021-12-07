@@ -170,8 +170,8 @@ app.get('/users/:username', async (req, res) => {
 // post account path
 app.post('/create-account', async (req, res) => {
   const newUsername = req.body.username;
-  const newFullName = req.body.newFullName;
-  const newEmail = req.body.newEmail;
+  const newFullName = req.body.fullName;
+  const newEmail = req.body.email;
   const newPassword = req.body.password;
 
   // create new user

@@ -203,11 +203,69 @@ span {
   z-index: -1;
 }
 
-.userDiv{
-  border-radius: 10px;
+.userDiv {
+  display: grid;
+  position: relative;
+  height: 400px;
+  z-index: 1;
+  grid-template-columns: auto 50%;
+  background-color: transparent;
+  column-gap: 20px;
+  padding: 10px;
+}
+
+.userDivItem {
+  background-color: transparent;
+  padding: 20px;
+  /* height: 200px; */
   border-style: solid;
   border-color: lightgray;
   border-width: 1px;
+  border-radius: 10px;
+  /* height: 400px; */
+}
+
+.adminItemScroll {
+
+  overflow-y: scroll;
+  padding: 10px;
+  height: 400px;
+}
+
+.adminItemImage{
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10%;
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+.adminItemText{
+  color: #757575;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: large;
+  text-align: center;
+}
+
+.adminScrollGrid{
+  display: grid;
+  position: relative;
+  height: 400px;
+  z-index: 1;
+  grid-template-columns: auto auto auto;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.adminScrollGridItem {
+  background-color: transparent;
+  /* padding: 20px; */
+  /* border-style: solid;
+  border-color: lightgray;
+  border-width: 1px;
+  border-radius: 10px; */
 }
 
 .userList{
