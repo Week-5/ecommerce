@@ -1,5 +1,4 @@
-
-<input name={{data.user.user}} hidden/>
+{{!-- <input name={{data.user.username}} hidden/> --}}
 <section>
 	<div class="absolute">
 		<svg style="width:100%;height:100%;" viewBox="0 0 1920 1920" preserveAspectRatio="none">
@@ -14,17 +13,31 @@
 	</div>
 <section>
 	<div class="relative">
+		<div class="popularItemsText" style="text-align: center; margin-bottom: -40px;">
+				On Sale Now
+			</div>
 		<div class="homepageGrid">
 			<div class="slideshowPlaceholder">
-				SLIDESHOW HERE
+				<div class="container">
+					<a href="/items">
+						<div class="wrapper">
+								{{#each data.allItems}}
+									<img src="{{this.image}}">
+								{{/each}}
+						</div>
+					</a>
+				</div>
 			</div>
 			<div class="popularItemsText">
 				Popular Items
 			</div>
 			{{#each data.allItems}}
-			
     		<div class="homepageGridItem">
-					<a href="/items/{{this.id}}">
+					{{#if ../data.user}}
+						<a href="/users/{{../data.user.username}}/items/{{this.id}}">
+					{{else}}
+						<a href="/items/{{this.id}}">
+					{{/if}}
 						<svg class="Subtraction_2_v" viewBox="0 0 150 115">
 							<defs>
 								<clipPath id="circleView">
@@ -39,65 +52,67 @@
 									xlink:href="{{this.image}}" 
 									clip-path="url(#circleView)"/>
 						</svg>
-						<p class="allItemsText">
-							{{this.title}}<br>
-							${{this.price}}
-						</p>
+						<div class="allItemsText">
+            	<p>{{this.title}}<br>${{this.price}}</p>
+         		</div>
 					</a>
 				</div>
 			{{/each}}
 		</div>
 	</div>
 </section>
-<section class="relative" style="top: 150px">
-	{{#if data.user.isAdmin}}
-		<div>YOU ARE ADMIN</div>
-		{{else}}
-		<div>YOU ARE A USER</div>
-	{{/if}}
-</section>
-{{!-- <section>
-	<div class="w3-content w3-display-container" style="max-width:800px">
-		<img class="mySlides" src="img_nature_wide.jpg" style="width:100%">
-		<img class="mySlides" src="img_snow_wide.jpg" style="width:100%">
-		<img class="mySlides" src="img_mountains_wide.jpg" style="width:100%">
-		<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-			<div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-			<div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-			<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-			<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-			<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
-		</div>
-	</div>
-</section> --}}
-{{!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-content w3-section" style="max-width:500px">
-  <p>The w3-animate-fading class animates an element in and out (takes about 10 seconds).</p>
 
-  <img class="mySlides w3-animate-fading" src="img_rr_01.jpg" style="width:100%">
-  <img class="mySlides w3-animate-fading" src="img_rr_02.jpg" style="width:100%">
-  <img class="mySlides w3-animate-fading" src="img_rr_03.jpg" style="width:100%">
-  <img class="mySlides w3-animate-fading" src="img_rr_04.jpg" style="width:100%">
-</div>
-
-<script>
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-
-x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}
-
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 9000);
-
+<style media="screen">
+.container{
+    width: 800px;
+		height: 100%;
+    position: relative;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+		border-radius: 8px;
+    box-shadow: 10px 25px 30px rgba(0,0,0,0.3);
 }
-</script> --}}
+.wrapper{
+    width: 100%;
+    display: flex;
+    animation: slide 16s infinite;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55%{
+        transform: translateX(-200%);
+    }
+    75%{
+        transform: translateX(-200%);
+    }
+    80%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(-300%);
+    }
+}
+img{
+	position: relative;
+  bottom: 500px;
+	width: 100%;
+}
+
+</style>
+
+
 {{!-- 3d slideshow... --}}
 {{!-- https://www.foolishdeveloper.com/2021/08/automatic-image-slider.html --}}

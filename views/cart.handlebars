@@ -1,0 +1,17 @@
+<div class="cartScroll">
+  ${{data.cart.totalPrice}}
+  Your cart has {{data.items.length}} items in it. Review them here
+  <ul>
+    {{#each data.items}}
+    <li>
+      {{this.title}}
+      <div >
+        <img class="allItemsImage" src="{{this.image}}"/>
+      </div>
+    </li>
+    {{/each}}
+  <ul>
+</div>
+<div>
+  <input type="button" class="submitButton" value="Checkout"/>
+</div>
