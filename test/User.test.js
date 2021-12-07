@@ -12,7 +12,7 @@ describe('User Object Test', () => {
         const newUser = await User.create({ username: 'WhomIsThis', fullName: 'Mike J', email: 'WhoMJ@gmail.com', password: 'password', isAdmin: true});
         
         const users = await User.findAll();
-
+        
         expect(users[0].username).toBe(newUser.username);
     });
 
@@ -22,19 +22,14 @@ describe('User Object Test', () => {
     });
 
     // This test if a user can create and add an item to the inventory as an admin
-    test('User can create new item', async () => {
-        // This test should normally test the function for adding an item
-        // Like call where the func would be located and the test the results
-        // now i have to create a user - then item then test if the item belongs to the user
-
-        // there should be a guard that the user is an admin
-        // creates new user
+    test('Admin user can create new item', async () => {
         let user = await User.create({
-            username: 'little E', 
+            username: 'SomeBodEEE', 
             fullName: 'Erika D', 
             email: 'ED234@gnail.com', 
             passwod: 'password', 
-            isAdmin: true});
+            isAdmin: true
+        });
 
         // guard against unfilled fields on front end
         // creates new item
@@ -47,30 +42,31 @@ describe('User Object Test', () => {
             image: '',
             clickCount: 3,
             CartId: null,
-            UserUsername: 'little E'
-        });
-
-        let item2 = await Item.create({
-            title: 'New Bush22',
-            stock: 42,
-            price: 32.0,
-            description: 'New type of bush for your front lawn',
-            category: 'Electronics',
-            image: 'dfgasdfsgfd.jpg',
-            clickCount: 3,
-            CartId: null,
-            UserUsername: 'little E'
         });
         // sequelize helper function to add the association between the item created and user
         await user.addItem(item);
-        await user.addItem(item2);
-        // loaf all of the users current 
-        let userItems = await user.getItems()
-       
-        expect(userItems[0].UserUsername).toBe(item.UserUsername)
+        let userItem = await Item.findByPk(item.id);
+
+        expect(userItem.UserUsername).toBe(user.username);
     });
 
+    test('Accoun tcan be deleted', async () => {
+        let user = await User.create({
+            username: 'The New Ghost', 
+            fullName: 'Jamie O', 
+            email: 'JayO@gnail.com', 
+            passwod: 'password', 
+            isAdmin: true
+        })
 
+        let newUser = await User.findByPk(user.username)
+        if (newUser) { existingUser = true } else { existingUser = false }
 
-    
+        expect(existingUser).toBeTruthy()
+
+        await newUser.destroy()
+        let userSearch = await User.findByPk(user.username)
+        console.log(newUser)
+        expect(userSearch).toBe(null)
+    })
 });
