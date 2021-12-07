@@ -1,74 +1,74 @@
 /* eslint-disable max-len */
-const express = require("express");
+const express = require('express');
 const port = 3000;
-const { User, Item, Cart } = require("./index");
-const { db } = require("./db");
-const Handlebars = require("handlebars");
+const {User, Item, Cart} = require('./index');
+const {db} = require('./db');
+const Handlebars = require('handlebars');
 
 // custom handlebar operator helpers
 // pulled from: https://stackoverflow.com/questions/33316562/how-to-compare-a-value-in-handlebars
 Handlebars.registerHelper(
-  "when",
-  function (operand_1, operator, operand_2, options) {
-    const operators = {
-      eq: function (l, r) {
-        return l == r;
-      },
-      noteq: function (l, r) {
-        return l != r;
-      },
-      gt: function (l, r) {
-        return Number(l) > Number(r);
-      },
-      or: function (l, r) {
-        return l || r;
-      },
-      and: function (l, r) {
-        return l && r;
-      },
-      "%": function (l, r) {
-        return l % r === 0;
-      },
-    };
-    const result = operators[operator](operand_1, operand_2);
+    'when',
+    function(operand_1, operator, operand_2, options) {
+      const operators = {
+        'eq': function(l, r) {
+          return l == r;
+        },
+        'noteq': function(l, r) {
+          return l != r;
+        },
+        'gt': function(l, r) {
+          return Number(l) > Number(r);
+        },
+        'or': function(l, r) {
+          return l || r;
+        },
+        'and': function(l, r) {
+          return l && r;
+        },
+        '%': function(l, r) {
+          return l % r === 0;
+        },
+      };
+      const result = operators[operator](operand_1, operand_2);
 
-    if (result) return options.fn(this);
-    else return options.inverse(this);
-  }
+      if (result) return options.fn(this);
+      else return options.inverse(this);
+    },
 );
 
-Handlebars.registerHelper("for", function (from, to, incr, block) {
-  let accum = "";
+Handlebars.registerHelper('for', function(from, to, incr, block) {
+  let accum = '';
   for (let i = from; i < to; i += incr) {
     accum += block.fn(i);
   }
   return accum;
 });
 
-const { engine } = require("express-handlebars");
+const {engine} = require('express-handlebars');
 
 const app = express();
 
 // send data as json object
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // enable handlebars frontend
 app.engine(
-  "handlebars",
-  engine({
-    runtimeOptions: {
-      allowProtoPropertiesByDefault: true,
-      allowProtoMethodsByDefault: true,
-    },
-  })
+    'handlebars',
+    engine({
+      runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+      },
+    }),
 );
 
-app.set("view engine", "handlebars");
+app.set('view engine', 'handlebars');
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-const seed = require("./seed");
+const seed = require('./seed');
 
 // app.use(express.json());
 
@@ -76,40 +76,36 @@ const seed = require("./seed");
 seed();
 
 // get all items
-app.get("/items", async (req, res) => {
+app.get('/items', async (req, res) => {
   const items = await Item.findAll();
   const data = {
     items: items,
   };
-  res.render("allItems", { data });
+  res.render('allItems', {data});
 });
 
 // get jewelry category
 app.get('/category/jewelry', async (req, res) => {
-  console.log(req.body);
-  const jewelry = await Item.findAll({where: {category: 'jewelry'}});
-  res.render('category', {jewelry});
+  const category = await Item.findAll({where: {category: 'Jewelry'}});
+  res.render('category', {category});
 });
 
 // get Men's Clothing category
 app.get('/category/clothing/man-clothing', async (req, res) => {
-  console.log(req.body);
-  const maleClothing = await Item.findAll({where: {category: 'Men\'s Clothing'}});
-  res.render('category', {maleClothing});
+  const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
+  res.render('category', {category});
 });
 
 // get Women's Clothing category
 app.get('/category/clothing/woman-clothing', async (req, res) => {
-  console.log(req.body);
-  const femaleClothing = await Item.findAll({where: {category: 'Women\'s Clothing'}});
-  res.render('category', {femaleClothing});
+  const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
+  res.render('category', {category});
 });
 
 // get electronic category
 app.get('/category/electronics', async (req, res) => {
-  console.log(req.body);
-  const electronics = await Item.findAll({where: {category: 'Electronics'}});
-  res.render('category', {electronics});
+  const category = await Item.findAll({where: {category: 'Electronics'}});
+  res.render('category', {category});
 });
 
 // get single item
@@ -132,41 +128,43 @@ app.get('/homepage', async (req, res) => {
 });
 
 // homepage with user loggined in
-app.get("/homepage/:username", async (req, res) => {
+app.get('/homepage/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({
-    where: { UserUsername: user.username },
-  });
-  const items = await user.getItems();
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
   const allItems = await Item.findAll();
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
   const data = {
     user: user,
-    userItems: items,
-    userCart: cart,
+    items: items,
     allItems: allItems,
   };
 
-  res.status(200).render("homepage", { data });
+  res.status(200).render('homepage', {data});
 });
 
 // create account path
-app.get("/create-account", async (req, res) => {
-  res.status(200).render("createUser");
+app.get('/create-account', async (req, res) => {
+  res.status(200).render('userCreate');
 });
 
-app.get("/users/:username", async (req, res) => {
+app.get('/users/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+  const adminItems = await Item.findAll({where: {UserUsername: user.username}});
   const data = {
     user: user,
+    items: items,
+    adminItems: adminItems,
   };
-  res.render("user", { data });
+  res.render('user', {data});
 });
 
 // post account path
-app.post("/create-account", async (req, res) => {
+app.post('/create-account', async (req, res) => {
   const newUsername = req.body.username;
   const newFullName = req.body.newFullName;
   const newEmail = req.body.newEmail;
@@ -189,9 +187,34 @@ app.post("/create-account", async (req, res) => {
   res.status(200).redirect(`/homepage/${newUser.username}`);
 });
 
+// get log-in
+app.get('/log-in', async (req, res) => {
+  res.render('userLogin');
+});
+
+app.post('/log-in', async (req, res) => {
+  const inputName = req.body.username;
+  const inputPassword = req.body.password;
+  const checkUser = await User.findByPk(inputName);
+  let loggedUsername = false;
+  let loggedPassword = false;
+  if (checkUser) {
+    loggedUsername = true;
+  }
+  if (inputPassword === checkUser.password) {
+    loggedPassword = true;
+  }
+
+  if (loggedUsername && loggedPassword) {
+    res.status(200).redirect(`/homepage/${inputName}`);
+  } else {
+    res.status(200).redirect('/create-account');
+  }
+});
+
 // user can view their account page
 // if admin send admin items to frontend
-app.get("/users/:username/", async (req, res) => {
+app.get('/users/:username/', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const data = {};
 
@@ -207,17 +230,17 @@ app.get("/users/:username/", async (req, res) => {
     };
   }
 
-  res.status(200).render("user", { data });
+  res.status(200).render('user', {data});
 });
 
 // user can view account update form
-app.get("/users/:username/update-account", async (req, res) => {
+app.get('/users/:username/update-account', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render("userUpdate", { user });
+  res.status(200).render('userUpdate', {user});
 });
 
 // user sends udpate account request
-app.post("/users/:username/update-account", async (req, res) => {
+app.post('/users/:username/update-account', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const updatedFullName = req.body.fullName;
   const updatedEmail = req.body.email;
@@ -246,7 +269,7 @@ app.post('/users/:username/delete-profile', async (req, res) => {
 });
 
 // user can view create item form
-app.get("/users/:username/create-item", async (req, res) => {
+app.get('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const data = {
     user: user,
@@ -255,7 +278,7 @@ app.get("/users/:username/create-item", async (req, res) => {
 });
 
 // user submits create item payload
-app.post("/users/:username/create-item", async (req, res) => {
+app.post('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const newTitle = req.body.title;
   const newStock = req.body.stock;
@@ -274,22 +297,23 @@ app.post("/users/:username/create-item", async (req, res) => {
     clickCount: 0,
     UserUsername: user.username,
   });
-
-  //   res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
-  // });
   res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`);
 });
 
 
 // item homepage
-app.get("/users/:username/items/:id", async (req, res) => {
+app.get('/users/:username/items/:id', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
   const data = {
     item: item,
     user: user,
+    items: items,
   };
-  res.render("item", { data });
+  res.render('item', {data});
 });
 
 // TODO:
@@ -318,7 +342,7 @@ app.post('/users/:username/items/:id/update-item', async (req, res) => {
   const updatedCategory = req.body.category;
   const updatedImage = req.body.image;
 
-  await item.set({
+  item.set({
     title: updatedTitle === '' ? item.title : updatedTitle,
     stock: updatedStock === '' ? item.stock : updatedStock,
     price: updatedPrice === '' ? item.price : updatedPrice,
@@ -346,33 +370,30 @@ app.post('/users/:username/items/:id/delete-item', async (req, res) => {
 // get cart page
 app.get('/users/:username/cart', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({where: { UserUsername: user.username }})
-  const items = await cart.getItems()
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
 
-  cart.totalPrice = items.map(item => item.price).reduce((a,b) => a+b)
+  cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a+b);
 
   const data = {
     user: user,
     cart: cart,
-    items: items
-  }
+    items: items,
+  };
 
-  res.status(200).render('cart', {data})
-})
+  res.status(200).render('cart', {data});
+});
 
-//add item to cart
+// add item to cart
 app.post('/users/:username/cart', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({where: { UserUsername: user.username }})
-  const item = await Item.findOne({where: { id: req.body.name }})
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const item = await Item.findOne({where: {id: req.body.itemID}});
 
-
-  cart.items = []
-  cart.items.push(item)
-
-  res.render(301, `/users/${user.username}/cart`)
-})
+  await cart.addItem(item);
+  res.status(200).redirect(301, `/users/${user.username}/cart`);
+});
 
 app.listen(port, () => {
-  console.log("Server is running!");
+  console.log('Server is running!');
 });

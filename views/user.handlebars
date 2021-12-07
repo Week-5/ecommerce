@@ -30,6 +30,11 @@
         {{data.user.email}}
       </li>
       <li class="userButtons">
+        <form action="/homepage" method="GET">
+            <input class="userButtonText" type="submit" value="Log Out"/>
+        </form>
+      </li>
+      <li class="userButtons">
         <form action="/users/{{data.user.username}}/update-account" method="GET">
             <input class="userButtonText" type="submit" value="Update Profile"/>
         </form>
@@ -55,7 +60,7 @@
     </ul>
   </div>
   
-  {{#if data.items}}
+  {{#if data.adminItems}}
     <div class="grid-container">
       {{#each data.items}}
         <div class="grid-item">

@@ -2,130 +2,150 @@
 <html>
     <head>
         <link rel="stylesheet" href="/style.css"/>
+        <link rel="icon" type="image/svg+xml" href="/logo.svg">
     </head>
     <body>
         <div class="relative">
-	<div class="bannerGrid">
-		<div class="bannerGridItem">
-				<svg  width="100" height="100">
-						<circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
-						<line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
-						<line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
-						<line x1="10" y1="50" x2="90" y2="50" stroke="black" stroke-width="1"/>
-						<text x="28" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">D</text>
-						<text x="60" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">Q</text>
-						<text x="28" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">E</text>
-						<text x="60" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">C</text>
-						Sorry, your browser does not support inline SVG.
-				</svg>
-		</div>
-			<div class="bannerGridItem">
-                <span>
-                    <form action="/items" method="GET">
-                        {{#if data.user.username}}
-                            <input name={{data.user.username}} hidden/>
-                        {{/if}}
-                        <input type="submit" class="mainCategoryButton" value="All"/>
-                    </form> 
-                </span>
-                <span>
-                    <form action="/category/jewelry" method="GET">
-                        {{#if data.user.username}}
-                            <input name={{data.user.username}} hidden/>
-                        {{/if}}
-                        <input type="submit" class="mainCategoryButton" value="Jewelry"/>
-                    </form> 
-                </span>
-                <span>
-                    <form action="/category/clothing" method="GET">
-                        {{#if data.user.username}}
-                            <input name={{data.user.username}} hidden/>
-                        {{/if}}
-                        <input type="submit" class="mainCategoryButton" value="Clothing"/>
-                    </form>
-                </span>
-                <span>
-                    <form action="/category/electionics" method="GET">
-                        {{#if data.user.username}}
-                            <input name={{data.user.username}} hidden/>
-                        {{/if}}
-                        <input type="submit" class="mainCategoryButton" value="Electionics"/>
-                    </form>
-                </span>
-			</div>
-            <div class="bannerGridItem">
-                <span>
-                        <div id="Icon_feather-shopping-cart_zo">
-                            <svg class="Path_1_zp" viewBox="12 30 3 3">
-                                    <path id="Path_1_zp" d="
-                                        M 15 31.5 
-                                        C 15 32.32842636108398 
-                                        14.3284273147583 33 13.5 33 
-                                        C 12.6715726852417 33 12 32.32842636108398 12 31.5 
-                                        C 12 30.67157363891602 12.6715726852417 30 13.5 30 
-                                        C 14.3284273147583 30 15 30.67157363891602 15 31.5 Z">
-                                    </path>
-                            </svg>
-                            <svg class="Path_2_zq" viewBox="28.5 30 3 3">
-                                    <path id="Path_2_zq" d="
-                                        M 31.5 31.5 
-                                        C 31.5 32.32842636108398 30.82842636108398 33 30 33 
-                                        C 29.17157363891602 33 28.5 32.32842636108398 28.5 31.5 
-                                        C 28.5 30.67157363891602 29.17157363891602 30 30 30 
-                                        C 30.82842636108398 30 31.5 30.67157363891602 31.5 31.5 Z">
-                                    </path>
-                            </svg>
-                            <svg class="Path_3_zr" viewBox="1.5 1.5 68.352 36.001">
-                                {{#when data.userItems.length 'gt' 0}}
-                                    <circle cx="45" cy="-5" r="15" fill="green"/>
-                                    <text x="40" y="0" fill="black" font-size="20px" font-family="Arial, Helvetica, sans-serif">{{data.userItems.length}}</text>
-                                {{/when}}
-                                <path id="Path_3_zr" d="
-                                    M 1.5 1.5 
-                                    L 13.92766761779785 1.5 
-                                    L 22.25420570373535 33.63570022583008 
-                                    C 22.84059524536133 35.91623687744141 25.45862770080566 37.54421615600586 28.46803855895996 37.49966430664062 
-                                    L 58.66726684570312 37.49966430664062 
-                                    C 61.67667770385742 37.54421615600586 64.29470825195312 35.91623306274414 64.88109588623047 33.63570022583008 
-                                    L 69.85216522216797 13.49988842010498 
-                                    L 17.03458404541016 13.49988842010498">
-                                </path>
-                            </svg> 
-                        </div>
-                    </span>
-                <span>
+	        <div class="bannerGrid">
+                <div class="bannerGridItem">
                     {{#if data.user}}
-                        <a href="/users/{{data.user.username}}">
-                            <svg height="100" width="100">
-                                <defs>
-                                    <clipPath id="cut-off-bottom">
-                                        <circle cx="50" cy="50" r="50" 
-                                        style="stroke=black; stroke-width=3; fill=#4545a9"/>
-                                    </clipPath>
-                                </defs>
-                                <rect width="300" height="100" 
-                                    style="fill:#4545a9" 
-                                    clip-path="url(#cut-off-bottom)"/>
-                                <ellipse cx="50" cy="100" rx="45" ry="45"
-                                    style="fill:#a9a9a9;" 
-                                    clip-path="url(#cut-off-bottom)"/>
-                                <ellipse cx="50" cy="32" rx="25" ry="30"
-                                    style="fill:#a9a9a9; stroke:#4545a9; stroke-width:5" 
-                                    clip-path="url(#cut-off-bottom)"/>
-                            </svg>
-                        </a>
+                        <a href="/homepage/{{data.user.username}}">
                     {{else}}
-                    <form style="background-color: transparent;" action="/login" method="GET">
-                        <input class="allItemsText" type="submit" style="margin-top: 40px;" value="Log In | Sign Up"/>
-                    </form>
+                        <a href="/homepage">
                     {{/if}}
-                </span>
-            </div>
-		</div>
-	</div>
-    <div style="padding-bottom: 100px;">
+                        <svg  width="100" height="100">
+                            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="black" stroke-width="1"/>
+                            <line x1="10" y1="50" x2="90" y2="50" stroke="black" stroke-width="1"/>
+                            <text x="28" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">D</text>
+                            <text x="60" y="41" fill="black" font-family="Arial, Helvetica, sans-serif">Q</text>
+                            <text x="28" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">E</text>
+                            <text x="60" y="71" fill="black" font-family="Arial, Helvetica, sans-serif">C</text>
+                            Sorry, your browser does not support inline SVG.
+                        </svg>
+                    </a>
+                </div>
+                <div class="bannerGridItem">
+                    <span>
+                        <form action="/items" method="GET">
+                            {{#if data.user.username}}
+                                <input name={{data.user.username}} hidden/>
+                            {{/if}}
+                            <input type="submit" class="mainCategoryButton" value="All"/>
+                        </form> 
+                    </span>
+                    <span>
+                        <form action="/category/jewelry" method="GET">
+                            {{#if data.user.username}}
+                                <input name={{data.user.username}} hidden/>
+                            {{/if}}
+                            <input type="submit" class="mainCategoryButton" value="Jewelry"/>
+                        </form> 
+                    </span>
+                    <span>
+                        <form action="/category/clothing/man-clothing" method="GET">
+                            {{#if data.user.username}}
+                                <input name={{data.user.username}} hidden/>
+                            {{/if}}
+                            <input type="submit" class="mainCategoryButton" value="Men's Clothing"/>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="/category/clothing/woman-clothing" method="GET">
+                            {{#if data.user.username}}
+                                <input name={{data.user.username}} hidden/>
+                            {{/if}}
+                            <input type="submit" class="mainCategoryButton" value="Women's Clothing"/>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="/category/electronics" method="GET">
+                            {{#if data.user.username}}
+                                <input name={{data.user.username}} hidden/>
+                            {{/if}}
+                            <input type="submit" class="mainCategoryButton" value="Electionics"/>
+                        </form>
+                    </span>
+                </div>
+                <div class="bannerGridItem">
+                    <span>
+                        {{#if data.user}}
+                            <a href="/users/{{data.user.username}}/cart">
+                                <div id="Icon_feather-shopping-cart_zo">
+                                    <svg class="Path_1_zp" viewBox="12 30 3 3">
+                                        <path id="Path_1_zp" d="
+                                            M 15 31.5 
+                                            C 15 32.32842636108398 
+                                            14.3284273147583 33 13.5 33 
+                                            C 12.6715726852417 33 12 32.32842636108398 12 31.5 
+                                            C 12 30.67157363891602 12.6715726852417 30 13.5 30 
+                                            C 14.3284273147583 30 15 30.67157363891602 15 31.5 Z">
+                                        </path>
+                                    </svg>
+                                    <svg class="Path_2_zq" viewBox="28.5 30 3 3">
+                                        <path id="Path_2_zq" d="
+                                            M 31.5 31.5 
+                                            C 31.5 32.32842636108398 30.82842636108398 33 30 33 
+                                            C 29.17157363891602 33 28.5 32.32842636108398 28.5 31.5 
+                                            C 28.5 30.67157363891602 29.17157363891602 30 30 30 
+                                            C 30.82842636108398 30 31.5 30.67157363891602 31.5 31.5 Z">
+                                        </path>
+                                    </svg>
+                                    <svg class="Path_3_zr" viewBox="1.5 1.5 68.352 36.001">
+                                        {{#when data.items.length 'gt' 0}}
+                                            <circle cx="45" cy="-5" r="15" fill="#62DB69" stroke="black" stroke-width="1"/>
+                                            <text x="40" y="0" fill="black" font-size="20px" font-family="Arial, Helvetica, sans-serif">{{data.items.length}}</text>
+                                        {{/when}}
+                                        <path id="Path_3_zr" d="
+                                            M 1.5 1.5 
+                                            L 13.92766761779785 1.5 
+                                            L 22.25420570373535 33.63570022583008 
+                                            C 22.84059524536133 35.91623687744141 25.45862770080566 37.54421615600586 28.46803855895996 37.49966430664062 
+                                            L 58.66726684570312 37.49966430664062 
+                                            C 61.67667770385742 37.54421615600586 64.29470825195312 35.91623306274414 64.88109588623047 33.63570022583008 
+                                            L 69.85216522216797 13.49988842010498 
+                                            L 17.03458404541016 13.49988842010498">
+                                        </path>
+                                    </svg> 
+                                </div>
+                            </a>
+                        {{/if}}
+                            
+                    </span>
+                    <span>
+                        {{#if data.user}}
+                            <a href="/users/{{data.user.username}}">
+                                <svg height="100" width="100">
+                                    <defs>
+                                        <clipPath id="cut-off-bottom">
+                                            <circle cx="50" cy="50" r="50" 
+                                            style="stroke=black; stroke-width=3; fill=#4545a9"/>
+                                        </clipPath>
+                                    </defs>
+                                    <rect width="300" height="100" 
+                                        style="fill:#4545a9" 
+                                        clip-path="url(#cut-off-bottom)"/>
+                                    <ellipse cx="50" cy="100" rx="45" ry="45"
+                                        style="fill:#a9a9a9;" 
+                                        clip-path="url(#cut-off-bottom)"/>
+                                    <ellipse cx="50" cy="32" rx="25" ry="30"
+                                        style="fill:#a9a9a9; stroke:#4545a9; stroke-width:5" 
+                                        clip-path="url(#cut-off-bottom)"/>
+                                </svg>
+                            </a>
+                        {{else}}
+                            <form style="background-color: transparent;" action="/create-account" method="GET">
+                                <input class="submitButton" type="submit" value="Log In | Sign Up"/>
+                            </form>
+                        {{/if}}
+                    </span>
+                </div>
+		    </div>
+	    </div>
+        <div style="padding-bottom: 100px;">
 
-    </div>
+        </div>
         <div>
             {{{body}}}
         </div>
