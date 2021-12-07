@@ -9,7 +9,7 @@
       "image": "https://www.apple.com/v/macbook-pro-14-and-16/b/images/overview/hero/hero_intro_endframe__e6khcva4hkeq_large.jpg",
       "clickCount": 0,
       "UserUsername": "Big Danny",
-      "CartId": 1
+      "CartId": 2
     },
     {
       "title": "Striped Sweater - Tutrle Neck",
@@ -20,7 +20,7 @@
       "image": "https://www.pngkit.com/png/detail/337-3371629_stripes-clipart-tumblr-transparent-spongebob-striped-sweater.png",
       "clickCount": 0,
       "UserUsername": "Big Danny",
-      "CartId": 1
+      "CartId": 2
     },
     {
       "title": "Cardigan",
@@ -31,7 +31,7 @@
       "image": "https://i.pinimg.com/originals/5c/d6/61/5cd66127a40764bc2f6f655888165559.jpg",
       "clickCount": 0,
       "UserUsername": "Big Danny",
-      "CartId": 1
+      "CartId": 2
     },
     {
       "title": "Thin Gold Chain",
@@ -42,7 +42,40 @@
       "image": "https://cdn.shopify.com/s/files/1/2235/5113/products/Anchorthingoldchain_1_1024x1024@2x.jpg?v=1601206493",
       "clickCount": 0,
       "UserUsername": "Big Danny",
-      "CartId": 1
+      "CartId": 2
+    },
+    {
+      "title": "Gameboy Color",
+      "stock": 5,
+      "price": 75.0,
+      "description": "With 52 brilliant colors simultaneously displayed on Game Boy Color's small portable screen, your games look better than ever!",
+      "category": "Electronics",
+      "image": "https://m.media-amazon.com/images/I/71YDNC98aaL._SX466_.jpg",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 2
+    },
+    {
+      "title": "Palm Pilot",
+      "stock": 100,
+      "price": 299.99,
+      "description": "The PalmPilot elegantly tracks contacts, notes, to-dos and events, all synchronized to your desktop computer using the included cradle. It is a general-purpose computer used for specialized applications, and small enough to fit in a shirt pocket!",
+      "category": "Electronics",
+      "image": "https://www.cnet.com/a/img/resize/c7ae602dac260fa8889b6aec048eb66690cc0115/hub/2010/04/28/1b7d8b40-f0fc-11e2-8c7c-d4ae52e62bcc/Palm_Pilot_335x450.jpg?auto=webp&width=1092",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 2
+    },
+    {
+      "title": "Handy Cam",
+      "stock": 500,
+      "price": 10.0,
+      "description": "Capture every waking moment on 100% industructable, non bio-degrading, state of the art VHS tapes for memories to last lifetimes to come.",
+      "category": "Electronics",
+      "image": "http://www.iretron.com/blog/wp-content/uploads/2015/02/Sony-Handycam-Model-Video-Hi8-with-10x-Optical-Zoom.jpg",
+      "clickCount": 0,
+      "UserUsername": "Big Danny",
+      "CartId": 2
     }
   ]
 }

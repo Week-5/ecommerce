@@ -133,6 +133,7 @@ app.get('/homepage/:username', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
   const allItems = await Item.findAll();
+  const popularItems = allItems.slice(0, 4);
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
@@ -140,6 +141,7 @@ app.get('/homepage/:username', async (req, res) => {
     user: user,
     items: items,
     allItems: allItems,
+    popularItems: popularItems,
   };
 
   res.status(200).render('homepage', {data});
