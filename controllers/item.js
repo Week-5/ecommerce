@@ -9,7 +9,7 @@ exports.getCreateItem = async (req, res) => {
   const data = {
     user: user,
   };
-  res.status(200).render('itemCreate', { data });
+  res.status(200).render('./items/itemCreate', { data });
 };
 // create a new item
 exports.postCreateItem = async (req, res) => {
@@ -44,7 +44,7 @@ exports.getAllItems = async (req, res) => {
   const data = {
     items: items,
   };
-  res.render('allItems', { data });
+  res.render('./items/allItems', { data });
 };
 // render an item
 exports.getItem = async (req, res) => {
@@ -54,7 +54,7 @@ exports.getItem = async (req, res) => {
     item: item,
     user: user,
   };
-  res.render('item', { data });
+  res.render('./items/item', { data });
 };
 
 ////////////////////////////////
@@ -70,7 +70,7 @@ exports.getUpdateItem = async (req, res) => {
     item: item,
   };
 
-  res.status(200).render('itemUpdate', { data });
+  res.status(200).render('./items/itemUpdate', { data });
 };
 // update an item
 exports.postUpdateItem = async (req, res) => {
