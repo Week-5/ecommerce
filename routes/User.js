@@ -6,11 +6,15 @@ const userController = require('../controllers/user');
 // CREATE USER FUNCTIONALITY //
 ///////////////////////////////
 router.get('/create-account', userController.getCreateUser);
-router.post('/create-acount', userController.postCreateUser);
+router.post('/create-account', userController.postCreateUser);
 
 ////////////////////////////////
 //  READ USER FUNCTIONALITY  //
 ///////////////////////////////
+// log in
+router.get('/log-in', userController.getLogIn);
+router.post('/log-in', userController.postLogIn);
+// user profile
 router.get('/users/:username', userController.getUser);
 
 ////////////////////////////////
