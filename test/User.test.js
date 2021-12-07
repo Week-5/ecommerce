@@ -50,7 +50,7 @@ describe('User Object Test', () => {
         expect(userItem.UserUsername).toBe(user.username);
     });
 
-    test('Accoun tcan be deleted', async () => {
+    test('Account can be deleted', async () => {
         let user = await User.create({
             username: 'The New Ghost', 
             fullName: 'Jamie O', 
