@@ -12,7 +12,6 @@ exports.getJewelry = async (req, res) => {
 //      ELECTRONICS CATEGORY      //
 ///////////////////////////////
 exports.getElectronics = async (req, res) => {
-  console.log(req.body);
   const electronics = await Item.findAll({
     where: { category: 'Electronics' },
   });
@@ -33,7 +32,6 @@ exports.getMensClothing = async (req, res) => {
 //      WOMEN'S CATEGORY      //
 ///////////////////////////////
 exports.getWomensClothing = async (req, res) => {
-  console.log(req.body);
   const femaleClothing = await Item.findAll({
     where: { category: "Women's Clothing" },
   });
