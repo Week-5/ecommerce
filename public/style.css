@@ -149,8 +149,8 @@ span {
   grid-column-end: 5;
   height: 300px;
   margin-bottom: 40px;
-  border-style: dashed;
-  border-color: lightgray;
+  /* border-style: dashed;
+  border-color: lightgray; */
 }
 
 .popularItemsText{
