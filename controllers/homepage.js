@@ -4,7 +4,11 @@ const { User, Item, Cart } = require('../index');
 //        HOMEPAGE GUEST      //
 ///////////////////////////////
 exports.getHomepageGuest = async (req, res) => {
-  res.status(200).render('homepage');
+  const allItems = await Item.findAll();
+  const data = {
+    allItems: allItems,
+  };
+  res.status(200).render('homepage', { data });
 };
 
 ////////////////////////////////
