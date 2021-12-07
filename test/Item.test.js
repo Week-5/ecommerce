@@ -16,20 +16,20 @@ describe('Item Object Test', () => {
             
         })
 
-        const macBook = await Item.create({ 
-            title:'Macbook', 
-            stock: 4, 
-            price: 1230.90, 
-            description: 'Brand New Used', 
-            category: 'Electronics', 
-            image: '', 
-            clickCount: 0 
-        });
+        // const macBook = Item.create({ 
+        //     title:'Macbook', 
+        //     stock: 4, 
+        //     price: 1230.90, 
+        //     description: 'Brand New Used', 
+        //     category: 'Electronics', 
+        //     image: '', 
+        //     clickCount: 0 
+        // });
 
-        const cart = newUser2.Cart
-        cart.addItem(macBook)
-        console.log(cart)
-        expectExport(cart.length).toBe(1)
+        // const cart = Cart.create({ totalPrice: 0, UserUsername: newUser2.username})
+        // await cart.addItem(macBook)
+        console.log(newUser2)
+        expectExport(newUSer.isAdmin).toBeTruthy()
 
 
 
