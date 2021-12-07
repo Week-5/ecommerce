@@ -32,7 +32,7 @@ exports.postCreateItem = async (req, res) => {
     UserUsername: user.username,
   });
 
-  res.status(200).redirect(`/users/${user.username}/items/${newItem.id}`);
+  res.status(200).redirect(301, `/users/${user.username}/items/${newItem.id}`);
 };
 
 ////////////////////////////////
@@ -110,5 +110,5 @@ exports.deleteItem = async (req, res) => {
 
   await item.destroy();
 
-  res.status(200).redirect(`/users/${user.username}`);
+  res.status(200).redirect(301, `/users/${user.username}`);
 };
