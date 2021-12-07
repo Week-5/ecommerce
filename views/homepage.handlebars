@@ -52,10 +52,9 @@
 									xlink:href="{{this.image}}" 
 									clip-path="url(#circleView)"/>
 						</svg>
-						<p class="allItemsText">
-							{{this.title}}<br>
-							${{this.price}}
-						</p>
+						<div class="allItemsText">
+            	<p>{{this.title}}<br>${{this.price}}</p>
+         		</div>
 					</a>
 				</div>
 			{{/each}}
