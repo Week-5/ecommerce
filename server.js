@@ -98,7 +98,6 @@ app.get('/category/clothing/man-clothing', async (req, res) => {
 
 // get Women's Clothing category
 app.get('/category/clothing/woman-clothing', async (req, res) => {
-  console.log(req.body);
   const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
   res.render('category', {category});
 });
@@ -155,9 +154,11 @@ app.get('/users/:username', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
+  const adminItems = await Item.findAll({where: {UserUsername: user.username}});
   const data = {
     user: user,
     items: items,
+    adminItems: adminItems,
   };
   res.render('user', {data});
 });
