@@ -4,7 +4,7 @@ const homepageController = require('../controllers/homepage');
 ////////////////////////////////
 //        HOMEPAGE GUEST      //
 ///////////////////////////////
-router.get('/', homepageController.getHomepageGuest);
+router.get('/homepage', homepageController.getHomepageGuest);
 
 ////////////////////////////////
 //        HOMEPAGE USER      //
