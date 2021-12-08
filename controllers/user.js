@@ -89,7 +89,7 @@ exports.getUser = async (req, res) => {
     items: items,
     adminItems: adminItems,
   };
-  res.render('user', { data });
+  res.status(200).render('user', { data });
 };
 
 ////////////////////////////////
@@ -126,5 +126,5 @@ exports.postUpdateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   await user.destroy();
-  res.redirect(301, '/homepage');
+  res.status(200).redirect(301, '/homepage');
 };
