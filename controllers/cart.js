@@ -33,7 +33,7 @@ exports.postItemToCart = async (req, res) => {
     totalPrice: items.length === 0 ? 0 : items.map((item) => item.price).reduce((a, b) => a+b),
   })
 
-  cart.save()
+  await cart.save()
 
   res.status(200).redirect(301, `/users/${user.username}/cart`);
 };
