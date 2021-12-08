@@ -84,7 +84,7 @@ exports.postUpdateItem = async (req, res) => {
   const updatedCategory = req.body.category;
   const updatedImage = req.body.image;
 
-  await item.set({
+  item.set({
     title: updatedTitle === '' ? item.title : updatedTitle,
     stock: updatedStock === '' ? item.stock : updatedStock,
     price: updatedPrice === '' ? item.price : updatedPrice,
