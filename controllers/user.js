@@ -36,7 +36,7 @@ exports.postCreateUser = async (req, res) => {
 // get a specific user
 // render log in page
 exports.getLogIn = async (req, res) => {
-  res.render('userLogin');
+  res.status(200).render('userLogin');
 };
 // log in user
 exports.postLogIn = async (req, res) => {
@@ -117,5 +117,5 @@ exports.postUpdateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   await user.destroy();
-  res.redirect(301, '/homepage/homepage');
+  res.status(200).redirect(301, '/homepage/homepage');
 };

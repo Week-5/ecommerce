@@ -59,7 +59,7 @@ exports.getAllItems = async (req, res) => {
       allItems: allItems,
     };
   }
-  res.render('allItems', { data });
+  res.status(200).render('allItems', { data });
 };
 
 // render an item
@@ -83,7 +83,7 @@ exports.getItem = async (req, res) => {
     };
   }
 
-  res.render('item', { data });
+  res.status(200).render('item', { data });
 };
 
 ////////////////////////////////
