@@ -120,8 +120,7 @@ exports.postUpdateItem = async (req, res) => {
     title: updatedTitle === '' ? item.title : updatedTitle,
     stock: updatedStock === '' ? item.stock : updatedStock,
     price: updatedPrice === '' ? item.price : updatedPrice,
-    description:
-      updatedDescription === '' ? item.description : updatedDescription,
+    description: updatedDescription === '' ? item.description : updatedDescription,
     category: updatedCategory === 'default' ? item.category : updatedCategory,
     image: updatedImage === '' ? item.image : updatedImage,
     clickCount: item.clickCount,
