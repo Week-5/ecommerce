@@ -278,6 +278,21 @@ app.post('/create-account', async (req, res) => {
   res.status(200).redirect(`/homepage/${newUser.username}`);
 });
 
+app.get('/404', async (req, res) => {
+  res.render('404');
+});
+
+app.get('/users/:username/404', async (req, res) =>{
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+  const data = {
+    items: items,
+    user: user,
+  };
+  res.render('404', {data});
+});
+
 // get log-in
 app.get('/log-in', async (req, res) => {
   res.render('userLogin');
