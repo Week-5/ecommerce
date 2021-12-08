@@ -136,5 +136,5 @@ exports.postUpdateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   await user.destroy();
-  res.status(200).redirect(301, '/homepage/homepage');
+  res.status(200).redirect(301, '/homepage');
 };
