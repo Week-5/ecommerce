@@ -5,6 +5,10 @@ const Handlebars = require('handlebars');
 const express = require('express');
 const app = express();
 
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
+
 // seed database
 const seed = require('./seed');
 seed();
@@ -65,6 +69,22 @@ Handlebars.registerHelper('for', function (from, to, incr, block) {
     accum += block.fn(i);
   }
   return accum;
+});
+
+app.use(cookieParser());
+app.use(
+  session({
+    secret: 'Shh, its a secret',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(flash());
+
+app.use((req, res, next) => {
+  app.locals.success = req.flash('success');
+  app.locals.error = req.flash('error');
+  next();
 });
 
 // const { homepageRoutes, userRoutes, itemRoutes } = require('./routes/index');
