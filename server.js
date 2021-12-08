@@ -75,7 +75,7 @@ const seed = require('./seed');
 // seed database
 seed();
 
-// get all items
+// get all items guest
 app.get('/items', async (req, res) => {
   const items = await Item.findAll();
   const data = {
@@ -84,28 +84,115 @@ app.get('/items', async (req, res) => {
   res.render('allItems', {data});
 });
 
-// get jewelry category
+// get all items logged in
+app.get('/users/:username/items', async (req, res) => {
+  const allItems = await Item.findAll();
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    allItems: allItems,
+  };
+  res.render('allItems', {data});
+});
+
+// get jewelry category guest
 app.get('/category/jewelry', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Jewelry'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
 });
 
-// get Men's Clothing category
+// get jewelry category logged in
+app.get('/users/:username/category/jewelry', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Jewelry'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get Men's Clothing category guest
 app.get('/category/man-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
 });
 
-// get Women's Clothing category
+// get Men's Clothing category logged in
+app.get('/users/:username/category/man-clothing', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get Women's Clothing category guest
 app.get('/category/woman-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
 });
 
-// get electronic category
+// get Women's Clothing category logged in
+app.get('/users/:username/category/woman-clothing', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get electronic category guest
 app.get('/category/electronics', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Electronics'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get electronic category logged in
+app.get('/users/:username/category/electronics', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Electronics'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
 });
 
 // get single item
