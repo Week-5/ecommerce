@@ -8,9 +8,9 @@ const {User} = require('./classes/User');
 const {Item} = require('./classes/Item');
 const { Cart } = require('./classes/Cart');
 
-const userJson = './json/User.json'
-const itemJson = './json/Item.json';
-const cartJson = './json/Cart.json';
+const userJson = 'User.json'
+const itemJson = 'Item.json';
+const cartJson = 'Cart.json';
 
 const seed = async () => {
   await db.sync({force: true});

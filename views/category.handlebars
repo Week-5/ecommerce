@@ -1,0 +1,20 @@
+<section>
+  <ul class="listing">
+    {{#each data.category}}
+      <li>
+        <div class="cta">
+          {{#if ../data.user}}
+						<a href="/users/{{../data.user.username}}/items/{{this.id}}">
+					{{else}}
+						<a href="/items/{{this.id}}">
+					{{/if}}
+            <img class="allItemsImage" src="{{this.image}}" title="Click Here To View Options"/>
+          </a>
+          <div class="allItemsText">
+            {{this.title}}<br>${{this.price}}
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</section>
