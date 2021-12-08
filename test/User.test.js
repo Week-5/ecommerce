@@ -66,7 +66,6 @@ describe('User Object Test', () => {
 
         await newUser.destroy()
         let userSearch = await User.findByPk(user.username)
-        console.log(newUser)
         expect(userSearch).toBe(null)
     })
 });

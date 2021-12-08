@@ -24,8 +24,7 @@ describe('Item Object Test', () => {
         const cart = await Cart.create({ totalPrice: 0, UserUsername: newUser.username});
         await cart.addItem(macBook);
         let cartItem = await Item.findByPk(macBook.id);
-        console.log(cartItem);
-        console.log(await cart.getItems());
+        
         expect(cartItem.CartId).toBe(cart.id);
     });
 });
