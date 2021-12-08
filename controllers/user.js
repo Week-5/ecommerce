@@ -63,20 +63,16 @@ exports.postLogIn = async (req, res) => {
 // profile page
 exports.getUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  let data = {};
-
-  if (user.isAdmin === true) {
-    const items = await user.getItems();
-    data = {
-      user: user,
-      userItems: items,
-    };
-  } else {
-    data = {
-      user: user,
-    };
-  }
-
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const items = await cart.getItems();
+  const adminItems = await Item.findAll({
+    where: { UserUsername: user.username },
+  });
+  const data = {
+    user: user,
+    items: items,
+    adminItems: adminItems,
+  };
   res.status(200).render('user', { data });
 };
 
@@ -86,26 +82,31 @@ exports.getUser = async (req, res) => {
 // render user update form
 exports.getUpdateUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('userUpdate', { user });
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const items = await cart.getItems();
+  const data = {
+    user: user,
+    items: items,
+  };
+  res.status(200).render('userUpdate', { data });
 };
 // user update
 exports.postUpdateUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const udpatedUsername = req.body.username;
   const updatedFullName = req.body.fullName;
   const updatedEmail = req.body.email;
   const updatedPassword = req.body.password;
   const updatedIsAdmin = req.body.isAdmin;
 
-  await user.set({
-    username: udpatedUsername === '' ? user.username : udpatedUsername,
+  user.set({
     fullName: updatedFullName === '' ? user.fullName : updatedFullName,
     email: updatedEmail === '' ? user.email : updatedEmail,
     password: updatedPassword === '' ? user.password : updatedPassword,
-    isAdmin: updatedIsAdmin === '' ? user.isAdmin : updatedIsAdmin,
+    isAdmin: updatedIsAdmin === undefined ? user.isAdmin : updatedIsAdmin,
   });
 
   await user.save();
+
   res.status(200).redirect(301, `/users/${user.username}`);
 };
 
