@@ -17,8 +17,9 @@
                 </span>
               </div>
               <div>
-                <form action="/users/{{data.user.username}}/cart" method="POST"/>
+                <form action="/users/{{../data.user.username}}/delete-item-cart" method="POST"/>
                   <input type="submit" class="submitButton" value="Remove From Cart">
+                  <input type="hidden" value="{{this.id}}" name="itemID" />
                 </form>
               </div>
             </div>
