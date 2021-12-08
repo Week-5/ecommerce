@@ -5,7 +5,7 @@ const { User, Item, Cart } = require('../index');
 ///////////////////////////////
 exports.getJewelry = async (req, res) => {
   const category = await Item.findAll({ where: { category: 'Jewelry' } });
-  res.render('./category/category', { category });
+  res.render('category', { category });
 };
 
 ////////////////////////////////
@@ -15,7 +15,7 @@ exports.getElectronics = async (req, res) => {
   const category = await Item.findAll({
     where: { category: 'Electronics' },
   });
-  res.render('./category/category', { category });
+  res.render('category', { category });
 };
 
 ////////////////////////////////
@@ -25,7 +25,7 @@ exports.getMensClothing = async (req, res) => {
   const category = await Item.findAll({
     where: { category: "Men's Clothing" },
   });
-  res.render('./category/category', { category });
+  res.render('category', { category });
 };
 
 ////////////////////////////////
@@ -35,5 +35,5 @@ exports.getWomensClothing = async (req, res) => {
   const category = await Item.findAll({
     where: { category: "Women's Clothing" },
   });
-  res.render('./category/category', { category });
+  res.render('category', { category });
 };

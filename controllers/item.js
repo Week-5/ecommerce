@@ -6,10 +6,12 @@ const { User, Item, Cart } = require('../index');
 // render create item form
 exports.getCreateItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
+
   const data = {
     user: user,
   };
-  res.status(200).render('./items/itemCreate', { data });
+
+  res.status(200).render('itemCreate', { data });
 };
 // create a new item
 exports.postCreateItem = async (req, res) => {
@@ -42,32 +44,46 @@ exports.postCreateItem = async (req, res) => {
 exports.getAllItems = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const allItems = await Item.findAll();
+
   let data = {
     allItems: allItems,
   };
 
-  if (user != null) {
+  if (user !== null) {
     const cart = await Cart.findOne({ where: { UserUsername: user.username } });
     const items = await cart.getItems();
+
     data = {
       user: user,
       items: items,
       allItems: allItems,
     };
   }
-  res.render('./items/allItems', { data });
+  res.render('allItems', { data });
 };
 
 // render an item
 exports.getItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+
   let data = {
     item: item,
     user: user,
   };
 
-  res.render('./items/item', { data });
+  if (user !== null) {
+    const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+    const items = await cart.getItems();
+
+    data = {
+      item: item,
+      user: user,
+      items: items,
+    };
+  }
+
+  res.render('item', { data });
 };
 
 ////////////////////////////////
@@ -77,13 +93,16 @@ exports.getItem = async (req, res) => {
 exports.getUpdateItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const items = await cart.getItems();
 
   const data = {
     user: user,
     item: item,
+    items: items,
   };
 
-  res.status(200).render('./items/itemUpdate', { data });
+  res.status(200).render('itemUpdate', { data });
 };
 // update an item
 exports.postUpdateItem = async (req, res) => {

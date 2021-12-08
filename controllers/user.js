@@ -5,7 +5,7 @@ const { User, Item, Cart } = require('../index');
 ///////////////////////////////
 // render create user form
 exports.getCreateUser = async (req, res) => {
-  res.status(200).render('./user/userCreate');
+  res.status(200).render('userCreate');
 };
 // create a new user
 exports.postCreateUser = async (req, res) => {
@@ -36,11 +36,11 @@ exports.postCreateUser = async (req, res) => {
 // get a specific user
 // render log in page
 exports.getLogIn = async (req, res) => {
-  res.render('./user/userLogin');
+  res.render('userLogin');
 };
 // log in user
 exports.postLogIn = async (req, res) => {
-	const inputName = req.body.username;
+  const inputName = req.body.username;
   const inputPassword = req.body.password;
   const checkUser = await User.findByPk(inputName);
   let loggedUsername = false;
@@ -77,7 +77,7 @@ exports.getUser = async (req, res) => {
     };
   }
 
-  res.status(200).render('./user/user', { data });
+  res.status(200).render('user', { data });
 };
 
 ////////////////////////////////
@@ -86,7 +86,7 @@ exports.getUser = async (req, res) => {
 // render user update form
 exports.getUpdateUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('./user/userUpdate', { user });
+  res.status(200).render('userUpdate', { user });
 };
 // user update
 exports.postUpdateUser = async (req, res) => {
