@@ -19,12 +19,11 @@ exports.getHomepage = async (req, res) => {
       where: { UserUsername: user.username },
     });
 
-    const items = await user.getItems();
+    const items = await cart.getItems();
     
     data = {
       user: user,
-      userItems: items,
-      userCart: cart,
+      items: items,
       allItems: allItems,
       popularItems: popularItems,
     };
