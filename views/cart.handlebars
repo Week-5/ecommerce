@@ -13,7 +13,7 @@
                   {{this.title}}
                 </span>
                 <span style="float: right;">
-                  ${{this.price}}
+                  ${{numberFormat this.price decimalSep="." decimalLength="2" thousandsSep=","}}
                 </span>
               </div>
               <div>
@@ -33,7 +33,7 @@
           Cart Total:
         </span>
         <span style="float: right; margin-right: 20%">
-          ${{data.cart.totalPrice}}
+          ${{numberFormat data.cart.totalPrice decimalSep="." decimalLength="2" thousandsSep=","}}
         </span>
       </div>
       <div style="margin-top: 10%; text-align: center;">

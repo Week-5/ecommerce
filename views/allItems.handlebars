@@ -11,7 +11,7 @@
             <img class="allItemsImage" src="{{this.image}}" title="Click Here To View Options"/>
           </a>
           <div class="allItemsText">
-            <p>{{this.title}}<br>${{this.price}}</p>
+            <p>{{this.title}}<br>${{numberFormat this.price decimalSep="." decimalLength="2" thousandsSep=","}}</p>
           </div>
         </div>
       {{/each}}

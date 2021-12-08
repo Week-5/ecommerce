@@ -45,6 +45,25 @@ Handlebars.registerHelper('for', function(from, to, incr, block) {
   return accum;
 });
 
+Handlebars.registerHelper('numberFormat', function(value, options) {
+  // Helper parameters
+  const dl = options.hash['decimalLength'] || 2;
+  const ts = options.hash['thousandsSep'] || ',';
+  const ds = options.hash['decimalSep'] || '.';
+
+  // Parse to float
+  var value = parseFloat(value);
+
+  // The regex
+  const re = '\\d(?=(\\d{3})+' + (dl > 0 ? '\\D' : '$') + ')';
+
+  // Formats the number with the decimals
+  const num = value.toFixed(Math.max(0, ~~dl));
+
+  // Returns the formatted number
+  return (ds ? num.replace('.', ds) : num).replace(new RegExp(re, 'g'), '$&' + ts);
+});
+
 const {engine} = require('express-handlebars');
 
 const app = express();

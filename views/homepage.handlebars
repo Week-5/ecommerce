@@ -57,7 +57,7 @@
 									clip-path="url(#circleView)"/>
 						</svg>
 						<div class="homepageItemText">
-            	{{this.title}}<br>${{this.price}}
+            	{{this.title}}<br>${{numberFormat this.price decimalSep="." decimalLength="2" thousandsSep=","}}
          		</div>
 					</a>
 				</div>
