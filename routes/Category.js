@@ -12,28 +12,19 @@ router.get('/users/:username/category/jewelry', categoryController.getJewelry);
 //      ELECTRONICS CATEGORY      //
 ///////////////////////////////
 router.get('/category/electronics', categoryController.getElectronics);
-router.get(
-  '/users/:username/category/electronics',
-  categoryController.getElectronics
-);
+router.get('/users/:username/category/electronics',categoryController.getElectronics);
 
 ////////////////////////////////
 //  MEN'S CLOTHING CATEGORY   //
 ///////////////////////////////
 router.get('/category/man-clothing', categoryController.getMensClothing);
-router.get(
-  '/users/:username/category/man-clothing',
-  categoryController.getMensClothing
-);
+router.get('/users/:username/category/man-clothing', categoryController.getMensClothing);
 
 ////////////////////////////////
 //      WOMEN'S CATEGORY      //
 ///////////////////////////////
 router.get('/category/woman-clothing', categoryController.getWomensClothing);
-router.get(
-  '/users/:username/category/woman-clothing',
-  categoryController.getWomensClothing
-);
+router.get('/users/:username/category/woman-clothing', categoryController.getWomensClothing);
 
 
 module.exports = router;
