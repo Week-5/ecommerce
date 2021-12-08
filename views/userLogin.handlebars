@@ -1,11 +1,15 @@
-<form method="POST" action="/log-in">
-  <p>
-    <label class="labelText">Username </label>
-    <input class="inputField" type="text" name="username" placeholder="enter username" required/>
-  </p>
-    <label class="labelText">Password </label>
-    <input class="inputField" type="password" name="password" placeholder="enter password" required/>
-  </p>
-    <input class="submitButton" type="submit" name="createUser" value="Log In" required/>
-  </p>
-</form>
+<div class="signUpDiv">
+  <form method="POST" action="/log-in">
+    <label class="labelText" style="font-size: xx-large;">Welcome Back!</label><br>
+    <label class="itemDescriptionStyle">Log in and continue your DQEC shopping experience!</label>
+    <p>
+      {{!-- <label class="labelText">Username </label> --}}
+      <input class="inputField" type="text" name="username" placeholder="enter username" required/>
+    </p>
+      {{!-- <label class="labelText">Password </label> --}}
+      <input class="inputField" type="password" name="password" placeholder="enter password" required/>
+    </p>
+      <input class="submitButton" type="submit" name="createUser" value="Log In" required/>
+    </p>
+  </form>
+</div>

@@ -28,42 +28,52 @@
                 </div>
                 <div class="bannerGridItem">
                     <span>
-                        <form action="/items" method="GET">
-                            {{#if data.user.username}}
-                                <input name={{data.user.username}} hidden/>
-                            {{/if}}
+                        {{#if data.user.username}}
+                            <form action="/users/{{data.user.username}}/items" method="GET">
+                            <input name={{data.user.username}} hidden/>
+                        {{else}}
+                            <form action="/items" method="GET">
+                        {{/if}}
                             <input type="submit" class="mainCategoryButton" value="All"/>
                         </form> 
                     </span>
                     <span>
-                        <form action="/category/jewelry" method="GET">
-                            {{#if data.user.username}}
-                                <input name={{data.user.username}} hidden/>
-                            {{/if}}
+                        {{#if data.user.username}}
+                            <form action="/users/{{data.user.username}}/category/jewelry" method="GET">
+                            <input name={{data.user.username}} hidden/>
+                        {{else}}
+                            <form action="/category/jewelry" method="GET">
+                        {{/if}}
                             <input type="submit" class="mainCategoryButton" value="Jewelry"/>
-                        </form> 
+                        </form>
                     </span>
                     <span>
-                        <form action="/category/man-clothing" method="GET">
-                            {{#if data.user.username}}
-                                <input name={{data.user.username}} hidden/>
-                            {{/if}}
+                        {{#if data.user.username}}
+                            <form action="/users/{{data.user.username}}/category/man-clothing" method="GET">
+                            <input name={{data.user.username}} hidden/>
+                        {{else}}
+                            <form action="/category/man-clothing" method="GET">
+                        {{/if}}
                             <input type="submit" class="mainCategoryButton" value="Men's Clothing"/>
                         </form>
                     </span>
                     <span>
-                        <form action="/category/woman-clothing" method="GET">
-                            {{#if data.user.username}}
-                                <input name={{data.user.username}} hidden/>
-                            {{/if}}
+                        {{#if data.user.username}}
+                            <form action="/users/{{data.user.username}}/category/woman-clothing" method="GET">
+                            <input name={{data.user.username}} hidden/>
+                        {{else}}
+                            <form action="/category/woman-clothing" method="GET">
+                        {{/if}}
                             <input type="submit" class="mainCategoryButton" value="Women's Clothing"/>
                         </form>
                     </span>
                     <span>
-                        <form action="/category/electronics" method="GET">
-                            {{#if data.user.username}}
-                                <input name={{data.user.username}} hidden/>
-                            {{/if}}
+                        {{#if data.user.username}}
+                            <form action="/users/{{data.user.username}}/category/electronics" method="GET">
+                            <input name={{data.user.username}} hidden/>
+                        {{else}}
+                            <form action="/category/electronics" method="GET">
+                        {{/if}}
                             <input type="submit" class="mainCategoryButton" value="Electronics"/>
                         </form>
                     </span>

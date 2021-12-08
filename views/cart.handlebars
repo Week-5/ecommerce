@@ -17,7 +17,8 @@
                 </span>
               </div>
               <div>
-                <form action="/users/{{data.user.username}}/cart" method="POST"/>
+                <form action="/users/{{../data.user.username}}/delete-item-cart" method="POST"/>
+                  <input name="itemID" value="{{this.id}}" hidden/>
                   <input type="submit" class="submitButton" value="Remove From Cart">
                 </form>
               </div>
@@ -36,7 +37,9 @@
         </span>
       </div>
       <div style="margin-top: 10%; text-align: center;">
-        <input type="button" class="submitButton" value="Checkout"/>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+          <input type="button" class="submitButton" value="Checkout 🎉"/>
+        </a>
       </div>
     </div> 
   </div>

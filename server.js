@@ -75,37 +75,124 @@ const seed = require('./seed');
 // seed database
 seed();
 
-// get all items
+// get all items guest
 app.get('/items', async (req, res) => {
-  const items = await Item.findAll();
+  const allItems = await Item.findAll();
   const data = {
-    items: items,
+    allItems: allItems,
   };
   res.render('allItems', {data});
 });
 
-// get jewelry category
+// get all items logged in
+app.get('/users/:username/items', async (req, res) => {
+  const allItems = await Item.findAll();
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    allItems: allItems,
+  };
+  res.render('allItems', {data});
+});
+
+// get jewelry category guest
 app.get('/category/jewelry', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Jewelry'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
 });
 
-// get Men's Clothing category
+// get jewelry category logged in
+app.get('/users/:username/category/jewelry', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Jewelry'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get Men's Clothing category guest
 app.get('/category/man-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
 });
 
-// get Women's Clothing category
+// get Men's Clothing category logged in
+app.get('/users/:username/category/man-clothing', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Men\'s Clothing'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get Women's Clothing category guest
 app.get('/category/woman-clothing', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
 });
 
-// get electronic category
+// get Women's Clothing category logged in
+app.get('/users/:username/category/woman-clothing', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Women\'s Clothing'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get electronic category guest
 app.get('/category/electronics', async (req, res) => {
   const category = await Item.findAll({where: {category: 'Electronics'}});
-  res.render('category', {category});
+  const data = {
+    category: category,
+  };
+  res.render('category', {data});
+});
+
+// get electronic category logged in
+app.get('/users/:username/category/electronics', async (req, res) => {
+  const category = await Item.findAll({where: {category: 'Electronics'}});
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+
+  data = {
+    user: user,
+    items: items,
+    category: category,
+  };
+  res.render('category', {data});
 });
 
 // get single item
@@ -121,7 +208,7 @@ app.get('/items/:id', async (req, res) => {
 // homepage without user logged in
 app.get('/homepage', async (req, res) => {
   const allItems = await Item.findAll();
-  const popularItems = allItems.slice(0, 4);
+  const popularItems = allItems.slice(-4);
   const data = {
     allItems: allItems,
     popularItems: popularItems,
@@ -135,7 +222,7 @@ app.get('/homepage/:username', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
   const allItems = await Item.findAll();
-  const popularItems = allItems.slice(0, 4);
+  const popularItems = allItems.slice(-4);
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
@@ -170,8 +257,8 @@ app.get('/users/:username', async (req, res) => {
 // post account path
 app.post('/create-account', async (req, res) => {
   const newUsername = req.body.username;
-  const newFullName = req.body.newFullName;
-  const newEmail = req.body.newEmail;
+  const newFullName = req.body.fullName;
+  const newEmail = req.body.email;
   const newPassword = req.body.password;
 
   // create new user
@@ -189,6 +276,21 @@ app.post('/create-account', async (req, res) => {
   });
 
   res.status(200).redirect(`/homepage/${newUser.username}`);
+});
+
+app.get('/404', async (req, res) => {
+  res.render('404');
+});
+
+app.get('/users/:username/404', async (req, res) =>{
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+  const data = {
+    items: items,
+    user: user,
+  };
+  res.render('404', {data});
 });
 
 // get log-in
@@ -240,7 +342,13 @@ app.get('/users/:username/', async (req, res) => {
 // user can view account update form
 app.get('/users/:username/update-account', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('userUpdate', {user});
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+  const data = {
+    user: user,
+    items: items,
+  };
+  res.status(200).render('userUpdate', {data});
 });
 
 // user sends udpate account request
@@ -275,8 +383,11 @@ app.post('/users/:username/delete-profile', async (req, res) => {
 // user can view create item form
 app.get('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
   const data = {
     user: user,
+    items: items,
   };
   res.status(200).render('itemCreate', {data});
 });
@@ -325,10 +436,13 @@ app.get('/users/:username/items/:id', async (req, res) => {
 app.get('/users/:username/items/:id/update-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
 
   const data = {
     user: user,
     item: item,
+    items: items,
   };
 
   res.status(200).render('itemUpdate', {data});
@@ -377,8 +491,6 @@ app.get('/users/:username/cart', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
 
-  cart.totalPrice = items.map((item) => item.price).reduce((a, b) => a+b);
-
   const data = {
     user: user,
     cart: cart,
@@ -395,7 +507,32 @@ app.post('/users/:username/cart', async (req, res) => {
   const item = await Item.findOne({where: {id: req.body.itemID}});
 
   await cart.addItem(item);
+
+  const items = await cart.getItems();
+
+  cart.set({
+    totalPrice: items.length === 0 ? 0 : items.map((item) => item.price).reduce((a, b) => a+b),
+  });
+  await cart.save();
+
   res.status(200).redirect(301, `/users/${user.username}/cart`);
+});
+
+app.post('/users/:username/delete-item-cart', async (req, res) => {
+  const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const item = await Item.findOne({where: {id: req.body.itemID}});
+
+  await cart.removeItem(item);
+
+  const items = await cart.getItems();
+
+  cart.set({
+    totalPrice: items.length === 0 ? 0 : items.map((item) => item.price).reduce((a, b) => a+b),
+  });
+  await cart.save();
+
+  res.status(200).redirect(`/users/${user.username}/cart`);
 });
 
 app.listen(port, () => {
