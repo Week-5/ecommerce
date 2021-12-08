@@ -521,3 +521,10 @@ span {
   top: 0px;
   transform: matrix(1,0,0,1,0,0);
 }
+
+.flash {
+  z-index: 5;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+}
