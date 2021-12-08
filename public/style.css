@@ -622,8 +622,16 @@ span {
   transform: matrix(1,0,0,1,0,0);
 }
 
-/* 404 from Adobe XD */
+.flash {
+  z-index: 5;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  text-align: center;
+}
 
+
+/* 404 from Adobe XD */
 #n_04 {
   position: absolute;
   width: 1024px;
