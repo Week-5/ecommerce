@@ -77,9 +77,9 @@ seed();
 
 // get all items guest
 app.get('/items', async (req, res) => {
-  const items = await Item.findAll();
+  const allItems = await Item.findAll();
   const data = {
-    items: items,
+    allItems: allItems,
   };
   res.render('allItems', {data});
 });
@@ -208,7 +208,7 @@ app.get('/items/:id', async (req, res) => {
 // homepage without user logged in
 app.get('/homepage', async (req, res) => {
   const allItems = await Item.findAll();
-  const popularItems = allItems.slice(0, 4);
+  const popularItems = allItems.slice(-4);
   const data = {
     allItems: allItems,
     popularItems: popularItems,
@@ -222,7 +222,7 @@ app.get('/homepage/:username', async (req, res) => {
   const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
   const allItems = await Item.findAll();
-  const popularItems = allItems.slice(0, 4);
+  const popularItems = allItems.slice(-4);
   // allItems.sort(function(a, b) {
   //   return a-b;
   // });
@@ -327,7 +327,13 @@ app.get('/users/:username/', async (req, res) => {
 // user can view account update form
 app.get('/users/:username/update-account', async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('userUpdate', {user});
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
+  const data = {
+    user: user,
+    items: items,
+  };
+  res.status(200).render('userUpdate', {data});
 });
 
 // user sends udpate account request
@@ -362,8 +368,11 @@ app.post('/users/:username/delete-profile', async (req, res) => {
 // user can view create item form
 app.get('/users/:username/create-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
   const data = {
     user: user,
+    items: items,
   };
   res.status(200).render('itemCreate', {data});
 });
@@ -412,10 +421,13 @@ app.get('/users/:username/items/:id', async (req, res) => {
 app.get('/users/:username/items/:id/update-item', async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
+  const items = await cart.getItems();
 
   const data = {
     user: user,
     item: item,
+    items: items,
   };
 
   res.status(200).render('itemUpdate', {data});
