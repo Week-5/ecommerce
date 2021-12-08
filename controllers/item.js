@@ -40,20 +40,33 @@ exports.postCreateItem = async (req, res) => {
 ///////////////////////////////
 // render all items in one page
 exports.getAllItems = async (req, res) => {
-  const items = await Item.findAll();
-  const data = {
-    items: items,
+  const user = await User.findByPk(req.params.username);
+  const allItems = await Item.findAll();
+  let data = {
+    allItems: allItems,
   };
+
+  if (user != null) {
+    const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+    const items = await cart.getItems();
+    data = {
+      user: user,
+      items: items,
+      allItems: allItems,
+    };
+  }
   res.render('./items/allItems', { data });
 };
+
 // render an item
 exports.getItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
-  const data = {
+  let data = {
     item: item,
     user: user,
   };
+
   res.render('./items/item', { data });
 };
 
