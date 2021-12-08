@@ -2,6 +2,9 @@
 const port = 3000;
 const { engine } = require('express-handlebars');
 const Handlebars = require('handlebars');
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const flash = require('connect-flash')
 const express = require('express');
 const app = express();
 
@@ -67,6 +70,16 @@ Handlebars.registerHelper('for', function (from, to, incr, block) {
   return accum;
 });
 
+app.use(cookieParser())
+app.use(session({ secret: 'Shh, its a secret', resave: false, saveUninitialized: false }))
+app.use(flash())
+
+app.use((req, res, next)=>{
+  app.locals.success = req.flash('success')
+  app.locals.error = req.flash('error')
+  next();
+});
+
 // const { homepageRoutes, userRoutes, itemRoutes } = require('./routes/index');
 const homepageRoutes = require('./routes/Homepage');
 const userRoutes = require('./routes/User');
@@ -82,3 +95,4 @@ app.use(categoryRoutes);
 app.listen(port, () => {
   console.log('Server is running!');
 });
+ 
