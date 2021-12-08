@@ -61,6 +61,7 @@ exports.postLogIn = async (req, res) => {
   const inputName = req.body.username;
   const inputPassword = req.body.password;
   const user = await User.findByPk(inputName);
+  let loggedUsername = false;
   if (user) {
     loggedUsername = true;
   }
@@ -80,9 +81,7 @@ exports.getUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const cart = await Cart.findOne({ where: { UserUsername: user.username } });
   const items = await cart.getItems();
-  const adminItems = await Item.findAll({
-    where: { UserUsername: user.username },
-  });
+  const adminItems = await Item.findAll({ where: { UserUsername: user.username } });
   const data = {
     user: user,
     items: items,
