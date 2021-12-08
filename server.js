@@ -95,3 +95,4 @@ app.use(categoryRoutes);
 app.listen(port, () => {
   console.log('Server is running!');
 });
+ 
