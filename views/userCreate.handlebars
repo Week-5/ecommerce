@@ -1,26 +1,30 @@
-<form method="POST" action="/create-account">
-  <p>
-    <label class="labelText">Username </label>
-    <input class="inputField" type="text" name="username" placeholder="enter username" required/>
-  </p>
-  <p>
-    <label class="labelText">First Name </label>
-    <input class="inputField" type="text" name="fullName" placeholder="enter full name" required/>
-  </p>
-  <p>
-    <label class="labelText">Email </label>
-    <input class="inputField" type="email" name="email" placeholder="enter email" required/>
-  </p>
-  <p>
-    <label class="labelText">Password </label>
-    <input class="inputField" type="password" name="password" placeholder="enter password" required/>
-  </p>
-    <input class="submitButton" type="submit" name="createUser" value="Create Account" required/>
-  </p>
-</form>
+<div class="signUpDiv">
+  <form method="POST" action="/create-account">
+    <label class="labelText" style="font-size: xx-large;">Sign Up</label><br>
+    <label class="itemDescriptionStyle">Sign up and begin your DQEC experience today!</label>
+    <p>
+      {{!-- <label class="labelText">Username </label> --}}
+      <input class="inputField" type="text" name="username" placeholder="enter username" required/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">First Name </label> --}}
+      <input class="inputField" type="text" name="fullName" placeholder="enter full name" required/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Email </label> --}}
+      <input class="inputField" type="email" name="email" placeholder="enter email" required/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Password </label> --}}
+      <input class="inputField" type="password" name="password" placeholder="enter password" required/>
+    </p>
+      <input class="submitButton" type="submit" name="createUser" value="Create Account" required/>
+    </p>
+  </form>
+</div>
 <section>
-  <div>
-    <p class="generalText">
+  <div style="text-align: center; margin: auto; padding-top:25px;">
+    <p class="generalText" style="margin: auto; text-align:center;">
       Already have an account?
     </p>
     <form action="/log-in">

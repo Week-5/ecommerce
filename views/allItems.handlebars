@@ -1,9 +1,9 @@
 <section>
   <ul class="listing">
-    {{#each data.items}}
+    {{#each data.allItems}}
       <li>
         <div class="cta">
-          {{#if data.user}}
+          {{#if ../data.user}}
             <a href="/users/{{../data.user.username}}/items/{{this.id}}/">
           {{else}}
             <a href="/items/{{this.id}}/">

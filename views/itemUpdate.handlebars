@@ -1,34 +1,38 @@
-<form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/update-item">
-  <p>
-    <label class="labelText">Name </label>
-    <input class="inputField" type="text" name="title" placeholder="enter item name"/>
-  </p>
-  <p>
-    <label class="labelText">Stock </label>
-    <input class="inputField" type="number" name="stock" placeholder="enter how many"/>
-  </p>
-  <p>
-    <label class="labelText">Price </label>
-    <input class="inputField" type="number" name="price" placeholder="enter price"/>
-  </p>
-  <p>
-    <label class="labelText">Description </label>
-    <input class="inputField" type="text" name="description" placeholder="enter item description"/>
-  </p>
-  <p>
-    <label class="labelText">Category </label>
-    <select name="category">
-      <option value="default">Select One</option>
-      <option value="electronics">Electronics</option>
-      <option value="clothing-male">Men's Clothing</option>
-      <option value="clothing-female">Women's Clothing</option>
-      <option value="jewelry">Jewelry</option>
-    </select>
-  </p>
-  <p>
-    <label class="labelText">Image Link </label>
-    <input class="inputField" type="text" name="image" placeholder="enter image URL"/>
-  </p>
-    <input class="submitButton" type="submit" name="createUser" value="Update Item"/>
-  </p>
-</form>
+<div class="signUpDiv">
+  <label class="labelText" style="font-size: xx-large;">Update Your {{data.item.title}}</label><br>
+  <label class="itemDescriptionStyle">Update one or more attribute of your item.</label>
+  <form method="POST" action="/users/{{data.user.username}}/items/{{data.item.id}}/update-item">
+    <p>
+      {{!-- <label class="labelText">Name </label> --}}
+      <input class="inputField" type="text" name="title" placeholder="enter new name"/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Stock </label> --}}
+      <input class="inputField" type="number" name="stock" placeholder="enter new stock"/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Price </label> --}}
+      <input class="inputField" type="number" name="price" placeholder="enter new price"/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Description </label> --}}
+      <input class="inputField" type="text" name="description" placeholder="enter new description"/>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Category </label> --}}
+      <select class="categorySelect" name="category">
+        <option value="default">select a category</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Men's Clothing">Men's Clothing</option>
+        <option value="Women's Clothing">Women's Clothing</option>
+        <option value="Jewelry">Jewelry</option>
+      </select>
+    </p>
+    <p>
+      {{!-- <label class="labelText">Image Link </label> --}}
+      <input class="inputField" type="text" name="image" placeholder="enter new image URL"/>
+    </p>
+      <input class="submitButton" type="submit" name="createUser" value="Update Item"/>
+    </p>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 <section>
   <ul class="listing">
-    {{#each category}}
+    {{#each data.category}}
       <li>
         <div class="cta">
           {{#if ../data.user}}
@@ -11,7 +11,7 @@
             <img class="allItemsImage" src="{{this.image}}" title="Click Here To View Options"/>
           </a>
           <div class="allItemsText">
-            <p>{{this.title}}<br>${{this.price}}</p>
+            {{this.title}}<br>${{this.price}}
           </div>
         </div>
       </li>
