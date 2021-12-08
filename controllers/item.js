@@ -6,9 +6,11 @@ const { User, Item, Cart } = require('../index');
 // render create item form
 exports.getCreateItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
+
   const data = {
     user: user,
   };
+
   res.status(200).render('itemCreate', { data });
 };
 // create a new item
@@ -40,21 +42,48 @@ exports.postCreateItem = async (req, res) => {
 ///////////////////////////////
 // render all items in one page
 exports.getAllItems = async (req, res) => {
-  const items = await Item.findAll();
-  const data = {
-    items: items,
+  const user = await User.findByPk(req.params.username);
+  const allItems = await Item.findAll();
+
+  let data = {
+    allItems: allItems,
   };
-  res.render('allItems', { data });
+
+  if (user !== null) {
+    const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+    const items = await cart.getItems();
+
+    data = {
+      user: user,
+      items: items,
+      allItems: allItems,
+    };
+  }
+  res.status(200).render('allItems', { data });
 };
+
 // render an item
 exports.getItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
-  const data = {
+
+  let data = {
     item: item,
     user: user,
   };
-  res.render('item', { data });
+
+  if (user !== null) {
+    const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+    const items = await cart.getItems();
+
+    data = {
+      item: item,
+      user: user,
+      items: items,
+    };
+  }
+
+  res.status(200).render('item', { data });
 };
 
 ////////////////////////////////
@@ -64,10 +93,13 @@ exports.getItem = async (req, res) => {
 exports.getUpdateItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const items = await cart.getItems();
 
   const data = {
     user: user,
     item: item,
+    items: items,
   };
 
   res.status(200).render('itemUpdate', { data });
@@ -88,8 +120,7 @@ exports.postUpdateItem = async (req, res) => {
     title: updatedTitle === '' ? item.title : updatedTitle,
     stock: updatedStock === '' ? item.stock : updatedStock,
     price: updatedPrice === '' ? item.price : updatedPrice,
-    description:
-      updatedDescription === '' ? item.description : updatedDescription,
+    description: updatedDescription === '' ? item.description : updatedDescription,
     category: updatedCategory === 'default' ? item.category : updatedCategory,
     image: updatedImage === '' ? item.image : updatedImage,
     clickCount: item.clickCount,

@@ -12,9 +12,9 @@ router.get('/users/:username/cart', cartController.getCartPage);
 ///////////////////////////////
 router.post('/users/:username/cart', cartController.postItemToCart);
 
-////////////////////////////////////
-//      DELETE ITEM FROM CART     //
-////////////////////////////////////
-router.post('/users/:username/delete-item-cart', cartController.deleteItemCart);
+////////////////////////////////
+//   DELETE ITEM FROM CART    //
+///////////////////////////////
+router.post('/users/:username/delete-item-cart', cartController.deleteItemFromCart);
 
 module.exports = router;

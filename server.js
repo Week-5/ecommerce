@@ -70,6 +70,7 @@ Handlebars.registerHelper('for', function (from, to, incr, block) {
   return accum;
 });
 
+
 app.use(cookieParser())
 app.use(session({ secret: 'Shh, its a secret', resave: false, saveUninitialized: false }))
 app.use(flash())

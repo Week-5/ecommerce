@@ -5,16 +5,16 @@ const { User, Item, Cart } = require('../index');
 ///////////////////////////////
 exports.getCartPage = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const cart = await Cart.findOne({where: {UserUsername: user.username}});
   const items = await cart.getItems();
 
   const data = {
     user: user,
     cart: cart,
-    items:items,
+    items: items,
   };
 
-  res.status(200).render('cart', { data });
+  res.status(200).render('cart', {data});
 };
 
 ////////////////////////////////
@@ -33,20 +33,18 @@ exports.postItemToCart = async (req, res) => {
     totalPrice: items.length === 0 ? 0 : items.map((item) => item.price).reduce((a, b) => a+b),
   })
 
-  cart.save()
+  await cart.save()
 
   res.status(200).redirect(301, `/users/${user.username}/cart`);
-}
+};
 
-
-////////////////////////////////////
-//      DELETE ITEM FROM CART     //
-////////////////////////////////////
-///users/:username/delete-item-cart
-exports.deleteItemCart = async (req, res) => {
+////////////////////////////////
+//   DELETE ITEM FROM CART    //
+///////////////////////////////
+exports.deleteItemFromCart = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({where: {UserUsername: user.username}});
-  const item = await Item.findOne({where: {id: req.body.itemID}});
+  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+  const item = await Item.findOne({ where: { id: req.body.itemID } });
 
   await cart.removeItem(item);
 
@@ -58,6 +56,6 @@ exports.deleteItemCart = async (req, res) => {
 
   await cart.save();
 
-  res.status(200).redirect(`/users/${user.username}/cart`);
+  res.status(200).redirect(301, `/users/${user.username}/cart`);
 }
 

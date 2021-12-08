@@ -5,11 +5,11 @@ const homepageController = require('../controllers/homepage');
 ////////////////////////////////
 //        HOMEPAGE GUEST      //
 ///////////////////////////////
-router.get('/homepage', homepageController.getHomepageGuest);
+router.get('/homepage', homepageController.getHomepage);
 
 ////////////////////////////////
 //        HOMEPAGE USER      //
 ///////////////////////////////
-router.get('/homepage/:username', homepageController.getHomepageUser);
+router.get('/homepage/:username', homepageController.getHomepage);
 
 module.exports = router;
