@@ -86,5 +86,5 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
 ## Future Features
 
 - Display stock quantity
-  - display how many items the user is purchasing on the cart page
+  - display the quantity of the same item the user is purchasing on the cart page
 
