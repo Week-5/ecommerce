@@ -61,17 +61,20 @@ exports.getLogIn = async (req, res) => {
 exports.postLogIn = async (req, res) => {
 	const inputName = req.body.username;
   const inputPassword = req.body.password;
-  const checkUser = await User.findByPk(inputName);
+  const user = await User.findByPk(inputName);
   let loggedUsername = false;
   let loggedPassword = false;
-  if (checkUser) {
+  if (user) {
     loggedUsername = true;
   }
-  if (inputPassword === checkUser.password) {
-    loggedPassword = true;
-  }
 
-  if (loggedUsername && loggedPassword) {
+  // if (inputPassword === checkUser.password) {
+  //   loggedPassword = true;
+  // }
+
+  const match = await bcrypt.compare(inputPassword, user.password)
+
+  if (match) {
     res.status(200).redirect(301, `/homepage/${inputName}`);
   } else {
     res.status(200).redirect(301, '/create-account');
