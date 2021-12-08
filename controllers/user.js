@@ -69,7 +69,6 @@ exports.postLogIn = async (req, res) => {
 
   const match = await bcrypt.compare(inputPassword, user.password);
 
-
   if (match) {
     res.status(200).redirect(301, `/homepage/${inputName}`);
   } else {
