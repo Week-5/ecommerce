@@ -19,7 +19,11 @@
 		<div class="homepageGrid">
 			<div class="slideshowPlaceholder">
 				<div class="container">
-					<a href="/items">
+					{{#if data.user}}
+						<a href="/users/{{data.user.username}}/items">
+					{{else}}
+						<a href="/items">
+					{{/if}}
 						<div class="wrapper">
 								{{#each data.allItems}}
 									<img src="{{this.image}}">
@@ -34,9 +38,9 @@
 			{{#each data.popularItems}}
     		<div class="homepageGridItem">
 					{{#if ../data.user}}
-						<a href="/users/{{../data.user.username}}/items/{{this.id}}">
+						<a style="text-decoration: none;" href="/users/{{../data.user.username}}/items/{{this.id}}">
 					{{else}}
-						<a href="/items/{{this.id}}">
+						<a style="text-decoration: none;" href="/items/{{this.id}}">
 					{{/if}}
 						<svg class="Subtraction_2_v" viewBox="0 0 150 115">
 							<defs>
@@ -52,8 +56,8 @@
 									xlink:href="{{this.image}}" 
 									clip-path="url(#circleView)"/>
 						</svg>
-						<div class="allItemsText">
-            	<p>{{this.title}}<br>${{this.price}}</p>
+						<div class="homepageItemText">
+            	{{this.title}}<br>${{this.price}}
          		</div>
 					</a>
 				</div>
@@ -108,7 +112,7 @@
 img{
 	position: relative;
   bottom: 500px;
-	width: 100%;
+	width: 800px !important;
 }
 
 </style>
