@@ -73,7 +73,7 @@ exports.getItem = async (req, res) => {
 
   await item.save()
 
-  const data = {
+  let data = {
     item: item,
     user: user,
   };
