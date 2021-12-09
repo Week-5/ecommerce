@@ -93,7 +93,7 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
 ## Future Features
 ### GitHub
 - Utilize more of GitHub feats, e.g. labeling issues and PRs
-### WebApp
+### WebApp BackEnd
 - Create a global variable for user' session
   - this will eliminate multiple instances of user in each controller and routes all while persisting user activities and login status
 - Create a designated class model and db table for scalability and in efforts of reducing DRY codes
