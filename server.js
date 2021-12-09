@@ -3,6 +3,7 @@ const port = 3000;
 const { engine } = require('express-handlebars');
 const Handlebars = require('handlebars');
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 const session = require('express-session')
 const flash = require('connect-flash')
 const express = require('express');
@@ -69,7 +70,6 @@ Handlebars.registerHelper('for', function (from, to, incr, block) {
   }
   return accum;
 });
-
 
 app.use(cookieParser())
 app.use(session({ secret: 'Shh, its a secret', resave: false, saveUninitialized: false }))
