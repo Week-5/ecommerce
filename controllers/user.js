@@ -12,7 +12,7 @@ exports.getCreateUser = async (req, res) => {
 // create a new user
 exports.postCreateUser = async (req, res, next) => {
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
     if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
     }
@@ -110,10 +110,12 @@ exports.postUpdateUser = async (req, res) => {
   const updatedPassword = req.body.password;
   const updatedIsAdmin = req.body.isAdmin === 'on' ? 1 : 0;
 
+  const hashedUpdatedPassword = await bcrypt.hash(updatedPassword, 12)
+
   user.set({
     fullName: updatedFullName === '' ? user.fullName : updatedFullName,
     email: updatedEmail === '' ? user.email : updatedEmail,
-    password: updatedPassword === '' ? user.password : updatedPassword,
+    password: updatedPassword === '' ? user.password : hashedUpdatedPassword,
     isAdmin: updatedIsAdmin === '' ? user.isAdmin : updatedIsAdmin,
   });
 

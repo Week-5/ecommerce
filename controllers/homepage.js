@@ -7,7 +7,9 @@ const { User, Item, Cart } = require('../index');
 exports.getHomepage = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const allItems = await Item.findAll();
-  const popularItems = allItems.slice(-4);
+  const popularItems = await Item.findAll({
+    order: [[ 'clickCount', 'DESC' ]], limit: 4
+  });
 
   let data = {
     allItems: allItems,
@@ -28,6 +30,6 @@ exports.getHomepage = async (req, res) => {
       popularItems: popularItems,
     };
   }
-
+  
   res.status(200).render('./homepage/homepage', { data });
 };
