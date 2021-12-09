@@ -1,5 +1,11 @@
 # E-COMMERCE APP
 
+At DQEC, we know you have thousands of shopping apps to choose from, so we thank you for giving us a look, and we wanted to share our story with you.
+
+Days ago, the founders of DQEC got together with one goal in mind: To help our sister-in-law create a shopping app. With her rock-solid lead for supplying quality goods from China and our can-do attitude, we set to work developing an intuitive, no-frills, shopping app just for you. With easy and secure sign-on, painless navigation, and our minimalistic aesthetic, you’ll find that the DQEC shopping experience is like no other. Browse our extensive collection of tens of items in categories everyone loves. Our new and old electronics, stylish Women’s Clothing, fashion forward Men’s Clothing, and jewelry so unique, you’ll be turning heads wherever you go! You’ll see that we provide the names, prices, and pictures of every item whenever you see them so there’s never any confusion about what you’re shopping for. Add items to your cart and shop until your total looks like a phone number. Then easily manage your cart so that it looks like a more reasonable shopping total. Everytime you checkout, you’ll receive a special surprise, something only found here at DQEC. You can also leave items in your cart if you’re not ready to purchase quite yet. Who knows, the next time you log in, there may be just the thing you’re looking for that was added by one of our vendors. Speaking of vendors - take your DQEC journey 1 step further by becoming an admin to sell your items. Adding, updating, and removing products from your shop is as easy as a few clicks, that way you can focus on what’s important to you - selling your goods.
+
+So sign up today to start shopping or become an admin and start selling! Thank you for shopping by DQEC: quality goods, quality life.
+
 ## Table of Contents
 
 - [Requirements](#Requirements)
@@ -7,7 +13,8 @@
 - [Mock Ups](./public/assets/mockup)
 - [Built With](#Built-With)
 - [Installation](#Installation)
--  [Available Scripts](#Available-Scripts)
+- [Available Scripts](#Available-Scripts)
+- [Test Case Reports](./test)
 - [Future Features](#Future-Features)
 
 ## Requirements
@@ -24,7 +31,7 @@
 | [x]  | F7   | SHOULD   | (optional) The application should support an admin interface to allow for item descriptions to be updated |
 | [x]  | F8   | SHOULD   | (optional) The application should support an admin interface to allow for items to be removed from sale |
 | [x]  | NF1  | MUST     | The application must have client & server-side validation in place |
-|      | NF2  | MUST     | The application must have evidence of automated unit testing |
+| [x]  | NF2  | MUST     | The application must have evidence of automated unit testing |
 | [x]  | NF3  | MUST     | The application code must be documented in a manner that it would be easy for a new developer to understand |
 | [x]  | NF4  | MUST     | The application code must be stored in a GitHub repository   |
 
