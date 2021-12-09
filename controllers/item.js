@@ -67,7 +67,13 @@ exports.getItem = async (req, res) => {
   const user = await User.findByPk(req.params.username);
   const item = await Item.findByPk(req.params.id);
 
-  let data = {
+  item.set({
+    clickCount: ++item.clickCount
+  }) 
+
+  await item.save()
+
+  const data = {
     item: item,
     user: user,
   };
