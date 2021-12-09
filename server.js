@@ -9,7 +9,7 @@ const express = require('express');
 const app = express();
 
 // seed database
-const seed = require('./seed');
+const seed = require('./seed/seed');
 seed();
 
 // send data as json object
