@@ -21,7 +21,7 @@ So sign up today to start shopping or become an admin and start selling! Thank y
 
 | [x]  | ID   | Priority | Description                                                  |
 | ---- | ---- | -------- | ------------------------------------------------------------ |
-| [x]  | F1   | MUST     | The application must support at least 4 categories; *electronics, jewelery, men's clothing, women's clothing* |
+| [x]  | F1   | MUST     | The application must support at least 4 categories: electronics, jewelery, men's clothing, women's clothing |
 | [x]  | F2   | MUST     | The application must display as a minimum, an image, price and description of each item |
 | [x]  | F3   | MUST     | The application must allow for items to be added to a shopping cart |
 | [x]  | F4   | MUST     | The application must allow for items to be deleted from a shopping cart |
@@ -95,8 +95,10 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
 - Utilize more of GitHub feats, e.g. labeling issues and PRs
 - Create a global variable for user' session
   - this will eliminate multiple instances of user in each controller and routes all while persisting user activities and login status
-- Create a designated db table for category
-  - this will eliminate some DRY codes in the /controllers/category.js
+- Create a designated class model and db table for scalability and in efforts of reducing DRY codes
+  - separate users into admin/customer class models
+  - the category will have its own class model and db table
+  - separate items per category
 - User receives an email confirmation after an account creation / update
 - Log in page
   - 2FA functionality
@@ -112,5 +114,7 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
   - display the quantity of the same item the user is purchasing on the cart page
 - Error codes
   - user sees a status(404) when accessing a nonexisting page, and then gets redirected elsewhere, i.e. homepage
+  - logging errors into a txt file for future debugging/ customer service purposes
+    - this file lives in the user's local machine
 - Push live
 
