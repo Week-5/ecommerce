@@ -29,5 +29,5 @@ exports.getHomepage = async (req, res) => {
     };
   }
 
-  res.status(200).render('homepage', { data });
+  res.status(200).render('./homepage/homepage', { data });
 };

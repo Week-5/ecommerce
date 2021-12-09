@@ -22,7 +22,7 @@ exports.getJewelry = async (req, res) => {
     };
   }
 
-  res.status(200).render('category', { data });
+  res.status(200).render('./category/category', { data });
 };
 
 ////////////////////////////////
@@ -47,7 +47,7 @@ exports.getElectronics = async (req, res) => {
     };
   }
 
-  res.status(200).render('category', { data });
+  res.status(200).render('./category/category', { data });
 };
 
 ////////////////////////////////
@@ -74,7 +74,7 @@ exports.getMensClothing = async (req, res) => {
     };
   }
 
-  res.status(200).render('category', { data });
+  res.status(200).render('./category/category', { data });
 };
 
 ////////////////////////////////
@@ -101,5 +101,5 @@ exports.getWomensClothing = async (req, res) => {
     };
   }
 
-  res.status(200).render('category', { data });
+  res.status(200).render('./category/category', { data });
 };
