@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
-const { noExtendLeft } = require('sequelize/dist/lib/operators');
 const { User, Item, Cart } = require('../index');
 
 ////////////////////////////////
@@ -14,7 +13,6 @@ exports.getCreateUser = async (req, res) => {
 exports.postCreateUser = async (req, res, next) => {
   try {
     const errors = validationResult(req);
-    console.log(errors);
     if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
     }
