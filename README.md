@@ -92,6 +92,26 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
 
 ## Future Features
 
-- Display stock quantity
+- Create a global variable for user' session
+  - this will eliminate multiple instances of user in each controller and routes all while persisting user activities and login status
+- Create a designated db table for category
+  - this will eliminate some DRY codes in the /controllers/category.js
+- User receives an email confirmation after an account creation / update
+- Log in page
+  - 2FA functionality
+    - Text? Call? Barcode? Authenticator?
+  - OAuth
+    - Log in using FB/GitHub/Google/etc
+- Password is still hashed after user updates
+  - password is only hashed upon account creation
+- Switch to a serverless database for a seamless deployment
+- While the pages are dynamic both on web and mobile, there are assets and forms that need refactoring, e.g. login/signup pages, item page, etc.
+- Utilize NPM Multer to handle file uploads, e.g. profile photos, item photos
+  - aon, users can only upload photos by providing a URL for items owned
+  - profile photos are static.
+- Display item stock quantity
   - display the quantity of the same item the user is purchasing on the cart page
+- Error codes
+  - user sees a status(404) when accessing a nonexisting page, and then gets redirected elsewhere, i.e. homepage
+- Push live
 
