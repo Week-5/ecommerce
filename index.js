@@ -9,10 +9,7 @@ Cart.belongsTo(User, {onDelete: 'cascade'});
 User.hasMany(Item, {onDelete: 'cascade'});
 Item.belongsTo(User, {onDelete: 'cascade'});
 
-
 Cart.hasMany(Item, {onDelete: 'cascade'});
 Item.belongsTo(Cart, {onDelete: 'cascade'});
-// reference for deleting profile cascade
-// User.hasMany(Restaurant, {onDelete: 'cascade'});
 
 module.exports = {User, Item, Cart};

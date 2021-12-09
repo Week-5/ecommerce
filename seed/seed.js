@@ -3,14 +3,14 @@ const path = require('path');
 const fs = require('fs').promises;
 
 // access to our model and database
-const {db} = require('./db');
-const {User} = require('./classes/User');
-const {Item} = require('./classes/Item');
-const { Cart } = require('./classes/Cart');
+const {db} = require('../db');
+const {User} = require('../classes/User');
+const {Item} = require('../classes/Item');
+const { Cart } = require('../classes/Cart');
 
-const userJson = 'User.json'
-const itemJson = 'Item.json';
-const cartJson = 'Cart.json';
+const userJson = './User.json'
+const itemJson = './Item.json';
+const cartJson = './Cart.json';
 
 const seed = async () => {
   await db.sync({force: true});

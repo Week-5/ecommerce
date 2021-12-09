@@ -7,7 +7,7 @@ const { User, Item, Cart } = require('../index');
 ///////////////////////////////
 // render create user form
 exports.getCreateUser = async (req, res) => {
-  res.status(200).render('userCreate');
+  res.status(200).render('./user/userCreate');
 };
 // create a new user
 exports.postCreateUser = async (req, res, next) => {
@@ -52,7 +52,7 @@ exports.postCreateUser = async (req, res, next) => {
 // get a specific user
 // render log in page
 exports.getLogIn = async (req, res) => {
-  res.status(200).render('userLogin');
+  res.status(200).render('./user/userLogin');
 };
 // log in user
 exports.postLogIn = async (req, res) => {
@@ -78,15 +78,20 @@ exports.postLogIn = async (req, res) => {
 // profile page
 exports.getUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  const cart = await Cart.findOne({ where: { UserUsername: user.username } });
-  const items = await cart.getItems();
-  const adminItems = await Item.findAll({ where: { UserUsername: user.username } });
-  const data = {
-    user: user,
-    items: items,
-    adminItems: adminItems,
-  };
-  res.status(200).render('user', { data });
+
+  let data = {}
+
+  if (user !== null) {
+    const cart = await Cart.findOne({ where: { UserUsername: user.username } });
+    const items = await cart.getItems();
+    const adminItems = await Item.findAll({ where: { UserUsername: user.username } });
+    data = {
+      user: user,
+      items: items,
+      adminItems: adminItems,
+    };
+  }
+  res.status(200).render('./user/user', { data });
 };
 
 ////////////////////////////////
@@ -95,7 +100,7 @@ exports.getUser = async (req, res) => {
 // render user update form
 exports.getUpdateUser = async (req, res) => {
   const user = await User.findByPk(req.params.username);
-  res.status(200).render('userUpdate', { user });
+  res.status(200).render('./user/userUpdate', { user });
 };
 // user update
 exports.postUpdateUser = async (req, res) => {

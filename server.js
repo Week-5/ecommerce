@@ -9,7 +9,7 @@ const express = require('express');
 const app = express();
 
 // seed database
-const seed = require('./seed');
+const seed = require('./seed/seed');
 seed();
 
 // send data as json object
@@ -80,7 +80,7 @@ app.use((req, res, next)=>{
   next();
 });
 
-// const { homepageRoutes, userRoutes, itemRoutes } = require('./routes/index');
+// const { homepageRoutes, userRoutes, itemRoutes, cartRoutes, categoryRoutes } = require('./routes/index');
 const homepageRoutes = require('./routes/Homepage');
 const userRoutes = require('./routes/User');
 const itemRoutes = require('./routes/Item');
@@ -91,6 +91,10 @@ app.use(userRoutes);
 app.use(itemRoutes);
 app.use(cartRoutes);
 app.use(categoryRoutes);
+
+// test on NOT FOUND pages
+const ErrorController = require('./controllers/errorPages')
+app.use(ErrorController.getFOF)
 
 app.listen(port, () => {
   console.log('Server is running!');
