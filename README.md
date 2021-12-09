@@ -91,8 +91,9 @@ Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://www.npmjs.com/package/jest) for more information.
 
 ## Future Features
-
+### GitHub
 - Utilize more of GitHub feats, e.g. labeling issues and PRs
+### WebApp
 - Create a global variable for user' session
   - this will eliminate multiple instances of user in each controller and routes all while persisting user activities and login status
 - Create a designated class model and db table for scalability and in efforts of reducing DRY codes
@@ -116,5 +117,9 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
   - user sees a status(404) when accessing a nonexisting page, and then gets redirected elsewhere, i.e. homepage
   - logging errors into a txt file for future debugging/ customer service purposes
     - this file lives in the user's local machine
+### WebApp FrontEnd
+- Make homepage slideshow photos dynamic
+- Instead of popular items, maybe we can personalize said items to the user based on userClick
+### Deployment
 - Push live
 
