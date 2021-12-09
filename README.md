@@ -106,8 +106,6 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
     - Text? Call? Barcode? Authenticator?
   - OAuth
     - Log in using FB/GitHub/Google/etc
-- Switch to a serverless database for a seamless deployment
-- While the pages are dynamic both on web and mobile, there are assets and forms that need refactoring, e.g. login/signup pages, item page, etc.
 - Utilize NPM Multer to handle file uploads, e.g. profile photos, item photos
   - aon, users can only upload photos by providing a URL for items owned
   - profile photos are static.
@@ -119,7 +117,9 @@ See the section about [running tests](https://www.npmjs.com/package/jest) for mo
     - this file lives in the user's local machine
 ### WebApp FrontEnd
 - Make homepage slideshow photos dynamic
+- While the pages are dynamic both on web and mobile, there are assets and forms that need refactoring, e.g. login/signup pages, item page, etc.
 - Instead of popular items, maybe we can personalize said items to the user based on userClick
 ### Deployment
+- Switch to a serverless database for a seamless deployment
 - Push live
 
