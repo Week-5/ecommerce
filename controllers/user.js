@@ -37,12 +37,21 @@ exports.postCreateUser = async (req, res, next) => {
       totalPrice: 0,
       UserUsername: newUser.username,
     });
+
+    if (!newUser) {
+      req.flash('error', 'Could not create account at this time please try again');
+      res.status(200).redirect(301, `/create-account`);
+    }
+
     req.flash('success', 'Successfully created account');
+
     res.status(200).redirect(301, `/homepage/${newUser.username}`);
   } catch (err) {
     const error = new Error(err);
     error.httpStatusCode = 500;
-    return next(error);
+    req.flash('error', 'Could not create account at this time please try again');
+    res.status(200).redirect(301, `/create-account`);
+
   }
 };
 
